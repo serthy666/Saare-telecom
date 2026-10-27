@@ -2,7 +2,7 @@
 
 Boutique en ligne de Saaré Télécom (téléphones, ordinateurs, accessoires), en « verre liquide » façon iPhone. Les clients commandent sur WhatsApp (+237 6 96 30 02 00). Le gérant remplit lui-même le catalogue depuis son téléphone, onglet **Gérant**.
 
-Adresse : https://saare-telecom.pages.dev (Cloudflare Pages ; `*.github.io` est bloqué chez Orange Cameroun).
+Adresse : https://saare-telecom.apeledition.workers.dev (Worker Cloudflare ; `*.github.io` est bloqué chez Orange Cameroun).
 
 ## Comment ça marche
 
@@ -32,7 +32,7 @@ Deux façons de publier, le code marche avec les deux :
 - **Worker Cloudflare** (Workers Builds, ce qui est branché aujourd'hui) : `wrangler.jsonc` sert `site/` et envoie `/api/gerant` à la fonction via `worker.js`. Les variables se règlent dans le Worker, onglet Settings > Variables and Secrets.
 - **Cloudflare Pages** : framework **None**, commande de build vide, dossier de sortie **`site`** ; `functions/` est pris automatiquement.
 
-Le client OAuth Google est de type « Application Web », avec `https://saare-telecom.pages.dev` (et le domaine du client s'il en prend un) dans « Origines JavaScript autorisées ».
+Le client OAuth Google est de type « Application Web », avec `https://saare-telecom.apeledition.workers.dev` (et le domaine du client s'il en prend un) dans « Origines JavaScript autorisées ».
 
 En secours : si le client perd son Gmail, changez `PROPRIETAIRE` dans Cloudflare puis republiez. Le jeton GitHub expire à la date choisie à sa création : il faut le renouveler avant (sinon le gérant voit « Le jeton GitHub de la boutique est refusé »).
 
