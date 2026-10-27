@@ -8,5 +8,7 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page"
   },
+  // Garde les variables réglées dans le tableau de bord Cloudflare à chaque publication
+  "keep_vars": true,
   "observability": { "enabled": true }
 }
