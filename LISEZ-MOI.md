@@ -27,7 +27,10 @@ Le dépôt est public : n'y mettez jamais de données de clients ni de secret. L
 | `GITHUB_REPO` | facultatif, `serthy666/saare-telecom` par défaut | Texte |
 | `GITHUB_BRANCH` | facultatif, `main` par défaut | Texte |
 
-Construction Cloudflare Pages : framework **None**, commande de build vide, dossier de sortie **`site`**.
+Deux façons de publier, le code marche avec les deux :
+
+- **Worker Cloudflare** (Workers Builds, ce qui est branché aujourd'hui) : `wrangler.jsonc` sert `site/` et envoie `/api/gerant` à la fonction via `worker.js`. Les variables se règlent dans le Worker, onglet Settings > Variables and Secrets.
+- **Cloudflare Pages** : framework **None**, commande de build vide, dossier de sortie **`site`** ; `functions/` est pris automatiquement.
 
 Le client OAuth Google est de type « Application Web », avec `https://saare-telecom.pages.dev` (et le domaine du client s'il en prend un) dans « Origines JavaScript autorisées ».
 

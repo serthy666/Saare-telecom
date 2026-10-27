@@ -1,0 +1,12 @@
+// Réglages pour Cloudflare Workers Builds (ignorés par Cloudflare Pages)
+{
+  "name": "saare-telecom",
+  "main": "worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./site",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}
