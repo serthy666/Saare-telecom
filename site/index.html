@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boutique Saaré Télécom</title>
+<meta name="description" content="Saaré Télécom : les meilleurs téléphones, aux meilleurs prix. Promos, ventes flash et Black Friday. Commandez sur WhatsApp.">
+<meta name="theme-color" content="#071A3D">
+<meta property="og:title" content="Saaré Télécom">
+<meta property="og:description" content="Les meilleurs téléphones, aux meilleurs prix ! Téléphones, ordinateurs et accessoires, neufs ou d'occasion. Commandez sur WhatsApp.">
+<meta property="og:image" content="https://saare-telecom.pages.dev/assets/logo.webp">
+<link rel="icon" href="assets/mascotte.webp">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+/* Mise en page : verre liquide façon iPhone, un seul univers nuit bleue choisi exprès (lueurs bleu, rouge, blanc du logo derrière des plaques de verre),
+   en-tête en capsule flottante, barre d'onglets flottante en bas, cartes produits inclinées en 3D sous le doigt ou la souris */
+:root{
+  --nuit:#050F24;--abysse:#071A3D;--bleu:#2F6FDB;--bleu-vif:#5A9BFF;--rouge:#E5382F;--rouge-vif:#FF5A50;--blanc:#FFFFFF;
+  --texte:#FFFFFF;--texte-2:rgba(255,255,255,.86);--texte-3:rgba(255,255,255,.68);
+  --flash:#FFD23F;--ok:#6BE29B;--attention:#FFC266;--wa:#25D366;
+  --affiche:"Baloo 2","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
+  --police:"Nunito Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --r:28px;--r-petit:18px;
+  /* Verre : reflet en haut à gauche, voile clair, fumée bleue qui garde le texte lisible */
+  --verre:radial-gradient(130% 90% at 0% 0%,rgba(255,255,255,.22),rgba(255,255,255,0) 50%),
+          linear-gradient(155deg,rgba(255,255,255,.14),rgba(255,255,255,.04) 45%,rgba(255,255,255,.08)),
+          linear-gradient(rgba(8,24,58,.38),rgba(8,24,58,.38));
+  --relief:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -14px 28px -18px rgba(0,0,0,.5),0 28px 50px -26px rgba(0,0,0,.85),0 6px 14px -6px rgba(0,0,0,.45);
+  --flou:blur(22px) saturate(180%);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--nuit);scroll-padding-top:110px}
+body{margin:0;background:var(--nuit);color:var(--texte);font-family:var(--police);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--abysse)}
+img{max-width:100%;display:block}
+a{color:var(--bleu-vif)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blanc);outline-offset:3px;border-radius:14px}
+h1,h2,h3{font-family:var(--affiche);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.enveloppe{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.prix,.compte{font-variant-numeric:tabular-nums}
+
+/* Décor : lueurs qui dérivent lentement derrière le verre */
+.decor{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(170deg,#0A2557 0%,#071A3D 42%,#050F24 100%)}
+.decor i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.75;animation:derive 22s ease-in-out infinite alternate}
+.decor i:nth-child(1){width:60vmax;height:60vmax;left:-18vmax;top:-20vmax;background:radial-gradient(circle,#2F6FDB,rgba(47,111,219,0) 65%)}
+.decor i:nth-child(2){width:46vmax;height:46vmax;right:-14vmax;top:18vh;background:radial-gradient(circle,#E5382F,rgba(229,56,47,0) 65%);opacity:.55;animation-duration:27s}
+.decor i:nth-child(3){width:40vmax;height:40vmax;left:20vw;bottom:-18vmax;background:radial-gradient(circle,#5A9BFF,rgba(90,155,255,0) 65%);opacity:.5;animation-duration:31s}
+.decor i:nth-child(4){width:22vmax;height:22vmax;left:52vw;top:6vh;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 65%);opacity:.35;animation-duration:19s}
+@keyframes derive{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vmax,4vmax,0) scale(1.12)}}
+
+/* Plaques de verre */
+.verre{position:relative;background:var(--verre);border-radius:var(--r);box-shadow:var(--relief);-webkit-backdrop-filter:var(--flou);backdrop-filter:var(--flou)}
+.verre::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.2px;pointer-events:none;
+  background:linear-gradient(150deg,rgba(255,255,255,.85),rgba(255,255,255,.16) 28%,rgba(255,255,255,.04) 58%,rgba(255,255,255,.45));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){.verre{background:linear-gradient(rgba(12,34,78,.94),rgba(12,34,78,.94))}}
+
+/* En-tête en capsule flottante */
+.entete{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-top:10px}
+.capsule{display:flex;align-items:center;gap:10px;padding:7px 8px 7px 7px;border-radius:999px}
+.marque{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--texte);flex:1;min-width:0}
+.marque img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 2px rgba(255,255,255,.7),0 6px 14px -4px rgba(0,0,0,.6)}
+.marque div{min-width:0}
+.marque b{display:block;font-family:var(--affiche);font-size:19px;font-weight:800;letter-spacing:.05em;line-height:1}
+.marque span{display:block;font-size:12.5px;color:var(--texte-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drapeau{display:flex;height:6px;width:54px;border-radius:99px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
+.drapeau i{flex:1}.drapeau i:nth-child(1){background:var(--bleu)}.drapeau i:nth-child(2){background:#fff}.drapeau i:nth-child(3){background:var(--rouge)}
+.puce-wa{display:flex;align-items:center;gap:6px;text-decoration:none;color:#fff;font-weight:800;font-size:14px;border-radius:999px;padding:9px 14px;min-height:42px;
+  background:radial-gradient(120% 90% at 50% -20%,rgba(255,255,255,.55),rgba(255,255,255,0) 55%),linear-gradient(180deg,#34D873,#1DA851);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 18px -8px rgba(37,211,102,.8)}
+.puce-wa svg{width:18px;height:18px}
+@media (max-width:440px){.marque b{font-size:17px}.marque span{display:none}.drapeau{display:none}.puce-wa span{display:none}.puce-wa{padding:9px 11px}}
+
+/* Bandeau d'événement */
+.evenement{margin-top:10px;border-radius:22px;padding:10px 14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;text-align:center}
+.evenement strong{font-family:var(--affiche);font-size:20px;letter-spacing:.07em;text-transform:uppercase}
+.evenement strong em{font-style:normal;color:var(--rouge-vif);text-shadow:0 0 18px rgba(255,90,80,.7)}
+.evenement>span:not(.compte){color:var(--texte-2);font-weight:700;font-size:14px}
+.compte{display:inline-flex;gap:6px}
+.compte span{min-width:46px;padding:3px 7px;border-radius:12px;font-weight:800;font-size:16px;line-height:1.15;
+  background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(0,0,0,.25)}
+.compte small{display:block;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--texte-3)}
+
+/* Héros */
+.heros{display:grid;grid-template-columns:1fr;gap:22px;align-items:center;margin-top:18px;padding:24px 20px}
+@media (min-width:800px){.heros{grid-template-columns:1.1fr .9fr;padding:38px 40px}}
+.heros h1{font-size:clamp(34px,7.4vw,58px);font-weight:800;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.heros h1 em{font-style:normal;background:linear-gradient(180deg,#FF8A82,#E5382F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.heros p{color:var(--texte-2);font-size:17px;max-width:46ch;margin:12px 0 20px}
+.scene{perspective:900px;justify-self:center;width:100%;max-width:360px}
+.affiche{position:relative;transform-style:preserve-3d;transform:rotateY(-14deg) rotateX(6deg);animation:flotte 7s ease-in-out infinite;transition:transform .2s ease-out}
+.affiche img{border-radius:30px;box-shadow:0 40px 60px -30px rgba(0,0,0,.9),0 0 0 1.5px rgba(255,255,255,.55)}
+.affiche::after{content:"";position:absolute;inset:0;border-radius:30px;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,0) 32%,rgba(255,255,255,0) 70%,rgba(255,255,255,.14) 100%)}
+@keyframes flotte{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.pastille{position:absolute;left:-14px;bottom:26px;transform:translateZ(60px) rotate(-5deg);padding:9px 15px;border-radius:18px;font-family:var(--affiche);font-weight:800;font-size:19px;line-height:1.05;
+  background:radial-gradient(120% 90% at 30% -10%,rgba(255,255,255,.5),rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(255,90,80,.92),rgba(196,30,24,.92));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 18px 30px -12px rgba(229,56,47,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.pastille small{display:block;font-family:var(--police);font-weight:700;font-size:12px;color:rgba(255,255,255,.9)}
+.boutons{display:flex;flex-wrap:wrap;gap:10px}
+.bouton{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 20px;min-height:48px;font-weight:800;text-decoration:none;cursor:pointer;color:#fff;
+  background:radial-gradient(120% 90% at 50% -25%,rgba(255,255,255,.55),rgba(255,255,255,0) 52%),linear-gradient(180deg,#4C8BF0,#1F55B8);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 6px rgba(0,0,0,.25),0 12px 22px -12px rgba(47,111,219,.9);transition:transform .15s}
+.bouton:active{transform:scale(.97)}
+.bouton.rouge{background:radial-gradient(120% 90% at 50% -25%,rgba(255,255,255,.55),rgba(255,255,255,0) 52%),linear-gradient(180deg,#FF6058,#C9221B);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 6px rgba(0,0,0,.25),0 12px 22px -12px rgba(229,56,47,.9)}
+.bouton.leger{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.06));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 0 0 1px rgba(255,255,255,.18);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.bouton svg{width:20px;height:20px;flex:none}
+.garanties{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+.garanties li{font-size:13px;font-weight:800;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);color:var(--texte-2)}
+.garanties li::before{content:"✓ ";color:var(--ok)}
+
+/* Catalogue */
+section{padding-block:30px 6px}
+.titre-section{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 4px 14px}
+.titre-section h2{font-size:30px}
+.titre-section .compteur{color:var(--texte-3);font-size:14px;font-weight:700}
+.filtres{display:flex;gap:4px;overflow-x:auto;padding:5px;margin-bottom:18px;border-radius:999px;scrollbar-width:none;width:max-content;max-width:100%}
+.filtres button{flex:none;border:0;border-radius:999px;padding:8px 15px;min-height:40px;font-weight:800;font-size:14px;cursor:pointer;background:none;color:var(--texte-2);transition:background .2s}
+.filtres button[aria-pressed="true"]{color:#06183A;background:radial-gradient(120% 90% at 50% -20%,#fff,rgba(255,255,255,.75));box-shadow:inset 0 -1px 2px rgba(0,0,0,.15),0 6px 14px -6px rgba(0,0,0,.6)}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;perspective:1100px}
+@media (min-width:760px){.grille{grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:20px}}
+.produit{display:flex;flex-direction:column;min-width:0;padding:8px;border-radius:var(--r);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  --mx:30%;--my:0%}
+.produit::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(255,255,255,.22),rgba(255,255,255,0) 60%)}
+.produit .photo{position:relative;aspect-ratio:1;max-width:100%;border:0;padding:0;cursor:zoom-in;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.08);transform:translateZ(24px);box-shadow:0 14px 26px -16px rgba(0,0,0,.9)}
+.produit .photo img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:9px;left:9px;border-radius:999px;padding:4px 10px;font-weight:800;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;line-height:1.2;color:#fff;
+  background:linear-gradient(180deg,rgba(255,96,88,.9),rgba(201,34,27,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.badge.flash{background:linear-gradient(180deg,rgba(255,226,120,.95),rgba(245,190,20,.95));color:#2A1D00}
+.badge.flash::before{content:"⚡ "}
+.badge.bf{background:linear-gradient(180deg,rgba(20,24,40,.82),rgba(5,8,18,.82));box-shadow:inset 0 0 0 1.5px rgba(255,90,80,.9),0 0 16px -2px rgba(255,90,80,.6)}
+.badge.nouveau{background:linear-gradient(180deg,rgba(90,155,255,.9),rgba(31,85,184,.9))}
+.remise{position:absolute;bottom:9px;right:9px;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-family:var(--affiche);font-weight:800;font-size:16px;color:#fff;
+  background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.6),rgba(255,255,255,0) 45%),linear-gradient(180deg,#FF6058,#C9221B);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 16px -6px rgba(0,0,0,.6);transform:rotate(8deg)}
+.corps{display:flex;flex-direction:column;gap:3px;padding:12px 8px 8px;flex:1;transform:translateZ(14px)}
+.corps h3{font-size:18.5px;font-weight:700}
+.corps .details{color:var(--texte-3);font-size:13.5px;margin:0}
+.prix{margin-top:auto;padding-top:6px;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+.prix b{font-family:var(--affiche);font-size:22px;font-weight:800}
+.prix b.reduit{color:var(--rouge-vif);text-shadow:0 0 16px rgba(255,90,80,.45)}
+.prix s{color:var(--texte-3);font-size:14px}
+.minuteur{font-size:12.5px;font-weight:800;color:var(--flash);margin:0}
+.stock{font-size:12.5px;font-weight:700;margin:0;color:var(--ok)}
+.stock.peu{color:var(--attention)}
+.produit .bouton{margin-top:10px;width:100%;padding:10px 12px;font-size:14.5px;transform:translateZ(20px)}
+
+/* Contact */
+.contact-grille{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:760px){.contact-grille{grid-template-columns:1fr 1fr}}
+.canal{padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.canal h3{font-size:21px}
+.canal .valeur{font-weight:800;font-size:19px;word-break:break-all;user-select:all}
+.canal p{margin:0;color:var(--texte-2);font-size:14.5px}
+.a-remplir{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--attention);border:1.5px dashed currentColor;border-radius:8px;padding:1px 7px;width:max-content}
+.pied{padding-block:26px 140px;padding-bottom:calc(140px + env(safe-area-inset-bottom,0px));color:var(--texte-3);font-size:13.5px;text-align:center}
+
+/* Barre d'onglets flottante, façon iPhone */
+.barre{position:fixed;left:0;right:0;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;justify-content:center;gap:10px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));pointer-events:none}
+.onglets{display:flex;gap:2px;padding:6px;border-radius:999px;pointer-events:auto}
+.onglets a{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:66px;padding:6px 10px;border-radius:999px;text-decoration:none;color:var(--texte-2);font-size:11px;font-weight:800;transition:background .2s,color .2s}
+.onglets a svg{width:22px;height:22px}
+.onglets a[aria-current="page"]{color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.1));box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.onglets a[aria-current="page"] svg{color:var(--bleu-vif);filter:drop-shadow(0 0 6px rgba(90,155,255,.7))}
+.wa-flottant{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#fff;flex:none;
+  background:radial-gradient(circle at 35% 22%,rgba(255,255,255,.65),rgba(255,255,255,0) 45%),linear-gradient(180deg,#34D873,#1DA851);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 14px 26px -10px rgba(37,211,102,.75)}
+.wa-flottant svg{width:30px;height:30px}
+@media (max-width:400px){.onglets a{min-width:56px;padding:6px 6px}}
+
+/* Fiche produit */
+.voile{position:fixed;inset:0;z-index:40;background:rgba(2,8,20,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:grid;place-items:end center;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) 0 env(safe-area-inset-left,0px)}
+@media (min-width:760px){.voile{place-items:center}}
+.fiche{width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:32px 32px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));background:linear-gradient(rgba(10,30,70,.72),rgba(10,30,70,.72))}
+@media (min-width:760px){.fiche{border-radius:32px}}
+.fiche .galerie{display:grid;grid-auto-flow:column;grid-auto-columns:100%;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:22px;gap:8px}
+.fiche .galerie img{scroll-snap-align:start;aspect-ratio:1;object-fit:cover;width:100%;border-radius:22px}
+.fiche h3{font-size:25px;margin-top:12px}
+.fermer{float:right;border:0;border-radius:999px;width:40px;height:40px;font-size:22px;cursor:pointer;margin:0 0 8px 8px;background:rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+
+/* Espace gérant (aperçu) */
+.admin-intro{padding:14px 18px;margin-bottom:16px;font-size:14.5px;color:var(--texte-2)}
+.admin-intro b{color:var(--rouge-vif)}
+.admin-bloc{padding:18px;margin-bottom:16px}
+.admin-bloc h3{font-size:21px;margin-bottom:10px}
+.enregistre{font-size:13px;font-weight:800;color:var(--ok)}
+.ligne{display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:start;padding-block:14px;border-top:1px solid rgba(255,255,255,.14)}
+.ligne:first-of-type{border-top:0}
+.ligne .vignette{width:88px;height:88px;border-radius:18px;object-fit:cover;background:rgba(255,255,255,.08);box-shadow:0 0 0 1px rgba(255,255,255,.3)}
+.champs{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;min-width:0}
+.champ{display:flex;flex-direction:column;gap:3px;min-width:0}
+.champ.large{grid-column:1/-1}
+.champ label{font-size:11.5px;font-weight:800;color:var(--texte-3);text-transform:uppercase;letter-spacing:.06em}
+.champ input,.champ select{width:100%;min-height:42px;border-radius:14px;border:0;padding:8px 12px;background:rgba(255,255,255,.1);box-shadow:inset 0 1px 2px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.16)}
+.champ select option{background:#0A2557}
+.champ input[type="checkbox"]{width:24px;min-height:24px;height:24px;accent-color:var(--bleu)}
+.photo-btn{position:relative;display:inline-block;margin-top:6px;font-size:12.5px;font-weight:800;color:var(--bleu-vif);cursor:pointer;text-align:center;width:88px}
+.photo-btn input{position:absolute;width:1px;height:1px;opacity:0}
+.apercu-prix{grid-column:1/-1;font-size:13.5px;color:var(--texte-3);margin:0}
+.apercu-prix b{color:var(--texte)}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.affiche{transform:none}}
+
+/* Prix : l'ancien prix barré au-dessus, le vrai prix en dessous */
+.prix{flex-direction:column;align-items:flex-start;gap:0}
+.prix s{line-height:1.2;text-decoration-color:var(--rouge-vif);text-decoration-thickness:2px}
+.etat{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;font-weight:800;margin:2px 0 0}
+.etat span{padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.etat .e-neuf{color:#BFE0FF}.etat .e-occasion{color:#FFE2A8}.etat .e-pieces{color:#FFC2BE}
+.etat em{font-style:normal;color:var(--texte-3);font-weight:700}
+
+/* Nos boutiques (rayons) */
+.rayons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+@media (max-width:620px){.rayons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rayon{display:flex;align-items:center;gap:10px;padding:12px;border-radius:22px;text-decoration:none;color:var(--texte);border:0;cursor:pointer;text-align:left;min-width:0}
+.rayon svg{width:34px;height:34px;flex:none;padding:6px;border-radius:12px;background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.rayon b{display:block;font-family:var(--affiche);font-size:16px;line-height:1.1}
+.rayon small{display:block;color:var(--texte-3);font-size:12px;font-weight:700}
+.rayon[aria-pressed="true"]{background:radial-gradient(130% 90% at 0% 0%,rgba(255,255,255,.4),rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(76,139,240,.75),rgba(31,85,184,.75))}
+.rayon[aria-pressed="true"] svg{background:rgba(255,255,255,.25)}
+.rangee{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.rangee .filtres{margin-bottom:0}
+
+/* Connexion gérant */
+.connexion{max-width:460px;margin:24px auto 0;padding:26px 22px;text-align:center}
+.connexion h2{font-size:26px;margin-bottom:8px}
+.connexion p{color:var(--texte-2);margin:0 0 18px}
+.cadenas{width:64px;height:64px;margin:0 auto 14px;border-radius:22px;display:grid;place-items:center;background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.5),rgba(255,255,255,0) 50%),linear-gradient(180deg,#4C8BF0,#1F55B8);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 14px 26px -12px rgba(47,111,219,.9)}
+.cadenas svg{width:30px;height:30px}
+.bouton.blanc{color:#14213A;background:radial-gradient(120% 90% at 50% -25%,#fff,rgba(255,255,255,.85));box-shadow:inset 0 -2px 4px rgba(0,0,0,.12),0 12px 22px -12px rgba(0,0,0,.8);width:100%}
+.choix{display:flex;flex-direction:column;gap:8px;margin-top:16px;text-align:left}
+.choix button{display:flex;align-items:center;gap:12px;width:100%;border:0;border-radius:16px;padding:10px 12px;cursor:pointer;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);color:var(--texte)}
+.choix button:hover{background:rgba(255,255,255,.16)}
+.choix .rond{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;flex:none;background:linear-gradient(180deg,#4C8BF0,#1F55B8)}
+.choix .rond.r{background:linear-gradient(180deg,#FF6058,#C9221B)}
+.choix small{display:block;color:var(--texte-3);font-size:12px}
+.note-demo{font-size:12.5px;color:var(--texte-3);margin-top:14px}
+.refus{margin-top:14px;padding:10px 12px;border-radius:14px;background:rgba(229,56,47,.18);box-shadow:inset 0 0 0 1px rgba(255,90,80,.5);color:#FFD5D2;font-size:14px;font-weight:700;text-align:left}
+.session{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:12px 16px;margin-bottom:16px;font-size:14px}
+.session b{overflow-wrap:anywhere}
+.lien-bouton{border:0;background:none;color:var(--bleu-vif);font-weight:800;cursor:pointer;padding:6px 0;min-height:36px}
+
+/* Comptes autorisés */
+.comptes{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:8px}
+.comptes li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;border-radius:14px;background:rgba(255,255,255,.07);min-width:0}
+.comptes li span{word-break:break-all;font-weight:700}
+.comptes li small{color:var(--texte-3);font-weight:700;flex:none}
+.ajout-compte{display:flex;gap:8px;flex-wrap:wrap}
+.ajout-compte input{flex:1;min-width:0;min-height:44px;border-radius:14px;border:0;padding:8px 12px;background:rgba(255,255,255,.1);box-shadow:inset 0 1px 2px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.16)}
+.erreur{color:#FFB3AD;font-size:13px;font-weight:700;margin:6px 0 0}
+
+/* Liste des produits du gérant */
+.outils-admin{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.outils-admin select{min-height:42px;border-radius:14px;border:0;padding:8px 12px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.outils-admin select option{background:#0A2557}
+.fiche-admin{border-top:1px solid rgba(255,255,255,.14)}
+.fiche-admin:first-child{border-top:0}
+.fiche-admin summary{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;padding:12px 2px;cursor:pointer;list-style:none}
+.fiche-admin summary::-webkit-details-marker{display:none}
+.fiche-admin summary img{width:58px;height:58px;border-radius:14px;object-fit:cover;background:rgba(255,255,255,.08)}
+.fiche-admin summary b{display:block;line-height:1.2}
+.fiche-admin summary small{display:block;color:var(--texte-3);font-size:12.5px}
+.fiche-admin summary .p{text-align:right;font-weight:800;font-size:14px;line-height:1.2}
+.fiche-admin summary .p s{display:block;color:var(--texte-3);font-weight:600;font-size:12px}
+.fiche-admin summary .p em{font-style:normal;color:var(--rouge-vif)}
+.fiche-admin[open] summary{padding-bottom:6px}
+.editeur{padding:4px 2px 18px}
+.photos{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.photos figure{position:relative;margin:0;width:78px;height:78px}
+.photos img{width:78px;height:78px;border-radius:14px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.3)}
+.photos figure button{position:absolute;top:-6px;right:-6px;width:26px;height:26px;border-radius:50%;border:0;cursor:pointer;background:#C9221B;color:#fff;font-weight:800;line-height:1}
+.photos .ajout-photo{width:78px;height:78px;border-radius:14px;display:grid;place-items:center;text-align:center;font-size:11.5px;font-weight:800;color:var(--bleu-vif);cursor:pointer;border:1.5px dashed rgba(255,255,255,.35);position:relative}
+.photos .ajout-photo input{position:absolute;width:1px;height:1px;opacity:0}
+.champ.promo-zone{grid-column:1/-1;padding:10px 12px;border-radius:16px;background:rgba(229,56,47,.12);box-shadow:inset 0 0 0 1px rgba(255,90,80,.35)}
+.champ.promo-zone .champs{margin-top:6px}
+.tuiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+@media (max-width:620px){.tuiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tuile{border:0;cursor:pointer;text-align:left;color:var(--texte);padding:14px;border-radius:22px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.tuile small{color:var(--texte-3);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.tuile b{font-family:var(--affiche);font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.tuile span{font-size:12.5px;font-weight:700;color:var(--texte-2)}
+.tuile span em{font-style:normal;color:var(--rouge-vif)}
+.tuile[aria-pressed="true"]{background:radial-gradient(130% 90% at 0% 0%,rgba(255,255,255,.4),rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(76,139,240,.75),rgba(31,85,184,.75))}
+.statut{font-size:11.5px;font-weight:800;padding:2px 8px;border-radius:999px;flex:none}
+.statut.actif{color:#BFF5D2;background:rgba(107,226,155,.16)}
+.statut.invite{color:#FFE2A8;background:rgba(255,194,102,.16)}
+.statut.proprio{color:#BFE0FF;background:rgba(90,155,255,.18)}
+.comptes li .droite{display:flex;align-items:center;gap:8px;flex:none}
+.invitation{margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.07)}
+.texte-invit{margin:0 0 10px;font-size:14px;color:var(--texte-2);user-select:all}
+.google-zone{display:flex;justify-content:center;min-height:44px;align-items:center}
+.sauvegarde{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:26;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 16px;border-radius:999px;width:max-content;max-width:calc(100% - 32px);font-size:14px;font-weight:800}
+.sauvegarde span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sauvegarde .bouton{min-height:42px;padding:9px 16px;flex:none}
+.sauvegarde i{font-style:normal}
+@media (max-width:440px){.sauvegarde{padding-left:12px;gap:6px}.sauvegarde .bouton{padding:9px 12px}.sv-plus{display:none}}
+.sauvegarde.erreur-sv{box-shadow:var(--relief),inset 0 0 0 1.5px rgba(255,90,80,.8)}
+.danger{border:0;background:none;color:#FF8A82;font-weight:800;cursor:pointer;padding:8px 0;min-height:40px}
+</style>
+</head>
+<body>
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<header class="entete enveloppe">
+  <div class="capsule verre">
+    <a class="marque" href="#boutique">
+      <img src="assets/mascotte.webp" alt="" width="44" height="44">
+      <div><b>SAARÉ TÉLÉCOM</b><span>Les meilleurs téléphones, aux meilleurs prix !</span></div>
+    </a>
+    <span class="drapeau" aria-hidden="true"><i></i><i></i><i></i></span>
+    <a class="puce-wa" href="#" id="wa-heros" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span>WhatsApp</span></a>
+  </div>
+  <div class="evenement verre" id="evenement" hidden>
+    <strong id="ev-nom">Black <em>Friday</em></strong>
+    <span id="ev-texte">se termine dans</span>
+    <span class="compte" id="ev-compte" aria-live="off"></span>
+  </div>
+</header>
+
+<main id="vue-boutique">
+  <div class="enveloppe">
+    <div class="heros verre">
+      <div>
+        <h1>Les meilleurs téléphones, <em>aux meilleurs prix&nbsp;!</em></h1>
+        <p>Téléphones, ordinateurs, accessoires et pièces détachées : neufs ou d'occasion, testés devant vous. Choisissez, puis commandez en un message WhatsApp.</p>
+        <div class="boutons">
+          <a class="bouton rouge" href="#catalogue" id="voir-promos">Voir les promos</a>
+          <a class="bouton leger" href="#ordinateurs">Boutique ordinateurs</a>
+        </div>
+        <ul class="garanties"><li>Paiement à la livraison</li><li>Mobile Money</li><li>Garantie boutique</li></ul>
+      </div>
+      <div class="scene">
+        <div class="affiche" id="affiche">
+          <img src="assets/logo.webp" alt="Affiche Saaré Télécom : la mascotte en polo rayé bleu, blanc, rouge et des téléphones" width="480" height="477">
+          <div class="pastille" id="pastille"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="catalogue">
+    <div class="enveloppe">
+      <div class="titre-section"><h2 id="titre-catalogue">Nos boutiques</h2><span class="compteur" id="compte-produits"></span></div>
+      <div class="rayons" role="group" aria-label="Boutiques" id="rayons"></div>
+      <div class="rangee">
+        <div class="filtres verre" role="group" aria-label="État" id="etats"></div>
+        <div class="filtres verre" role="group" aria-label="Filtrer" id="filtres"></div>
+      </div>
+      <div class="grille" id="grille"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="enveloppe">
+      <div class="titre-section"><h2>Nous contacter</h2></div>
+      <div class="contact-grille">
+        <div class="canal verre">
+          <h3>WhatsApp</h3>
+          <span class="a-remplir" id="wa-a-remplir">Numéro à fournir</span>
+          <span class="valeur" id="wa-numero"></span>
+          <p>Le plus rapide : une photo, un prix, une réponse en quelques minutes.</p>
+          <div class="boutons"><a class="bouton" href="#" id="wa-contact" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Ouvrir WhatsApp</a>
+          <button class="bouton leger" type="button" data-copier="wa-numero">Copier</button></div>
+        </div>
+        <div class="canal verre">
+          <h3>Gmail</h3>
+          <span class="a-remplir" id="mail-a-remplir">Adresse à fournir</span>
+          <span class="valeur" id="mail-adresse"></span>
+          <p>Pour un devis en gros, une facture ou un service après-vente.</p>
+          <div class="boutons"><a class="bouton" href="#" id="mail-lien">Écrire un e-mail</a>
+          <button class="bouton leger" type="button" data-copier="mail-adresse">Copier</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="pied enveloppe">© Saaré Télécom · Prix en francs CFA (FCFA).</div>
+</main>
+
+<main id="vue-connexion" hidden>
+  <div class="enveloppe">
+    <div class="connexion verre">
+      <div class="cadenas" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z"/></svg></div>
+      <h2>Espace gérant</h2>
+      <p>Réservé au propriétaire de la boutique et aux comptes Gmail qu'il a autorisés.</p>
+      <div class="google-zone" id="btn-google"><span class="note-demo" id="google-attente">Chargement de la connexion Google…</span></div>
+      <div class="refus" id="refus" hidden></div>
+      <p class="note-demo">Connexion sécurisée par Google : votre mot de passe ne passe jamais par ce site.</p>
+    </div>
+  </div>
+</main>
+
+<main id="vue-admin" hidden>
+  <section>
+    <div class="enveloppe">
+      <div class="admin-intro verre" id="chargement" hidden>Chargement du tableau de bord…</div>
+      <div class="titre-section"><h2>Tableau de bord</h2><span class="enregistre" id="enregistre" aria-live="polite"></span></div>
+      <div class="session verre"><span>Connecté : <b id="qui"></b></span><button class="lien-bouton" type="button" id="deconnexion">Se déconnecter</button></div>
+
+      <div class="tuiles" id="tuiles"></div>
+
+      <div class="admin-bloc verre">
+        <h3>Lancer une promotion</h3>
+        <p class="note-demo" style="margin:0 0 10px">Applique une remise à toute une boutique ou à une sélection, en un geste. Chaque produit garde son prix normal, barré au-dessus du prix promo.</p>
+        <div class="champs">
+          <div class="champ"><label for="pr-rayon">Boutique</label><select id="pr-rayon"></select></div>
+          <div class="champ"><label for="pr-etat">État</label><select id="pr-etat"></select></div>
+          <div class="champ"><label for="pr-type">Type</label><select id="pr-type"><option value="promo">Promo</option><option value="flash">Vente flash</option><option value="bf">Black Friday</option></select></div>
+          <div class="champ"><label for="pr-remise">Remise (%)</label><input id="pr-remise" type="number" inputmode="numeric" min="1" max="90" value="10"></div>
+          <div class="champ" id="pr-fin-zone" hidden><label for="pr-fin">Fin de la vente flash</label><input id="pr-fin" type="datetime-local"></div>
+        </div>
+        <div class="boutons" style="margin-top:12px">
+          <button class="bouton rouge" type="button" id="pr-lancer">Lancer</button>
+          <button class="bouton leger" type="button" id="pr-arreter">Arrêter les promos de la sélection</button>
+        </div>
+        <p class="apercu-prix" id="pr-apercu" style="margin-top:8px"></p>
+      </div>
+
+      <div class="admin-bloc verre" id="bloc-produits">
+        <div class="outils-admin">
+          <h3 style="margin:0">Produits</h3>
+          <button class="bouton rouge" type="button" id="ajouter">+ Ajouter un produit</button>
+        </div>
+        <div class="outils-admin">
+          <label for="admin-rayon" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Boutique</label>
+          <select id="admin-rayon"></select>
+          <span class="compteur" id="admin-compte" style="color:var(--texte-3);font-size:13px;font-weight:700"></span>
+        </div>
+        <div id="admin-liste"></div>
+      </div>
+
+      <div class="admin-bloc verre" id="bloc-comptes">
+        <h3>Administrateurs</h3>
+        <p class="note-demo" style="margin:0 0 10px">Tous les administrateurs gèrent les produits, les prix et les promos de toutes les boutiques. Seul le propriétaire invite ou retire un administrateur.</p>
+        <ul class="comptes" id="comptes"></ul>
+        <div id="zone-ajout-compte">
+          <div class="ajout-compte"><input id="nouveau-compte" type="email" placeholder="vendeur@gmail.com" aria-label="Adresse Gmail à inviter"><button class="bouton" type="button" id="ajouter-compte">Inviter</button></div>
+          <p class="erreur" id="erreur-compte" hidden></p>
+          <div class="invitation" id="invitation" hidden>
+            <p class="note-demo" style="margin:0 0 6px">Message d'invitation à envoyer (WhatsApp ou e-mail) :</p>
+            <p class="texte-invit" id="texte-invit"></p>
+            <div class="boutons"><a class="bouton" id="invit-wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Envoyer par WhatsApp</a><button class="bouton leger" type="button" data-copier="texte-invit">Copier</button></div>
+          </div>
+        </div>
+        <p class="note-demo" id="note-comptes" hidden>Seul le propriétaire peut inviter ou retirer un administrateur.</p>
+      </div>
+
+      <div class="admin-bloc verre">
+        <h3>Coordonnées et événement</h3>
+        <div class="champs">
+          <div class="champ"><label for="cfg-wa">Numéro WhatsApp</label><input id="cfg-wa" inputmode="tel" placeholder="237 6XX XX XX XX"></div>
+          <div class="champ"><label for="cfg-mail">Adresse Gmail de contact</label><input id="cfg-mail" type="email" placeholder="boutique@gmail.com"></div>
+          <div class="champ"><label for="cfg-ev">Événement</label><select id="cfg-ev"><option value="">Aucun</option><option>Black Friday</option><option>Soldes de fin d'année</option><option>Fête de la Saint-Valentin</option><option>Rentrée scolaire</option></select></div>
+          <div class="champ"><label for="cfg-ev-fin">Fin de l'événement</label><input id="cfg-ev-fin" type="datetime-local"></div>
+        </div>
+      </div>
+
+      <div class="pied">Touchez « Enregistrer » quand vous avez fini : les changements apparaissent chez tous les clients une minute environ après. Regroupez plusieurs changements avant d'enregistrer.</div>
+    </div>
+  </section>
+</main>
+
+<nav class="barre" aria-label="Navigation">
+  <div class="onglets verre">
+    <a href="#boutique" id="lien-boutique"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 9l1.5-5h13L20 9M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9Zm5 11v-6h6v6"/></svg>Boutique</a>
+    <a href="#catalogue" id="lien-promos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 12V4h8l10 10-8 8L3 12Z"/><circle cx="7.5" cy="8.5" r="1.5" fill="currentColor"/></svg>Promos</a>
+    <a href="#contact" id="lien-contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4V5Z"/></svg>Contact</a>
+    <a href="#admin" id="lien-admin"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Gérant</a>
+  </div>
+  <a class="wa-flottant" href="#" id="wa-flottant" target="_blank" rel="noopener" aria-label="Commander sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg></a>
+</nav>
+<div class="sauvegarde verre" id="sauvegarde" role="status" hidden>
+  <span id="sv-texte"></span>
+  <button class="bouton leger" type="button" id="annuler">Annuler</button>
+  <button class="bouton rouge" type="button" id="enregistrer">Enregistrer</button>
+</div>
+<div class="voile" id="voile" hidden></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ico-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+<symbol id="ico-tout" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></symbol>
+<symbol id="ico-tel" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="#fff" stroke-width="2"/><path stroke="#fff" stroke-width="2" stroke-linecap="round" d="M11 18.5h2"/></symbol>
+<symbol id="ico-pc" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" d="M5 5h14v10H5zM2.5 19h19l-2-4h-15z"/></symbol>
+<symbol id="ico-autres" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" d="M5 13v-1a7 7 0 0 1 14 0v1M5 13h3v6H5zM16 13h3v6h-3z"/></symbol>
+</svg>
+
+<script src="app.js"></script>
+</body>
+</html>
