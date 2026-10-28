@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvrowr8scfrm",
+      "nom": "Ordinateur Dell",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "2 mois",
+      "prix": 350000,
+      "prixPromo": 200000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvrowr8scfrm-mvroxs7aglxn.jpg"
+      ]
+    },
+    {
       "id": "pmvrorju60r0w",
       "nom": "Tablette iPad 4th génération",
       "marque": "Apple",
