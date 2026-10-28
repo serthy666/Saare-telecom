@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvrorju60r0w",
+      "nom": "Tablette iPad 4th génération",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Tablettes",
+      "etat": "occasion",
+      "details": "128G",
+      "garantie": "1 mois",
+      "prix": 300000,
+      "prixPromo": 125000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": true,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvrorju60r0w-mvrosl35ayyf.jpg"
+      ]
+    },
+    {
       "id": "pmvroinhgjz6d",
       "nom": "Iphone 11",
       "marque": "Iphone",
