@@ -209,7 +209,7 @@ function nettoyer(d) {
       details: txt(p.details, 300), garantie: txt(p.garantie, 40),
       prix: entier(p.prix), prixPromo: entier(p.prixPromo),
       offre: OFFRES.includes(p.offre) ? p.offre : "promo", fin: dateLocale(p.fin),
-      nouveau: !!p.nouveau, stock: p.stock === "peu" ? "peu" : "ok", visible: p.visible !== false,
+      nouveau: !!p.nouveau, stock: ["peu", "epuise"].includes(p.stock) ? p.stock : "ok", visible: p.visible !== false,
       photos: (Array.isArray(p.photos) ? p.photos : []).map(x => String(x)).filter(x => CHEMIN_PHOTO.test(x)).slice(0, 12)
     };
   });

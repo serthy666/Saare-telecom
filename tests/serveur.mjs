@@ -91,7 +91,7 @@ function fauxGoogle(url) {
   return reponse(200, { iss: "https://accounts.google.com", aud: aud || CLIENT_ID, email, email_verified: "true", exp: String(Math.floor(Date.now() / 1000) + 3600) });
 }
 
-const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".webp": "image/webp", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml" };
+const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".webp": "image/webp", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml", ".webmanifest": "application/manifest+json" };
 
 export async function demarrer({ port = 0, env = {} } = {}) {
   const depot = fauxDepot();

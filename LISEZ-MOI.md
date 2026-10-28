@@ -4,6 +4,14 @@ Boutique en ligne de Saaré Télécom (téléphones, ordinateurs, accessoires), 
 
 Adresse : https://saare-telecom.apeledition.workers.dev (Worker Cloudflare ; `*.github.io` est bloqué chez Orange Cameroun).
 
+## Côté clients
+
+- Recherche sans accents, avec synonymes (« laptop », « telephone ») et budget (« 150000 », « 200k », « moins de 100 000 ») ; si rien ne correspond, un bouton envoie la demande au vendeur sur WhatsApp.
+- Panier gardé sur le téléphone du client, avec quantités, économies, livraison ou retrait : toute la commande part en un seul message WhatsApp.
+- Article « Épuisé » (réglé par le gérant) : le client touche « Me prévenir », un message prêt part vers le vendeur, et la boutique lui signale le retour de l'article à sa prochaine visite.
+- Favoris, tri, articles similaires, « Vus récemment », partage d'un article (lien `#p=…`), bouton EN pour l'anglais.
+- Installable comme une appli (`manifest.webmanifest`, `sw.js`) : la boutique s'ouvre même avec un réseau faible.
+
 ## Comment ça marche
 
 - `site/` est publié tel quel par Cloudflare Pages : `index.html`, `app.js`, `assets/`, les produits dans `site/donnees/produits.json` et les photos dans `site/photos/`.
@@ -38,6 +46,6 @@ En secours : si le client perd son Gmail, changez `PROPRIETAIRE` dans Cloudflare
 
 ## Tests
 
-`node tests/parcours.mjs` (Playwright) fait tourner la vraie fonction avec un faux GitHub et une fausse connexion Google (`tests/serveur.mjs`), à 320, 390, 768 et 1280 px : boutique vide au départ, refus d'un compte non autorisé et d'un jeton d'un autre site, ajout de produits avec photo (appareil photo et galerie), promo refusée si plus chère, un seul commit par enregistrement, photo JPEG réduite dans le dépôt, vue client (prix barré, WhatsApp, fiche), promo de masse, invitation d'un vendeur (Invité puis Actif, sans droit d'inviter), conflit entre deux administrateurs, retrait d'un vendeur qui coupe sa session, suppression d'un produit et de ses photos, événement, fonction fermée sans session, absence d'erreur et de défilement horizontal.
+`node tests/parcours.mjs` (Playwright) fait tourner la vraie fonction avec un faux GitHub et une fausse connexion Google (`tests/serveur.mjs`), à 320, 390, 768 et 1280 px : boutique vide au départ, refus d'un compte non autorisé et d'un jeton d'un autre site, ajout de produits avec photo (appareil photo et galerie), promo refusée si plus chère, un seul commit par enregistrement, photo JPEG réduite dans le dépôt, vue client (prix barré, WhatsApp, fiche), promo de masse, invitation d'un vendeur (Invité puis Actif, sans droit d'inviter), conflit entre deux administrateurs, retrait d'un vendeur qui coupe sa session, suppression d'un produit et de ses photos, événement, fonction fermée sans session, recherche, panier, article épuisé et rappel, favoris, anglais, lien partagé, appli installable, deux articles côte à côte sur téléphone, absence d'erreur et de défilement horizontal.
 
 `node tests/serveur.mjs` lance la même boutique de test sur http://localhost:8788.

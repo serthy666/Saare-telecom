@@ -9,7 +9,11 @@
 <meta property="og:title" content="Saaré Télécom">
 <meta property="og:description" content="Les meilleurs téléphones, aux meilleurs prix ! Téléphones, ordinateurs et accessoires, neufs ou d'occasion. Commandez sur WhatsApp.">
 <meta property="og:image" content="https://saare-telecom.apeledition.workers.dev/assets/accueil.webp">
-<link rel="icon" href="assets/mascotte.webp">
+<link rel="icon" href="assets/icone-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Saaré Télécom">
 <meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,7 +151,7 @@ section{padding-block:30px 6px}
 .minuteur{font-size:12.5px;font-weight:800;color:var(--flash);margin:0}
 .stock{font-size:12.5px;font-weight:700;margin:0;color:var(--ok)}
 .stock.peu{color:var(--attention)}
-.produit .bouton{margin-top:10px;width:100%;padding:10px 12px;font-size:14.5px;transform:translateZ(20px)}
+
 
 /* Contact */
 .contact-grille{display:grid;grid-template-columns:1fr;gap:14px}
@@ -203,6 +207,148 @@ section{padding-block:30px 6px}
 .apercu-prix{grid-column:1/-1;font-size:13.5px;color:var(--texte-3);margin:0}
 .apercu-prix b{color:var(--texte)}
 
+/* En-tête : langue et panier */
+.puce-ronde{position:relative;flex:none;display:grid;place-items:center;width:42px;height:42px;border:0;border-radius:50%;cursor:pointer;color:#fff;font-weight:800;font-size:13px;letter-spacing:.04em;
+  background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 0 0 1px rgba(255,255,255,.18);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.puce-ronde:active{transform:scale(.88);transition-duration:.08s}
+.puce-ronde svg{width:22px;height:22px}
+.puce-panier b{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;display:grid;place-items:center;font-size:11.5px;line-height:1;
+  background:linear-gradient(180deg,#FF6058,#C9221B);box-shadow:0 0 0 2px var(--abysse),0 4px 10px -2px rgba(229,56,47,.8)}
+.puce-panier.secoue{animation:secoue .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes secoue{0%{transform:scale(1)}30%{transform:scale(1.25) rotate(-8deg)}60%{transform:scale(.92) rotate(5deg)}100%{transform:scale(1)}}
+.marque img{background:#fff}
+@media (max-width:380px){.marque b{font-size:15px}.capsule{gap:6px}.puce-ronde{width:38px;height:38px}.puce-wa{min-height:38px;padding:8px 10px}}
+
+/* Recherche */
+.zone-recherche{position:relative;margin-bottom:14px;z-index:5}
+.recherche{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 16px;border-radius:999px;cursor:text}
+.recherche svg{width:20px;height:20px;flex:none;color:var(--texte-2)}
+.recherche input{flex:1;min-width:0;min-height:40px;border:0;background:none;font-size:16px;outline:none}
+.recherche input::placeholder{color:var(--texte-3)}
+.recherche input::-webkit-search-cancel-button{display:none}
+.recherche:focus-within{box-shadow:var(--relief),0 0 0 2px rgba(90,155,255,.7)}
+.effacer{border:0;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;background:rgba(255,255,255,.16)}
+.suggestions{position:absolute;left:0;right:0;top:calc(100% + 8px);padding:6px;border-radius:24px;background:linear-gradient(rgba(10,30,70,.88),rgba(10,30,70,.88))}
+.suggestions button{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;width:100%;border:0;border-radius:16px;padding:6px 8px;background:none;cursor:pointer;text-align:left;color:var(--texte)}
+.suggestions button:hover,.suggestions button:focus-visible,.suggestions button[aria-selected="true"]{background:rgba(255,255,255,.12)}
+.suggestions img{width:44px;height:44px;border-radius:12px;object-fit:cover}
+.suggestions b{display:block;font-size:14.5px;line-height:1.2}
+.suggestions small{color:var(--texte-3);font-size:12px}
+.suggestions .p{font-weight:800;font-size:13.5px;white-space:nowrap}
+.suggestions .demande{grid-template-columns:44px 1fr;color:var(--wa)}
+.suggestions .demande span:first-child{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(37,211,102,.16)}
+.suggestions mark{background:none;color:var(--bleu-vif)}
+.budget{margin:-6px 4px 14px;font-size:13.5px;font-weight:700;color:var(--texte-2)}
+.tri{display:flex;align-items:center;gap:6px;padding:5px 6px 5px 14px;border-radius:999px;font-size:13px;font-weight:800;color:var(--texte-3)}
+.tri select{border:0;border-radius:999px;min-height:36px;padding:6px 10px;font-weight:800;font-size:13.5px;background:rgba(255,255,255,.12)}
+.tri select option{background:#0A2557}
+
+/* Cartes produits : deux par ligne sur téléphone */
+.produit .coeur{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;z-index:3;color:rgba(255,255,255,.95);
+  background:rgba(6,18,44,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:scale .35s cubic-bezier(.34,1.56,.64,1)}
+.coeur svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+.coeur[aria-pressed="true"]{color:var(--rouge-vif)}
+.coeur[aria-pressed="true"] svg{fill:currentColor;filter:drop-shadow(0 0 6px rgba(255,90,80,.7))}
+.coeur:active{scale:.8}
+.coeur.bat{animation:bat .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bat{0%{scale:1}35%{scale:1.35}100%{scale:1}}
+.actions{display:flex;gap:8px;margin-top:10px;transform:translateZ(20px)}
+.produit .actions .bouton{margin:0;width:auto;flex:1;padding:10px 12px;font-size:14px;transform:none;min-height:44px}
+.produit .actions .bouton.commander{flex:none;width:44px;padding:0;background:radial-gradient(120% 90% at 50% -20%,rgba(255,255,255,.55),rgba(255,255,255,0) 55%),linear-gradient(180deg,#34D873,#1DA851);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 18px -8px rgba(37,211,102,.8)}
+.produit .actions .bouton.commander svg{width:22px;height:22px}
+.bouton .dans{display:none}
+.bouton.ajoute .dans{display:inline}.bouton.ajoute .hors{display:none}
+.bouton.ajoute{background:radial-gradient(120% 90% at 50% -25%,rgba(255,255,255,.45),rgba(255,255,255,0) 52%),linear-gradient(180deg,rgba(107,226,155,.55),rgba(30,140,80,.55))}
+.produit.epuise .photo img{filter:grayscale(.85) brightness(.75)}
+.badge.epuise{background:linear-gradient(180deg,rgba(60,66,82,.92),rgba(30,34,46,.92))}
+.stock.epuise{color:#FFB3AD}
+.bouton.prevenir{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.06));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 0 0 1px rgba(255,210,63,.55);color:var(--flash)}
+.bouton.prevenir.fait{color:var(--ok);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 0 0 1px rgba(107,226,155,.55)}
+@media (max-width:759px){
+  .grille{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .produit{padding:6px;border-radius:22px}
+  .produit .photo{border-radius:17px}
+  .corps{padding:9px 3px 3px;gap:2px}
+  .corps h3{font-size:15px;line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .corps .details{font-size:12px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .etat{font-size:10.5px}.etat em{display:none}
+  .prix b{font-size:17px}.prix s{font-size:12px}
+  .badge{top:7px;left:7px;font-size:10px;padding:3px 8px}
+  .remise{width:40px;height:40px;font-size:13px;bottom:7px;right:7px}
+  .produit .coeur{width:30px;height:30px;top:12px;right:12px}
+  .minuteur,.stock{font-size:11px}
+  .actions{gap:6px;margin-top:8px}
+  .produit .actions .bouton{padding:8px 6px;font-size:13px;min-height:40px;gap:5px}
+  .produit .actions .bouton svg{width:18px;height:18px}
+  .produit .actions .bouton.commander{width:40px}
+}
+@media (max-width:350px){.produit .actions .bouton .txt{display:none}}
+
+/* Vus récemment, articles similaires */
+.recents{margin-top:24px}
+.recents h3,.fiche h4{font-size:18px;margin:0 4px 10px}
+.defile{display:grid;grid-auto-flow:column;grid-auto-columns:128px;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x proximity;scrollbar-width:none}
+.mini{scroll-snap-align:start;border:0;cursor:pointer;text-align:left;padding:6px;border-radius:20px;color:var(--texte);min-width:0}
+.mini img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px}
+.mini b{display:block;font-size:13px;line-height:1.2;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini span{font-size:12.5px;font-weight:800;color:var(--texte-2)}
+.mini span.reduit{color:var(--rouge-vif)}
+
+/* Fiche, panier, alerte : feuilles de verre */
+.fiche .rangee-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.fiche .rangee-actions .bouton{flex:1 1 140px}
+.fiche .petits{display:flex;gap:8px;margin-top:10px}
+.fiche .petits .bouton{flex:1;min-height:42px;padding:8px 12px;font-size:14px}
+.fiche h4{margin:20px 0 8px}
+.fiche .defile{grid-auto-columns:116px}
+.feuille-titre{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 2px 12px}
+.feuille-titre h3{margin:0;font-size:24px}
+.ligne-panier{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:12px 2px;border-top:1px solid rgba(255,255,255,.14)}
+.ligne-panier:first-of-type{border-top:0}
+.ligne-panier img{width:64px;height:64px;border-radius:14px;object-fit:cover}
+.ligne-panier b{display:block;line-height:1.2}
+.ligne-panier small{color:var(--texte-3);font-size:12.5px}
+.ligne-panier .bas{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px;flex-wrap:wrap}
+.ligne-panier .montant{font-weight:800}
+.ligne-panier .montant s{color:var(--texte-3);font-weight:600;font-size:12px;margin-right:6px}
+.ligne-panier.indispo{opacity:.6}
+.quantite{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.quantite button{width:32px;height:32px;border:0;border-radius:50%;cursor:pointer;font-size:18px;font-weight:800;background:rgba(255,255,255,.14);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.quantite button:active{transform:scale(.82)}
+.quantite output{min-width:26px;text-align:center;font-weight:800;font-variant-numeric:tabular-nums}
+.totaux{margin-top:12px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.08);font-size:14.5px}
+.totaux p{display:flex;justify-content:space-between;margin:2px 0}
+.totaux .total{font-family:var(--affiche);font-size:22px;font-weight:800;margin-top:6px}
+.totaux .eco{color:var(--ok);font-weight:800}
+.segment{display:flex;padding:4px;border-radius:999px;background:rgba(255,255,255,.1);margin:14px 0 10px}
+.segment button{flex:1;border:0;border-radius:999px;min-height:40px;font-weight:800;cursor:pointer;background:none;color:var(--texte-2)}
+.segment button[aria-pressed="true"]{color:#06183A;background:radial-gradient(120% 90% at 50% -20%,#fff,rgba(255,255,255,.75))}
+.fiche .champ{margin-top:8px}
+.vide-panier{text-align:center;padding:20px 10px;color:var(--texte-2)}
+.vide-panier svg{width:56px;height:56px;color:var(--bleu-vif);margin:0 auto 8px;display:block}
+.bulle{position:fixed;z-index:60;width:46px;height:46px;border-radius:50%;pointer-events:none;background-size:cover;background-position:center;box-shadow:0 0 0 2px rgba(255,255,255,.8),0 10px 20px -6px rgba(0,0,0,.6)}
+
+/* Invitation à installer, messages courts */
+.installer{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:27;display:flex;align-items:center;gap:10px;padding:10px 10px 10px 12px;border-radius:26px;width:min(520px,calc(100% - 32px));animation:monte .5s cubic-bezier(.34,1.56,.64,1)}
+.installer img{width:52px;height:52px;border-radius:14px;flex:none;background:#fff}
+.installer div{flex:1;min-width:0}
+.installer b{display:block;font-size:14.5px;line-height:1.2}
+.installer span{display:block;font-size:12.5px;color:var(--texte-2)}
+.installer .bouton{min-height:42px;padding:9px 14px;flex:none}
+.installer .fermer{float:none;margin:0;width:34px;height:34px;flex:none}
+@keyframes monte{from{transform:translate(-50%,30px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.toast{position:fixed;left:50%;top:calc(76px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:45;padding:10px 18px;border-radius:999px;font-weight:800;font-size:14px;max-width:calc(100% - 32px);text-align:center;animation:descend .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes descend{from{transform:translate(-50%,-20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.etapes{margin:10px 0 0;padding-left:20px;color:var(--texte-2)}
+.etapes li{margin:6px 0}
+.photo .ouvrir{display:block;width:100%;height:100%;border:0;padding:0;background:none;cursor:zoom-in;color:inherit}
+.photo .badge,.photo .remise{pointer-events:none}
+.suggestions .demande svg{width:22px;height:22px}
+.coeur-fiche svg{fill:none;stroke:currentColor;stroke-width:2}
+.coeur-fiche[aria-pressed="true"]{color:var(--rouge-vif)}
+.coeur-fiche[aria-pressed="true"] svg{fill:currentColor}
+.coeur-fiche.bat svg{animation:bat .5s cubic-bezier(.34,1.56,.64,1)}
+.toast[style*="pointer"]{text-decoration:underline;text-underline-offset:3px}
 /* Toucher : la plaque s'enfonce sous le doigt, puis revient avec un rebond */
 .rayon,.tuile,.canal,.connexion,.evenement{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 .rayon::before,.tuile::before,.canal::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(220px circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.28),rgba(255,255,255,0) 60%)}
@@ -326,15 +472,17 @@ section{padding-block:30px 6px}
 <header class="entete enveloppe">
   <div class="capsule verre">
     <a class="marque" href="#boutique">
-      <img src="assets/mascotte.webp" alt="" width="44" height="44">
-      <div><b>SAARÉ TÉLÉCOM</b><span>Les meilleurs téléphones, aux meilleurs prix !</span></div>
+      <img src="assets/logo-rond.webp" alt="" width="44" height="44">
+      <div><b>SAARÉ TÉLÉCOM</b><span data-t="slogan">Les meilleurs téléphones, aux meilleurs prix !</span></div>
     </a>
     <span class="drapeau" aria-hidden="true"><i></i><i></i><i></i></span>
+    <button class="puce-ronde puce-langue" type="button" id="langue" aria-label="English">EN</button>
+    <button class="puce-ronde puce-panier" type="button" id="ouvrir-panier" aria-label="Panier"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-panier"/></svg><b id="nb-panier" hidden>0</b></button>
     <a class="puce-wa" href="#" id="wa-heros" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span>WhatsApp</span></a>
   </div>
   <div class="evenement verre" id="evenement" hidden>
     <strong id="ev-nom">Black <em>Friday</em></strong>
-    <span id="ev-texte">se termine dans</span>
+    <span id="ev-texte" data-t="ev_fin">se termine dans</span>
     <span class="compte" id="ev-compte" aria-live="off"></span>
   </div>
 </header>
@@ -343,17 +491,17 @@ section{padding-block:30px 6px}
   <div class="enveloppe">
     <div class="heros verre">
       <div>
-        <h1>Les meilleurs téléphones, <em>aux meilleurs prix&nbsp;!</em></h1>
-        <p>Téléphones, ordinateurs, accessoires et pièces détachées : neufs ou d'occasion, testés devant vous. Choisissez, puis commandez en un message WhatsApp.</p>
+        <h1 data-th="h1">Les meilleurs téléphones, <em>aux meilleurs prix&nbsp;!</em></h1>
+        <p data-t="heros">Téléphones, ordinateurs, accessoires et pièces détachées : neufs ou d'occasion, testés devant vous. Choisissez, puis commandez en un message WhatsApp.</p>
         <div class="boutons">
-          <a class="bouton rouge" href="#catalogue" id="voir-promos">Voir les promos</a>
-          <a class="bouton leger" href="#ordinateurs">Boutique ordinateurs</a>
+          <a class="bouton rouge" href="#catalogue" id="voir-promos" data-t="voir_promos">Voir les promos</a>
+          <a class="bouton leger" href="#ordinateurs" data-t="btn_pc">Boutique ordinateurs</a>
         </div>
-        <ul class="garanties"><li>Paiement à la livraison</li><li>Mobile Money</li><li>Garantie boutique</li></ul>
+        <ul class="garanties"><li data-t="g1">Paiement à la livraison</li><li data-t="g2">Mobile Money</li><li data-t="g3">Garantie boutique</li></ul>
       </div>
       <div class="scene">
         <div class="affiche" id="affiche">
-          <img src="assets/accueil.webp" alt="Affiche Saaré Télécom : la mascotte en polo rayé bleu, blanc, rouge, des téléphones, un ordinateur portable et des accessoires" width="720" height="716">
+          <img src="assets/accueil.webp" alt="Logo Saaré Télécom avec des téléphones, un ordinateur portable et des accessoires" width="720" height="720">
           <div class="pastille" id="pastille"></div>
         </div>
       </div>
@@ -363,39 +511,48 @@ section{padding-block:30px 6px}
   <section id="catalogue">
     <div class="enveloppe">
       <div class="titre-section"><h2 id="titre-catalogue">Nos boutiques</h2><span class="compteur" id="compte-produits"></span></div>
+      <div class="zone-recherche">
+        <label class="recherche verre"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <input id="recherche" type="search" autocomplete="off" enterkeyhint="search" data-tp="recherche" placeholder="Rechercher : iPhone, HP, 150000…" aria-label="Rechercher un article">
+          <button type="button" class="effacer" id="effacer-recherche" aria-label="Effacer" hidden>×</button></label>
+        <div class="suggestions verre" id="suggestions" role="listbox" hidden></div>
+      </div>
       <div class="rayons" role="group" aria-label="Boutiques" id="rayons"></div>
       <div class="rangee">
         <div class="filtres verre" role="group" aria-label="État" id="etats"></div>
         <div class="filtres verre" role="group" aria-label="Filtrer" id="filtres"></div>
+        <label class="tri verre"><span data-t="tri">Trier</span><select id="tri"></select></label>
       </div>
+      <p class="budget" id="budget" hidden></p>
       <div class="grille" id="grille"></div>
+      <div class="recents" id="recents" hidden><h3 data-t="recents">Vus récemment</h3><div class="defile" id="recents-liste"></div></div>
     </div>
   </section>
 
   <section id="contact">
     <div class="enveloppe">
-      <div class="titre-section"><h2>Nous contacter</h2></div>
+      <div class="titre-section"><h2 data-t="contact_titre">Nous contacter</h2></div>
       <div class="contact-grille">
         <div class="canal verre">
           <h3>WhatsApp</h3>
           <span class="a-remplir" id="wa-a-remplir">Numéro à fournir</span>
           <span class="valeur" id="wa-numero"></span>
-          <p>Le plus rapide : une photo, un prix, une réponse en quelques minutes.</p>
-          <div class="boutons"><a class="bouton" href="#" id="wa-contact" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Ouvrir WhatsApp</a>
-          <button class="bouton leger" type="button" data-copier="wa-numero">Copier</button></div>
+          <p data-t="contact_wa">Le plus rapide : une photo, un prix, une réponse en quelques minutes.</p>
+          <div class="boutons"><a class="bouton" href="#" id="wa-contact" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span data-t="ouvrir_wa">Ouvrir WhatsApp</span></a>
+          <button class="bouton leger" type="button" data-copier="wa-numero" data-t="copier">Copier</button></div>
         </div>
         <div class="canal verre">
           <h3>Gmail</h3>
           <span class="a-remplir" id="mail-a-remplir">Adresse à fournir</span>
           <span class="valeur" id="mail-adresse"></span>
-          <p>Pour un devis en gros, une facture ou un service après-vente.</p>
-          <div class="boutons"><a class="bouton" href="#" id="mail-lien">Écrire un e-mail</a>
-          <button class="bouton leger" type="button" data-copier="mail-adresse">Copier</button></div>
+          <p data-t="contact_mail">Pour un devis en gros, une facture ou un service après-vente.</p>
+          <div class="boutons"><a class="bouton" href="#" id="mail-lien" data-t="ecrire_mail">Écrire un e-mail</a>
+          <button class="bouton leger" type="button" data-copier="mail-adresse" data-t="copier">Copier</button></div>
         </div>
       </div>
     </div>
   </section>
-  <div class="pied enveloppe">© Saaré Télécom · Prix en francs CFA (FCFA).</div>
+  <div class="pied enveloppe" data-t="pied">© Saaré Télécom · Prix en francs CFA (FCFA).</div>
 </main>
 
 <main id="vue-connexion" hidden>
@@ -483,10 +640,10 @@ section{padding-block:30px 6px}
 
 <nav class="barre" aria-label="Navigation">
   <div class="onglets verre">
-    <a href="#boutique" id="lien-boutique"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 9l1.5-5h13L20 9M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9Zm5 11v-6h6v6"/></svg>Boutique</a>
-    <a href="#catalogue" id="lien-promos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 12V4h8l10 10-8 8L3 12Z"/><circle cx="7.5" cy="8.5" r="1.5" fill="currentColor"/></svg>Promos</a>
-    <a href="#contact" id="lien-contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4V5Z"/></svg>Contact</a>
-    <a href="#admin" id="lien-admin"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Gérant</a>
+    <a href="#boutique" id="lien-boutique"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 9l1.5-5h13L20 9M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9Zm5 11v-6h6v6"/></svg><span data-t="tab_boutique">Boutique</span></a>
+    <a href="#catalogue" id="lien-promos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 12V4h8l10 10-8 8L3 12Z"/><circle cx="7.5" cy="8.5" r="1.5" fill="currentColor"/></svg><span data-t="tab_promos">Promos</span></a>
+    <a href="#contact" id="lien-contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4V5Z"/></svg><span data-t="tab_contact">Contact</span></a>
+    <a href="#admin" id="lien-admin"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg><span data-t="tab_gerant">Gérant</span></a>
   </div>
   <a class="wa-flottant" href="#" id="wa-flottant" target="_blank" rel="noopener" aria-label="Commander sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg></a>
 </nav>
@@ -496,9 +653,20 @@ section{padding-block:30px 6px}
   <button class="bouton rouge" type="button" id="enregistrer">Enregistrer</button>
 </div>
 <div class="voile" id="voile" hidden></div>
+<div class="installer verre" id="installer" role="dialog" aria-label="Installer l'appli" hidden>
+  <img src="assets/icone-192.png" alt="" width="52" height="52">
+  <div><b data-t="inst_titre">Installez l'appli Saaré Télécom</b><span data-t="inst_texte">Un geste pour revenir, même en 3G.</span></div>
+  <button class="bouton rouge" type="button" id="installer-oui" data-t="inst_oui">Installer</button>
+  <button class="fermer" type="button" id="installer-non" aria-label="Plus tard">×</button>
+</div>
+<div class="toast verre" id="toast" role="status" aria-live="polite" hidden></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="ico-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+<symbol id="ico-panier" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 4h2.2l2.3 11h10.6l2-8H6.3"/><circle cx="9.5" cy="19.5" r="1.6" fill="currentColor"/><circle cx="17" cy="19.5" r="1.6" fill="currentColor"/></symbol>
+<symbol id="ico-coeur" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.9 4.5 7.2 4.5c2 0 3.4 1.1 4.8 2.8 1.4-1.7 2.8-2.8 4.8-2.8 3.3 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4Z"/></symbol>
+<symbol id="ico-cloche" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Zm4 4a2 2 0 0 0 4 0"/></symbol>
+<symbol id="ico-partager" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12M7.5 7.5 12 3l4.5 4.5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></symbol>
 <symbol id="ico-tout" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></symbol>
 <symbol id="ico-tel" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="#fff" stroke-width="2"/><path stroke="#fff" stroke-width="2" stroke-linecap="round" d="M11 18.5h2"/></symbol>
 <symbol id="ico-pc" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" d="M5 5h14v10H5zM2.5 19h19l-2-4h-15z"/></symbol>

@@ -51,102 +51,334 @@ function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return
 function blocPrix(p){var r=enPromo(p);return'<div class="prix">'+(r?"<s>"+fcfa(p.prix)+"</s>":"")+'<b class="'+(r?"reduit":"")+'">'+(p.prix?fcfa(prixFinal(p)):"Prix sur demande")+"</b></div>"}
 var minuterie;function montrer(t,long){var el=document.getElementById("enregistre");el.textContent=t;clearTimeout(minuterie);minuterie=setTimeout(function(){el.textContent=""},long?6000:2200)}
 
+/* Langue : français par défaut, anglais d'un geste. L'espace gérant reste en français. */
+function lire(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null||typeof v!==typeof d||Array.isArray(v)!==Array.isArray(d)?d:v}catch(e){return d}}
+function ecrire(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var LANG=lire("saare-langue","fr")==="en"?"en":"fr";
+function L(fr,en){return LANG==="en"?en:fr}
+var EN={slogan:"The best phones at the best prices!",ev_fin:"ends in",h1:"The best phones, <em>at the best prices!</em>",
+  heros:"Phones, computers, accessories and spare parts: new or used, tested in front of you. Pick, then order in one WhatsApp message.",
+  voir_promos:"See the deals",btn_pc:"Computer shop",g1:"Pay on delivery",g2:"Mobile Money",g3:"Shop warranty",
+  contact_titre:"Contact us",contact_wa:"The fastest: a photo, a price, an answer within minutes.",ouvrir_wa:"Open WhatsApp",copier:"Copy",
+  contact_mail:"For bulk quotes, invoices or after-sales service.",ecrire_mail:"Send an e-mail",pied:"© Saaré Télécom · Prices in CFA francs (FCFA).",
+  tab_boutique:"Shop",tab_promos:"Deals",tab_contact:"Contact",tab_gerant:"Manager",tri:"Sort",recents:"Recently viewed",
+  inst_titre:"Install the Saaré Télécom app",inst_texte:"One tap to come back, even on 3G.",inst_oui:"Install",
+  recherche:"Search: iPhone, HP, 150000…"};
+var RAYONS_EN={tel:["Phones","Phones & tablets"],pc:["Computers","Computers"],autres:["Accessories","Accessories & more"]};
+var ETATS_EN={neuf:"New",occasion:"Used",pieces:"Spare parts"};
+var OFFRES_EN={promo:"Sale",flash:"Flash sale",bf:"Black Friday"};
+var CATS_EN={"Smartphones":"Smartphones","Tablettes":"Tablets","Téléphones simples":"Basic phones","Portables":"Laptops","Ordinateurs de bureau":"Desktops","Écrans & imprimantes":"Screens & printers","Stockage":"Storage",
+  "Chargeurs & câbles":"Chargers & cables","Écouteurs & audio":"Earphones & audio","Montres connectées":"Smartwatches","Autres appareils":"Other devices"};
+var EVENEMENTS_EN={"Soldes de fin d'année":"Year-end sale","Fête de la Saint-Valentin":"Valentine's Day","Rentrée scolaire":"Back to school"};
+function nomRayon(k,long){return LANG==="en"?RAYONS_EN[k][long?1:0]:RAYONS[k][long?"long":"nom"]}
+function nomEtat(k){return LANG==="en"?ETATS_EN[k]:ETATS[k]}
+function nomOffre(k){return LANG==="en"?OFFRES_EN[k]:OFFRES[k]}
+function nomCat(c){return LANG==="en"&&CATS_EN[c]||c}
+function nArticles(n){return n+" "+L("article","item")+(n>1||(LANG==="en"&&n===0)?"s":"")}
+function prixTexte(p){return p.prix?fcfa(prixFinal(p)):L("Prix sur demande","Price on request")}
+function traduire(){document.documentElement.lang=LANG;
+  document.querySelectorAll("[data-t],[data-th],[data-tp]").forEach(function(el){
+    var k=el.getAttribute("data-t"),h=el.getAttribute("data-th"),pl=el.getAttribute("data-tp");
+    if(k){if(el._fr==null)el._fr=el.textContent;el.textContent=LANG==="en"?EN[k]:el._fr}
+    if(h){if(el._fr==null)el._fr=el.innerHTML;el.innerHTML=LANG==="en"?EN[h]:el._fr}
+    if(pl){if(el._fr==null)el._fr=el.placeholder;el.placeholder=LANG==="en"?EN[pl]:el._fr}});
+  var b=document.getElementById("langue");b.textContent=LANG==="en"?"FR":"EN";b.setAttribute("aria-label",LANG==="en"?"Passer en français":"Switch to English");
+  document.getElementById("ouvrir-panier").setAttribute("aria-label",L("Panier","Cart"));
+  document.getElementById("installer-non").setAttribute("aria-label",L("Plus tard","Later"));
+  rendreTri()}
+
+/* Ce que le client garde sur son téléphone : panier, favoris, articles vus, demandes de rappel */
+var panier=lire("saare-panier",{}),favoris=lire("saare-favoris",[]),vus=lire("saare-vus",[]),alertes=lire("saare-alertes",{});
+var mode=lire("saare-mode","livraison"),client=lire("saare-client",{nom:"",quartier:""});
+client={nom:String(client.nom||""),quartier:String(client.quartier||"")};
+Object.keys(panier).forEach(function(k){panier[k]=Math.min(20,parseInt(panier[k],10)||0);if(!(panier[k]>0))delete panier[k]});
+function trouver(id){return etat.produits.find(function(p){return p.id===id})}
+var toastMin;function toast(txt,action){var el=document.getElementById("toast");el.textContent=txt;el.hidden=false;el.style.animation="none";void el.offsetWidth;el.style.animation="";
+  el.onclick=action?function(){el.hidden=true;action()}:null;el.style.cursor=action?"pointer":"";clearTimeout(toastMin);toastMin=setTimeout(function(){el.hidden=true},action?4500:2600)}
+function vibrer(){try{if(navigator.vibrate)navigator.vibrate(12)}catch(e){}}
+
 /* Chargement du catalogue publié */
 var charge=false;
-function chargerBoutique(){
+function chargerBoutique(){var recu=false;
   return fetch("donnees/produits.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
-    .then(function(d){if(gerant&&modifie())return;etat=completer(d);publie=JSON.stringify(etat)})
+    .then(function(d){if(gerant&&modifie())return;etat=completer(d);publie=JSON.stringify(etat);recu=true})
     .catch(function(){})
-    .then(function(){charge=true;rendreBoutique()})}
+    .then(function(){charge=true;
+      if(recu){Object.keys(panier).forEach(function(id){if(!trouver(id))delete panier[id]});sauverPanier();verifierRetours()}
+      rendreBoutique();lienProduit()})}
+
+/* Recherche : sans accents, avec synonymes, et un budget (« 150000 », « 150k », « moins de 100 000 ») */
+function plat(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
+var GROUPES=[["telephone","phone","smartphone","mobile","tel","cellulaire","android"],["ordinateur","computer","laptop","pc","notebook","macbook"],
+  ["ecouteur","casque","headphone","earphone","earbud","airpods","audio","enceinte","speaker"],["chargeur","charger","cable","usb"],["montre","watch"],
+  ["tablette","tablet","ipad"],["occasion","used","seconde"],["neuf","new"],["piece","parts","ecran","screen","batterie","battery"]];
+var VIDES=["de","du","des","le","la","les","un","une","pour","a","moins","max","maximum","under","less","than","the","for","fcfa","cfa","f","prix","price","budget","jusqu","jusqua","to","up"];
+function analyser(q){var mots=[],budget=0;
+  q=plat(q).replace(/\b\d{1,3}(?:[ .,]\d{3})*[ .,](?:000|500)\b/g,function(m){return m.replace(/[ .,]/g,"")});
+  q.split(/[^a-z0-9]+/).forEach(function(m){if(!m)return;var b=m.match(/^(\d+)(k|f|fcfa)?$/);
+    if(b&&(b[2]==="k"||+b[1]>=1000)){budget=+b[1]*(b[2]==="k"?1000:1);return}
+    if(VIDES.indexOf(m)<0)mots.push(m)});
+  return{mots:mots,budget:budget}}
+function texteProduit(p){return plat([p.nom,p.marque,p.categorie,CATS_EN[p.categorie],RAYONS[p.rayon].long,RAYONS_EN[p.rayon][1],ETATS[p.etat],ETATS_EN[p.etat],p.details,enPromo(p)?"promo sale "+OFFRES[p.offre]+" "+OFFRES_EN[p.offre]:""].join(" "))}
+function motTrouve(m,txt){if(txt.indexOf(m)>=0||(m.length>3&&/s$/.test(m)&&txt.indexOf(m.slice(0,-1))>=0))return true;
+  return GROUPES.some(function(g){return g.some(function(w){return w===m||(m.length>=3&&w.indexOf(m)===0)||(w.length>=4&&m.indexOf(w)===0)})&&g.some(function(w){return txt.indexOf(w)>=0})})}
+function correspond(p,a){if(a.budget&&!(p.prix>0&&prixFinal(p)<=a.budget))return false;var txt=texteProduit(p);return a.mots.every(function(m){return motTrouve(m,txt)})}
+function surligner(nom,mots){var b=plat(nom);if(b.length!==nom.length||!mots.length)return esc(nom);var marque=[];
+  mots.forEach(function(m){var i=b.indexOf(m);if(i>=0)for(var j=i;j<i+m.length;j++)marque[j]=1});
+  var h="",dans=false;for(var i=0;i<nom.length;i++){if(marque[i]&&!dans){h+="<mark>";dans=true}if(!marque[i]&&dans){h+="</mark>";dans=false}h+=esc(nom[i])}return h+(dans?"</mark>":"")}
+var requete="",analyse=analyser("");
+function rendreSuggestions(){var z=document.getElementById("suggestions"),q=requete.trim();
+  if(!q||document.activeElement!==document.getElementById("recherche")){z.hidden=true;return}
+  var l=visibles().filter(function(p){return correspond(p,analyse)}).slice(0,4);
+  z.innerHTML=l.map(function(p){return'<button type="button" data-fiche="'+esc(p.id)+'"><img src="'+esc(photo(p))+'" alt=""><span><b>'+surligner(p.nom,analyse.mots)+"</b><small>"+esc(nomRayon(p.rayon)+" · "+nomEtat(p.etat))+(p.stock==="epuise"?" · "+L("épuisé","sold out"):"")+'</small></span><span class="p">'+prixTexte(p)+"</span></button>"}).join("")+
+    '<button type="button" class="demande" data-demander><span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg></span><span><b>'+(l.length?L("Pas ce que vous cherchez ?","Not what you need?"):L("Demander « ","Ask for “")+esc(q)+L(" » au vendeur","” from the seller"))+"</b><small>"+L("Le vendeur vous répond sur WhatsApp","The seller answers you on WhatsApp")+"</small></span></button>";
+  z.hidden=false}
 
 /* Boutique */
-var rayon="tous",etatFiltre="tous",filtre="tous";
+var rayon="tous",etatFiltre="tous",filtre="tous",tri="reco";
 function visibles(){return etat.produits.filter(function(p){return p.visible})}
 function rendreRayons(){var v=visibles();
-  var items=[["tous","Tout voir","ico-tout",v.length]].concat(Object.keys(RAYONS).map(function(k){return[k,RAYONS[k].nom,RAYONS[k].ico,v.filter(function(p){return p.rayon===k}).length]}));
+  var items=[["tous",L("Tout voir","See all"),"ico-tout",v.length]].concat(Object.keys(RAYONS).map(function(k){return[k,nomRayon(k),RAYONS[k].ico,v.filter(function(p){return p.rayon===k}).length]}));
   var zone=document.getElementById("rayons"),deja=zone.querySelectorAll("[data-rayon]");
   // Mise à jour sur place : la plaque touchée garde son rebond
-  if(deja.length===items.length){items.forEach(function(r,i){deja[i].setAttribute("aria-pressed",rayon===r[0]);deja[i].querySelector("small").textContent=r[3]+" article"+(r[3]>1?"s":"")});return}
-  zone.innerHTML=items.map(function(r){return'<button type="button" class="rayon verre" data-rayon="'+r[0]+'" aria-pressed="'+(rayon===r[0])+'"><svg aria-hidden="true"><use href="#'+r[2]+'"/></svg><span><b>'+r[1]+"</b><small>"+r[3]+" article"+(r[3]>1?"s":"")+"</small></span></button>"}).join("")}
+  if(deja.length===items.length){items.forEach(function(r,i){deja[i].setAttribute("aria-pressed",rayon===r[0]);deja[i].querySelector("b").textContent=r[1];deja[i].querySelector("small").textContent=nArticles(r[3])});return}
+  zone.innerHTML=items.map(function(r){return'<button type="button" class="rayon verre" data-rayon="'+r[0]+'" aria-pressed="'+(rayon===r[0])+'"><svg aria-hidden="true"><use href="#'+r[2]+'"/></svg><span><b>'+r[1]+"</b><small>"+nArticles(r[3])+"</small></span></button>"}).join("")}
+function favorisVisibles(){return favoris.filter(function(id){var p=trouver(id);return p&&p.visible})}
 function rendreFiltres(){
-  document.getElementById("etats").innerHTML=[["tous","Tous états"]].concat(Object.keys(ETATS).map(function(k){return[k,ETATS[k]]})).map(function(f){return'<button type="button" data-etat="'+f[0]+'" aria-pressed="'+(etatFiltre===f[0])+'">'+f[1]+"</button>"}).join("");
+  document.getElementById("etats").innerHTML=[["tous",L("Tous états","Any condition")]].concat(Object.keys(ETATS).map(function(k){return[k,nomEtat(k)]})).map(function(f){return'<button type="button" data-etat="'+f[0]+'" aria-pressed="'+(etatFiltre===f[0])+'">'+f[1]+"</button>"}).join("");
   var marques=[];visibles().forEach(function(p){if((rayon==="tous"||p.rayon===rayon)&&p.marque&&marques.indexOf(p.marque)<0)marques.push(p.marque)});
-  if(filtre!=="tous"&&filtre!=="offres"&&filtre!=="flash"&&marques.indexOf(filtre)<0)filtre="tous";
-  var f=[["tous","Tout"],["offres","Promos"],["flash","Vente flash"]].concat(marques.sort().map(function(m){return[m,m]}));
+  var nf=favorisVisibles().length;
+  if(filtre==="favoris"&&!nf)filtre="tous";
+  if(["tous","offres","flash","favoris"].indexOf(filtre)<0&&marques.indexOf(filtre)<0)filtre="tous";
+  var f=[["tous",L("Tout","All")]].concat(nf?[["favoris","♥ "+L("Favoris","Favorites")+" ("+nf+")"]]:[],[["offres",L("Promos","Deals")],["flash",L("Vente flash","Flash sale")]],marques.sort().map(function(m){return[m,m]}));
   document.getElementById("filtres").innerHTML=f.map(function(x){return'<button type="button" data-f="'+esc(x[0])+'" aria-pressed="'+(filtre===x[0])+'">'+esc(x[1])+"</button>"}).join("")}
+function rendreTri(){document.getElementById("tri").innerHTML=options([["reco",L("Recommandés","Recommended")],["prix-asc",L("Prix croissant","Price: low to high")],["prix-desc",L("Prix décroissant","Price: high to low")],["remise",L("Meilleures remises","Biggest discounts")],["nouveau",L("Nouveautés","Newest")]],tri)}
+function trier(l){var dispo=function(p){return p.stock==="epuise"?1:0};
+  var cle={"prix-asc":function(p){return p.prix?prixFinal(p):Infinity},"prix-desc":function(p){return p.prix?-prixFinal(p):Infinity},remise:function(p){return enPromo(p)?-remise(p):0},nouveau:function(p){return p.nouveau?0:1}}[tri]||function(){return 0};
+  return l.map(function(p,i){return[p,i]}).sort(function(a,b){return(dispo(a[0])-dispo(b[0]))||(cle(a[0])-cle(b[0]))||(a[1]-b[1])}).map(function(x){return x[0]})}
 function garde(p){if(!p.visible)return false;if(rayon!=="tous"&&p.rayon!==rayon)return false;if(etatFiltre!=="tous"&&p.etat!==etatFiltre)return false;
+  if(requete.trim()&&!correspond(p,analyse))return false;
+  if(filtre==="favoris")return favoris.indexOf(p.id)>=0;
   if(filtre==="offres")return enPromo(p);if(filtre==="flash")return enPromo(p)&&p.offre==="flash";if(filtre==="tous")return true;return p.marque===filtre}
-function carte(p){var r=enPromo(p),o=r?p.offre:(p.nouveau?"nouveau":"");
-  var badge=o?'<span class="badge '+o+'">'+(o==="nouveau"?"Nouveau":OFFRES[o])+"</span>":"";
-  var rem=r?'<span class="remise">-'+remise(p)+"%</span>":"";
+function ligneStock(p){var c=p.stock==="epuise"?"epuise":p.stock==="peu"?"peu":"";
+  return'<p class="stock '+c+'">'+(c==="epuise"?L("Épuisé pour le moment","Sold out for now"):c==="peu"?L("Dernières pièces","Last items"):L("En stock","In stock"))+"</p>"}
+function boutonAjouter(p,large){return'<button class="bouton rouge ajouter'+(panier[p.id]?" ajoute":"")+'" type="button" data-ajouter="'+esc(p.id)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-panier"/></svg><span class="txt"><span class="hors">'+L("Ajouter","Add")+(large?L(" au panier"," to cart"):"")+'</span><span class="dans">'+(large?L("Dans le panier","In your cart"):L("Ajouté","Added"))+"</span></span></button>"}
+function textePrevenir(id,large){return alertes[id]?(large?L("Demande envoyée","Request sent"):L("Demandé","Requested")):(large?L("Me prévenir quand il revient","Notify me when it's back"):L("Me prévenir","Notify me"))}
+function boutonPrevenir(p,large){return'<button class="bouton prevenir'+(alertes[p.id]?" fait":"")+'" type="button" data-prevenir="'+esc(p.id)+'"'+(large?' data-large="1"':"")+'><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cloche"/></svg><span class="txt">'+textePrevenir(p.id,large)+"</span></button>"}
+function lienCommande(p){return'<a class="bouton commander" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'" aria-label="'+L("Commander sur WhatsApp","Order on WhatsApp")+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg></a>'}
+function carte(p){var r=enPromo(p),ep=p.stock==="epuise",o=ep?"epuise":r?p.offre:(p.nouveau?"nouveau":"");
+  var badge=o?'<span class="badge '+o+'">'+(o==="epuise"?L("Épuisé","Sold out"):o==="nouveau"?L("Nouveau","New"):nomOffre(o))+"</span>":"";
+  var rem=r&&!ep?'<span class="remise">-'+remise(p)+"%</span>":"";
   var mins=r&&p.offre==="flash"&&p.fin?'<p class="minuteur" data-fin="'+esc(p.fin)+'"></p>':"";
-  return'<article class="produit verre"><button class="photo" type="button" data-fiche="'+esc(p.id)+'" aria-label="Voir '+esc(p.nom)+'"><img src="'+esc(photo(p))+'" alt="'+esc(p.nom)+'" loading="lazy">'+badge+rem+"</button>"+
-   '<div class="corps"><h3>'+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+ETATS[p.etat]+"</span>"+(p.garantie?"<em>Garantie "+esc(p.garantie)+"</em>":"")+'</p><p class="details">'+esc(p.details)+"</p>"+mins+blocPrix(p)+
-   '<p class="stock '+(p.stock==="peu"?"peu":"")+'">'+(p.stock==="peu"?"Dernières pièces":"En stock")+"</p>"+
-   '<a class="bouton" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Commander</a></div></article>'}
-function messageCommande(p){return"Bonjour Saaré Télécom, je souhaite commander : "+p.nom+" ("+ETATS[p.etat]+(p.details?", "+p.details:"")+")"+(p.prix?" au prix de "+fcfa(prixFinal(p)):"")+". Est-il disponible ?"}
+  return'<article class="produit verre'+(ep?" epuise":"")+'"><div class="photo"><button class="ouvrir" type="button" data-fiche="'+esc(p.id)+'" aria-label="'+L("Voir ","See ")+esc(p.nom)+'"><img src="'+esc(photo(p))+'" alt="'+esc(p.nom)+'" loading="lazy"></button>'+badge+rem+"</div>"+
+   '<button class="coeur" type="button" data-coeur="'+esc(p.id)+'" aria-pressed="'+(favoris.indexOf(p.id)>=0)+'" aria-label="'+L("Favori","Favorite")+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-coeur"/></svg></button>'+
+   '<div class="corps"><h3>'+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+nomEtat(p.etat)+"</span>"+(p.garantie?"<em>"+L("Garantie ","Warranty ")+esc(p.garantie)+"</em>":"")+'</p><p class="details">'+esc(p.details)+"</p>"+mins+blocPrix(p)+ligneStock(p)+
+   '<div class="actions">'+(ep?boutonPrevenir(p):boutonAjouter(p)+lienCommande(p))+"</div></div></article>"}
+function details(p){return nomEtat(p.etat)+(p.details?", "+p.details:"")}
+function messageCommande(p){return L("Bonjour Saaré Télécom, je souhaite commander : ","Hello Saaré Télécom, I would like to order: ")+p.nom+" ("+details(p)+")"+(p.prix?L(" au prix de "," at ")+fcfa(prixFinal(p)):"")+L(". Est-il disponible ?",". Is it available?")}
 function videBoutique(){
-  if(!charge)return'<p style="color:var(--texte-3)">Chargement des articles…</p>';
-  if(!visibles().length)return'<div class="admin-intro verre" style="grid-column:1/-1">Les articles arrivent très bientôt. En attendant, dites-nous ce que vous cherchez sur WhatsApp : nous vous répondons en quelques minutes.</div>';
-  return'<p style="color:var(--texte-3)">Aucun article dans cette sélection pour le moment.</p>'}
+  if(!charge)return'<p style="color:var(--texte-3)">'+L("Chargement des articles…","Loading items…")+"</p>";
+  if(!visibles().length)return'<div class="admin-intro verre" style="grid-column:1/-1">'+L("Les articles arrivent très bientôt. En attendant, dites-nous ce que vous cherchez sur WhatsApp : nous vous répondons en quelques minutes.","Items are coming very soon. Meanwhile, tell us what you are looking for on WhatsApp: we answer within minutes.")+"</div>";
+  var q=requete.trim();
+  if(q)return'<div class="admin-intro verre" style="grid-column:1/-1"><p style="margin:0 0 12px">'+L("Nous n'avons pas « ","We don't have “")+esc(q)+L(" » en ligne pour le moment. Le vendeur peut souvent le trouver : envoyez-lui la demande, il vous répond sur WhatsApp.","” online right now. The seller can often find it: send the request and they will answer on WhatsApp.")+
+    '</p><button class="bouton rouge" type="button" data-demander><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cloche"/></svg>'+L("Demander au vendeur","Ask the seller")+"</button></div>";
+  return'<p style="color:var(--texte-3)">'+L("Aucun article dans cette sélection pour le moment.","No items in this selection yet.")+"</p>"}
 function rendreBoutique(){
   rendreRayons();rendreFiltres();
-  var liste=etat.produits.filter(garde);
-  document.getElementById("titre-catalogue").textContent=rayon==="tous"?"Nos boutiques":"Boutique "+RAYONS[rayon].long.toLowerCase();
+  var liste=trier(etat.produits.filter(garde)),q=requete.trim();
+  document.getElementById("titre-catalogue").textContent=q?L("Résultats pour « ","Results for “")+q+L(" »","”"):rayon==="tous"?L("Nos boutiques","Our shops"):LANG==="en"?nomRayon(rayon,true):"Boutique "+RAYONS[rayon].long.toLowerCase();
+  var bu=document.getElementById("budget");bu.hidden=!analyse.budget;if(analyse.budget)bu.textContent=L("Budget : jusqu'à ","Budget: up to ")+fcfa(analyse.budget);
   document.getElementById("grille").innerHTML=liste.length?liste.map(carte).join(""):videBoutique();
-  document.getElementById("compte-produits").textContent=liste.length+" article"+(liste.length>1?"s":"");
+  document.getElementById("compte-produits").textContent=nArticles(liste.length);
   var c=etat.config,num=chiffres(c.whatsapp)||WA_DEFAUT,mail=(c.gmail||"").trim()||MAIL_DEFAUT;
   document.getElementById("wa-numero").textContent="+"+num.replace(/^(\d{3})(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/,"$1 $2 $3 $4 $5 $6");
   document.getElementById("wa-a-remplir").hidden=true;
   document.getElementById("mail-adresse").textContent=mail;
   document.getElementById("mail-a-remplir").hidden=true;
-  document.getElementById("mail-lien").href="mailto:"+mail+"?subject="+encodeURIComponent("Demande Saaré Télécom");
-  var bonjour=lienWa("Bonjour Saaré Télécom, je cherche un appareil.");
+  document.getElementById("mail-lien").href="mailto:"+mail+"?subject="+encodeURIComponent(L("Demande Saaré Télécom","Saaré Télécom request"));
+  var bonjour=lienWa(L("Bonjour Saaré Télécom, je cherche un appareil.","Hello Saaré Télécom, I am looking for a device."));
   ["wa-heros","wa-contact","wa-flottant"].forEach(function(id){document.getElementById(id).href=bonjour});
-  var meilleure=visibles().filter(enPromo).sort(function(a,b){return remise(b)-remise(a)})[0];
+  var meilleure=visibles().filter(function(p){return enPromo(p)&&p.stock!=="epuise"}).sort(function(a,b){return remise(b)-remise(a)})[0];
   var pa=document.getElementById("pastille");
   if(meilleure){pa.hidden=false;pa.innerHTML="<small>"+esc(meilleure.nom)+"</small>"+fcfa(meilleure.prixPromo)}else pa.hidden=true;
-  tic()}
+  rendreRecents();majBadge();tic()}
 function tic(){
   var c=etat.config,ev=document.getElementById("evenement"),r=c.evenement&&c.evenementFin?restant(c.evenementFin):null;
   ev.hidden=!r;
-  if(r){var mots=c.evenement.split(" "),der=mots.pop();document.getElementById("ev-nom").innerHTML=esc(mots.join(" "))+(mots.length?" ":"")+"<em>"+esc(der)+"</em>";
-    document.getElementById("ev-compte").innerHTML=[[r.j,"jours"],[r.h,"h"],[r.m,"min"],[r.s,"s"]].map(function(x){return"<span>"+deux(x[0])+"<small>"+x[1]+"</small></span>"}).join("")}
+  if(r){var mots=(LANG==="en"&&EVENEMENTS_EN[c.evenement]||c.evenement).split(" "),der=mots.pop();document.getElementById("ev-nom").innerHTML=esc(mots.join(" "))+(mots.length?" ":"")+"<em>"+esc(der)+"</em>";
+    document.getElementById("ev-compte").innerHTML=[[r.j,L("jours","days")],[r.h,"h"],[r.m,"min"],[r.s,"s"]].map(function(x){return"<span>"+deux(x[0])+"<small>"+x[1]+"</small></span>"}).join("")}
   var perime=false;
   document.querySelectorAll(".minuteur").forEach(function(el){var t=restant(el.getAttribute("data-fin"));if(!t){perime=true;return}
-    el.textContent="Fin de la vente flash dans "+(t.j?t.j+" j ":"")+deux(t.h)+":"+deux(t.m)+":"+deux(t.s)});
+    el.textContent=L("Fin de la vente flash dans ","Flash sale ends in ")+(t.j?t.j+L(" j "," d "):"")+deux(t.h)+":"+deux(t.m)+":"+deux(t.s)});
   if(perime)rendreBoutique()}
 setInterval(tic,1000);
 
-/* Fiche produit */
-var voile=document.getElementById("voile");
-function ouvrirFiche(id){var p=etat.produits.find(function(x){return x.id===id});if(!p)return;var n=Math.max(1,p.photos.length);
-  voile.innerHTML='<div class="fiche verre" role="dialog" aria-modal="true" aria-label="'+esc(p.nom)+'"><button class="fermer" type="button" aria-label="Fermer" id="fermer">×</button>'+
+/* Feuilles de verre : fiche produit, panier, demande de rappel */
+var voile=document.getElementById("voile"),feuille=null;
+function afficher(html,quoi,garderPlace){var f=voile.querySelector(".fiche"),haut=garderPlace&&f&&feuille===quoi?f.scrollTop:0;
+  voile.innerHTML=html;voile.hidden=false;feuille=quoi;document.getElementById("toast").hidden=true;
+  if(haut)voile.querySelector(".fiche").scrollTop=haut;else{var b=document.getElementById("fermer");if(b)b.focus({preventScroll:true})}}
+function fermer(){voile.hidden=true;feuille=null}
+function coque(titre,html){return'<div class="fiche verre" role="dialog" aria-modal="true" aria-label="'+esc(titre)+'"><div class="feuille-titre"><h3>'+esc(titre)+'</h3><button class="fermer" type="button" aria-label="'+L("Fermer","Close")+'" id="fermer">×</button></div>'+html+"</div>"}
+function mini(p){return'<button class="mini verre" type="button" data-fiche="'+esc(p.id)+'"><img src="'+esc(photo(p))+'" alt="" loading="lazy"><b>'+esc(p.nom)+"</b><span"+(enPromo(p)?' class="reduit"':"")+">"+prixTexte(p)+"</span></button>"}
+function similaires(p){var ref=prixFinal(p);
+  return visibles().filter(function(x){return x.id!==p.id&&x.rayon===p.rayon&&x.stock!=="epuise"})
+    .sort(function(a,b){return((a.categorie===p.categorie?0:1)-(b.categorie===p.categorie?0:1))||(Math.abs(prixFinal(a)-ref)-Math.abs(prixFinal(b)-ref))}).slice(0,8)}
+function ouvrirFiche(id){var p=trouver(id);if(!p)return;var n=Math.max(1,p.photos.length),ep=p.stock==="epuise",sim=similaires(p);
+  document.getElementById("suggestions").hidden=true;
+  afficher('<div class="fiche verre" role="dialog" aria-modal="true" aria-label="'+esc(p.nom)+'"><button class="fermer" type="button" aria-label="'+L("Fermer","Close")+'" id="fermer">×</button>'+
    '<div class="galerie">'+Array.from({length:n},function(_,i){return'<img src="'+esc(photo(p,i))+'" alt="'+esc(p.nom)+" photo "+(i+1)+'">'}).join("")+"</div>"+
-   (n>1?'<p style="color:var(--texte-3);font-size:13px;margin:6px 0 0">Glissez pour voir les '+n+" photos</p>":"")+
-   "<h3>"+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+ETATS[p.etat]+"</span><em>"+esc(RAYONS[p.rayon].nom+" · "+p.categorie)+(p.garantie?" · Garantie "+esc(p.garantie):"")+'</em></p><p class="details" style="color:var(--texte-2)">'+esc(p.details)+"</p>"+blocPrix(p)+
-   '<a class="bouton" style="width:100%;margin-top:14px" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Commander sur WhatsApp</a></div>';
-  voile.hidden=false;document.getElementById("fermer").focus()}
-voile.addEventListener("click",function(e){if(e.target===voile||e.target.id==="fermer")voile.hidden=true});
-document.addEventListener("keydown",function(e){if(e.key==="Escape")voile.hidden=true});
+   (n>1?'<p style="color:var(--texte-3);font-size:13px;margin:6px 0 0">'+L("Glissez pour voir les "+n+" photos","Swipe to see the "+n+" photos")+"</p>":"")+
+   "<h3>"+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+nomEtat(p.etat)+"</span><em>"+esc(nomRayon(p.rayon)+" · "+nomCat(p.categorie))+(p.garantie?" · "+L("Garantie ","Warranty ")+esc(p.garantie):"")+'</em></p><p class="details" style="color:var(--texte-2)">'+esc(p.details)+"</p>"+blocPrix(p)+ligneStock(p)+
+   '<div class="rangee-actions">'+(ep?boutonPrevenir(p,true):boutonAjouter(p,true)+'<a class="bouton" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander","Order")+"</a>")+"</div>"+
+   '<div class="petits"><button class="bouton leger coeur-fiche" type="button" data-coeur="'+esc(p.id)+'" aria-pressed="'+(favoris.indexOf(p.id)>=0)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-coeur"/></svg>'+L("Favori","Favorite")+"</button>"+
+   '<button class="bouton leger" type="button" data-partager="'+esc(p.id)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-partager"/></svg>'+L("Partager","Share")+"</button></div>"+
+   (sim.length?"<h4>"+(ep?L("Disponibles maintenant","Available now"):L("Articles similaires","Similar items"))+'</h4><div class="defile">'+sim.map(mini).join("")+"</div>":"")+"</div>","fiche");
+  noterVu(p.id)}
+function noterVu(id){vus=[id].concat(vus.filter(function(x){return x!==id})).slice(0,12);ecrire("saare-vus",vus);rendreRecents()}
+function rendreRecents(){var l=vus.map(trouver).filter(function(p){return p&&p.visible});
+  document.getElementById("recents").hidden=!l.length;document.getElementById("recents-liste").innerHTML=l.map(mini).join("")}
+function lienProduit(){var m=location.hash.match(/^#p=(.+)$/);if(!m||!charge)return;history.replaceState(null,"","#catalogue");ouvrirFiche(decodeURIComponent(m[1]))}
+window.addEventListener("hashchange",lienProduit);
+function partager(p){if(!p)return;var url=location.origin+"/#p="+encodeURIComponent(p.id),txt=p.nom+" · "+prixTexte(p)+" · Saaré Télécom";
+  if(navigator.share){navigator.share({title:p.nom,text:txt,url:url}).catch(function(){});return}
+  var wa=function(){window.open("https://wa.me/?text="+encodeURIComponent(txt+" "+url),"_blank","noopener")};
+  try{navigator.clipboard.writeText(txt+" "+url).then(function(){toast(L("Lien copié : collez-le où vous voulez","Link copied: paste it anywhere"))},wa)}catch(e){wa()}}
 
-document.addEventListener("click",function(e){
+/* Favoris */
+function basculerFavori(id,bouton){var i=favoris.indexOf(id),oui=i<0;if(oui)favoris.unshift(id);else favoris.splice(i,1);ecrire("saare-favoris",favoris);vibrer();
+  document.querySelectorAll('[data-coeur="'+CSS.escape(id)+'"]').forEach(function(b){b.setAttribute("aria-pressed",oui)});
+  bouton.classList.remove("bat");void bouton.offsetWidth;bouton.classList.add("bat");
+  toast(oui?L("Ajouté aux favoris ♥","Added to favorites ♥"):L("Retiré des favoris","Removed from favorites"));
+  if(filtre==="favoris"&&!oui)rendreBoutique();else rendreFiltres()}
+
+/* Panier : un seul message WhatsApp pour toute la commande */
+function sauverPanier(){ecrire("saare-panier",panier);majBadge()}
+function nbArticles(){return Object.keys(panier).reduce(function(s,k){return s+panier[k]},0)}
+function majBadge(secouer){var b=document.getElementById("nb-panier"),n=nbArticles();b.hidden=!n;b.textContent=n>99?"99+":n;
+  if(secouer){var pu=document.getElementById("ouvrir-panier");pu.classList.remove("secoue");void pu.offsetWidth;pu.classList.add("secoue")}}
+function majBoutons(){
+  document.querySelectorAll("[data-ajouter]").forEach(function(b){b.classList.toggle("ajoute",!!panier[b.getAttribute("data-ajouter")])});
+  document.querySelectorAll("[data-prevenir]").forEach(function(b){var id=b.getAttribute("data-prevenir");b.classList.toggle("fait",!!alertes[id]);b.querySelector(".txt").textContent=textePrevenir(id,b.hasAttribute("data-large"))})}
+function voler(depuis,p){if(calme||!depuis||!document.body.animate)return;
+  var zone=depuis.closest(".produit,.fiche"),img=zone&&zone.querySelector("img"),a=(img||depuis).getBoundingClientRect(),c=document.getElementById("ouvrir-panier").getBoundingClientRect();
+  var b=document.createElement("div");b.className="bulle";b.style.backgroundImage='url("'+photo(p)+'")';b.style.left=(a.left+a.width/2-23)+"px";b.style.top=(a.top+a.height/2-23)+"px";document.body.appendChild(b);
+  var dx=c.left+c.width/2-(a.left+a.width/2),dy=c.top+c.height/2-(a.top+a.height/2);
+  b.animate([{transform:"translate(0,0) scale(1.5)",opacity:1},{transform:"translate("+(dx*.4)+"px,"+(dy*.4-70)+"px) scale(1.1)",opacity:1,offset:.45},{transform:"translate("+dx+"px,"+dy+"px) scale(.3)",opacity:.5}],{duration:650,easing:"cubic-bezier(.5,0,.5,1)"}).onfinish=function(){b.remove()}}
+function ajouter(id,depuis){var p=trouver(id);if(!p||p.stock==="epuise")return;panier[id]=Math.min(20,(panier[id]||0)+1);ecrire("saare-panier",panier);vibrer();
+  voler(depuis,p);setTimeout(function(){majBadge(true)},calme?0:600);majBoutons();
+  if(feuille!=="fiche")toast(L("Ajouté au panier · voir","Added to cart · view"),ouvrirPanier)}
+function lignesPanier(){return Object.keys(panier).map(function(id){return{p:trouver(id),id:id,q:panier[id]}}).filter(function(x){return x.p})}
+function messagePanier(){var tot=0,aConfirmer=false;
+  var l=lignesPanier().filter(function(x){return x.p.stock!=="epuise"}).map(function(x){var p=x.p;if(p.prix)tot+=prixFinal(p)*x.q;else aConfirmer=true;
+    return"• "+x.q+" × "+p.nom+" ("+details(p)+") : "+(p.prix?fcfa(prixFinal(p)*x.q):L("prix à confirmer","price to confirm"))});
+  return L("Bonjour Saaré Télécom, je souhaite commander :","Hello Saaré Télécom, I would like to order:")+"\n"+l.join("\n")+"\n"+L("Total : ","Total: ")+fcfa(tot)+(aConfirmer?L(" + articles à confirmer"," + items to confirm"):"")+"\n"+
+    (mode==="livraison"?L("Livraison à : ","Deliver to: ")+(client.quartier.trim()||L("quartier à préciser","area to confirm")):L("Je passe récupérer en boutique.","I will pick it up at the shop."))+
+    (client.nom.trim()?"\n"+L("Nom : ","Name: ")+client.nom.trim():"")+"\n"+L("Est-ce disponible ?","Is it available?")}
+function ouvrirPanier(garderPlace){var l=lignesPanier(),titre=L("Mon panier","My cart");
+  if(!l.length){afficher(coque(titre,'<div class="vide-panier"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-panier"/></svg><p>'+L("Votre panier est vide.","Your cart is empty.")+'</p><button class="bouton rouge" type="button" data-fermer>'+L("Voir les articles","Browse items")+"</button></div>"),"panier");return}
+  var sous=0,eco=0,surDemande=0,dispo=0;
+  var lignes=l.map(function(x){var p=x.p,ind=p.stock==="epuise",id=esc(x.id);
+    if(!ind){dispo++;if(p.prix){sous+=p.prix*x.q;eco+=(p.prix-prixFinal(p))*x.q}else surDemande++}
+    return'<div class="ligne-panier'+(ind?" indispo":"")+'"><img src="'+esc(photo(p))+'" alt=""><div><b>'+esc(p.nom)+"</b><small>"+esc(details(p))+'</small><div class="bas">'+
+      (ind?"<small>"+L("Épuisé pour le moment","Sold out for now")+'</small><button class="lien-bouton" type="button" data-qte="'+id+'" data-d="-99">'+L("Retirer","Remove")+"</button>":
+      '<span class="quantite"><button type="button" data-qte="'+id+'" data-d="-1" aria-label="'+L("Un de moins","One less")+'">−</button><output>'+x.q+'</output><button type="button" data-qte="'+id+'" data-d="1" aria-label="'+L("Un de plus","One more")+'">+</button></span>'+
+      '<span class="montant">'+(p.prix?(enPromo(p)?"<s>"+fcfa(p.prix*x.q)+"</s>":"")+fcfa(prixFinal(p)*x.q):L("Prix sur demande","Price on request"))+"</span>")+"</div></div></div>"}).join("");
+  var bas='<div class="totaux">'+(eco?"<p><span>"+L("Sous-total","Subtotal")+"</span><span>"+fcfa(sous)+'</span></p><p class="eco"><span>'+L("Vous économisez","You save")+"</span><span>−"+fcfa(eco)+"</span></p>":"")+
+    '<p class="total"><span>Total</span><span>'+fcfa(sous-eco)+"</span></p>"+(surDemande?"<p><small>"+L("+ prix sur demande pour ","+ price on request for ")+nArticles(surDemande)+"</small></p>":"")+"</div>"+
+    '<div class="segment" role="group" aria-label="'+L("Réception","Delivery")+'"><button type="button" data-mode="livraison" aria-pressed="'+(mode==="livraison")+'">'+L("Livraison","Delivery")+'</button><button type="button" data-mode="retrait" aria-pressed="'+(mode==="retrait")+'">'+L("Retrait en boutique","Shop pickup")+"</button></div>"+
+    '<div class="champs"><div class="champ"><label for="cl-nom">'+L("Votre nom","Your name")+'</label><input id="cl-nom" autocomplete="given-name" maxlength="60" value="'+esc(client.nom)+'"></div>'+
+    (mode==="livraison"?'<div class="champ"><label for="cl-quartier">'+L("Quartier, ville","Area, city")+'</label><input id="cl-quartier" autocomplete="address-level2" maxlength="80" value="'+esc(client.quartier)+'"></div>':"")+"</div>"+
+    (dispo?'<a class="bouton" style="width:100%;margin-top:14px" id="envoyer-panier" target="_blank" rel="noopener" href="'+lienWa(messagePanier())+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander sur WhatsApp","Order on WhatsApp")+"</a>":"")+
+    '<p style="color:var(--texte-3);font-size:12.5px;margin:10px 4px 0">'+L("Paiement à la livraison ou Mobile Money. Le vendeur confirme la disponibilité avant tout paiement.","Pay on delivery or with Mobile Money. The seller confirms availability before any payment.")+"</p>";
+  afficher(coque(titre+" · "+nArticles(nbArticles()),lignes+bas),"panier",garderPlace)}
+document.getElementById("ouvrir-panier").addEventListener("click",function(){ouvrirPanier()});
+
+/* Article épuisé ou introuvable : le client demande au vendeur de le prévenir */
+var demande=null;
+function messageAlerte(){var p=demande.p;return L("Bonjour Saaré Télécom, pouvez-vous me prévenir quand cet article sera disponible : ","Hello Saaré Télécom, could you let me know when this item is available: ")+(p?p.nom+" ("+details(p)+")":demande.q)+L(" ?","?")+
+  (client.nom.trim()?"\n"+L("Nom : ","Name: ")+client.nom.trim():"")+"\n"+L("Merci !","Thank you!")}
+function ouvrirAlerte(id,q){var p=id?trouver(id):null;if(!p&&!q)return;demande={p:p,q:q,cle:p?p.id:"q:"+plat(q)};
+  document.getElementById("suggestions").hidden=true;var sim=p?similaires(p):[];
+  afficher(coque(p?L("Être prévenu du retour","Get notified"):L("Demander au vendeur","Ask the seller"),
+    (p?'<div class="ligne-panier"><img src="'+esc(photo(p))+'" alt=""><div><b>'+esc(p.nom)+"</b><small>"+esc(details(p))+"</small>"+ligneStock(p)+"</div></div>":"")+
+    '<p style="color:var(--texte-2)">'+(p?L("Touchez le bouton : le message part tout prêt vers le vendeur sur WhatsApp, et il vous écrit dès que l'article revient.","Tap the button: a ready-made message goes to the seller on WhatsApp, and they write to you as soon as the item is back."):
+      L("Vous cherchez « ","Looking for “")+esc(q)+L(" » ? Le vendeur peut souvent le trouver. Touchez le bouton : le message part tout prêt sur WhatsApp.","”? The seller can often find it. Tap the button: a ready-made message goes out on WhatsApp."))+"</p>"+
+    '<div class="champ"><label for="cl-nom">'+L("Votre nom (facultatif)","Your name (optional)")+'</label><input id="cl-nom" autocomplete="given-name" maxlength="60" value="'+esc(client.nom)+'"></div>'+
+    '<a class="bouton" style="width:100%;margin-top:14px" id="envoyer-alerte" target="_blank" rel="noopener" href="'+lienWa(messageAlerte())+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cloche"/></svg>'+(p?L("Me prévenir sur WhatsApp","Notify me on WhatsApp"):L("Envoyer la demande","Send the request"))+"</a>"+
+    (sim.length?"<h4>"+L("Disponibles maintenant","Available now")+'</h4><div class="defile">'+sim.map(mini).join("")+"</div>":"")),"alerte")}
+function verifierRetours(){var revenu=null;
+  Object.keys(alertes).forEach(function(k){if(Date.now()-alertes[k].t>60*864e5){delete alertes[k];return}var p=trouver(k);if(p&&p.visible&&p.stock!=="epuise"){delete alertes[k];revenu=p}});
+  ecrire("saare-alertes",alertes);
+  if(revenu)toast(L("Bonne nouvelle : ","Good news: ")+revenu.nom+L(" est de retour !"," is back in stock!"),function(){ouvrirFiche(revenu.id)})}
+
+voile.addEventListener("click",function(e){if(e.target===voile||e.target.id==="fermer")fermer()});
+voile.addEventListener("input",function(e){var id=e.target.id;if(id==="cl-nom")client.nom=e.target.value;else if(id==="cl-quartier")client.quartier=e.target.value;else return;ecrire("saare-client",client);
+  var a=document.getElementById("envoyer-panier");if(a)a.href=lienWa(messagePanier());var b=document.getElementById("envoyer-alerte");if(b)b.href=lienWa(messageAlerte())});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){fermer();document.getElementById("suggestions").hidden=true}});
+
+document.addEventListener("click",function(e){var x;
+  if((x=e.target.closest("[data-ajouter]"))){var id=x.getAttribute("data-ajouter");if(panier[id])ouvrirPanier();else ajouter(id,x);return}
+  if((x=e.target.closest("[data-coeur]"))){basculerFavori(x.getAttribute("data-coeur"),x);return}
+  if((x=e.target.closest("[data-prevenir]"))){ouvrirAlerte(x.getAttribute("data-prevenir"));return}
+  if((x=e.target.closest("[data-demander]"))){ouvrirAlerte(null,requete.trim()||L("un appareil","a device"));return}
+  if((x=e.target.closest("[data-qte]"))){var k=x.getAttribute("data-qte"),q=(panier[k]||0)+(+x.getAttribute("data-d"));if(q>0)panier[k]=Math.min(20,q);else delete panier[k];sauverPanier();majBoutons();vibrer();ouvrirPanier(true);return}
+  if((x=e.target.closest("[data-mode]"))){mode=x.getAttribute("data-mode");ecrire("saare-mode",mode);ouvrirPanier(true);return}
+  if((x=e.target.closest("[data-partager]"))){partager(trouver(x.getAttribute("data-partager")));return}
+  if(e.target.closest("[data-fermer]")){fermer();return}
+  if(e.target.closest("#envoyer-panier")){toast(L("Votre commande s'ouvre dans WhatsApp","Your order opens in WhatsApp"));
+    if(!document.getElementById("vider-panier"))e.target.closest("#envoyer-panier").insertAdjacentHTML("afterend",'<button class="bouton leger" type="button" id="vider-panier" style="width:100%;margin-top:8px">'+L("Message envoyé ? Vider le panier","Message sent? Empty the cart")+"</button>");return}
+  if(e.target.closest("#vider-panier")){panier={};sauverPanier();majBoutons();fermer();toast(L("Panier vidé. Merci pour votre commande !","Cart emptied. Thank you for your order!"));return}
+  if(e.target.closest("#envoyer-alerte")){alertes[demande.cle]={nom:demande.p?demande.p.nom:demande.q,t:Date.now()};ecrire("saare-alertes",alertes);majBoutons();
+    setTimeout(function(){fermer();toast(demande.p?L("Demande envoyée : on vous prévient dès son retour","Request sent: we'll let you know when it's back"):L("Demande envoyée au vendeur","Request sent to the seller"))},300);return}
   var r=e.target.closest("[data-rayon]");if(r){choisirRayon(r.getAttribute("data-rayon"));return}
   var et=e.target.closest("[data-etat]");if(et){etatFiltre=et.getAttribute("data-etat");rendreBoutique();return}
   var f=e.target.closest("[data-f]");if(f){filtre=f.getAttribute("data-f");rendreBoutique();onglet();return}
   var fi=e.target.closest("[data-fiche]");if(fi){ouvrirFiche(fi.getAttribute("data-fiche"));return}
-  var cp=e.target.closest("[data-copier]");if(cp){var t=document.getElementById(cp.getAttribute("data-copier")).textContent;
-    var ok=function(){cp.textContent="Copié"};var non=function(){var rg=document.createRange();rg.selectNodeContents(document.getElementById(cp.getAttribute("data-copier")));var s=getSelection();s.removeAllRanges();s.addRange(rg);cp.textContent="Sélectionné"};
-    try{navigator.clipboard.writeText(t).then(ok,non)}catch(err){non()}setTimeout(function(){cp.textContent="Copier"},1800)}
+  var cp=e.target.closest("[data-copier]");if(cp){var t=document.getElementById(cp.getAttribute("data-copier")).textContent,admin=!!cp.closest("#vue-admin");
+    var ok=function(){cp.textContent=admin?"Copié":L("Copié","Copied")};var non=function(){var rg=document.createRange();rg.selectNodeContents(document.getElementById(cp.getAttribute("data-copier")));var s=getSelection();s.removeAllRanges();s.addRange(rg);cp.textContent=admin?"Sélectionné":L("Sélectionné","Selected")};
+    try{navigator.clipboard.writeText(t).then(ok,non)}catch(err){non()}setTimeout(function(){cp.textContent=admin?"Copier":L("Copier","Copy")},1800)}
 });
 function choisirRayon(k){rayon=k;filtre="tous";var h=k==="tous"?"#catalogue":"#"+RAYONS[k].hash;if(location.hash!==h)history.replaceState(null,"",h);rendreBoutique();onglet()}
 ["voir-promos","lien-promos"].forEach(function(id){document.getElementById(id).addEventListener("click",function(){filtre="offres";rendreBoutique();onglet()})});
+document.getElementById("tri").addEventListener("change",function(e){tri=e.target.value;rendreBoutique()});
+
+var champ=document.getElementById("recherche");
+champ.addEventListener("input",function(){var avant=requete.trim();requete=champ.value;analyse=analyser(requete);
+  // Première lettre tapée : on cherche dans toute la boutique
+  if(!avant&&requete.trim()){rayon="tous";etatFiltre="tous";if(filtre!=="favoris")filtre="tous"}
+  document.getElementById("effacer-recherche").hidden=!requete;rendreBoutique();rendreSuggestions()});
+champ.addEventListener("focus",rendreSuggestions);
+champ.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();champ.blur();document.getElementById("suggestions").hidden=true;
+  var b=document.getElementById("grille").getBoundingClientRect();scrollBy({top:b.top-90,behavior:calme?"auto":"smooth"})});
+document.getElementById("effacer-recherche").addEventListener("click",function(){champ.value="";champ.dispatchEvent(new Event("input"));champ.focus()});
+document.addEventListener("pointerdown",function(e){if(!e.target.closest(".zone-recherche"))document.getElementById("suggestions").hidden=true},{passive:true});
+
+document.getElementById("langue").addEventListener("click",function(){LANG=LANG==="en"?"fr":"en";ecrire("saare-langue",LANG);traduire();rendreBoutique();
+  if(feuille==="panier")ouvrirPanier(true);else if(feuille)fermer();toast(L("Version française","English version"))});
+
+/* Invitation à installer l'appli (raccourci sur l'écran d'accueil) */
+var invite=null,estIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+var visites=lire("saare-visites",0)+1;ecrire("saare-visites",visites);
+function installee(){return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true}
+var bandeau=document.getElementById("installer"),attenteInstall;
+function proposer(delai){if(installee()||Date.now()-lire("saare-install-plus-tard",0)<14*864e5)return;
+  clearTimeout(attenteInstall);attenteInstall=setTimeout(function(){if(location.hash==="#admin"||!voile.hidden){proposer(10000);return}bandeau.hidden=false},delai)}
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();invite=e;proposer(visites>1?4000:15000)});
+window.addEventListener("appinstalled",function(){bandeau.hidden=true;invite=null;toast(L("Appli installée : retrouvez-la sur l'écran d'accueil","App installed: find it on your home screen"))});
+if(estIOS)proposer(visites>1?4000:15000);
+document.getElementById("installer-non").addEventListener("click",function(){bandeau.hidden=true;ecrire("saare-install-plus-tard",Date.now())});
+document.getElementById("installer-oui").addEventListener("click",function(){bandeau.hidden=true;
+  if(invite){invite.prompt();invite.userChoice.then(function(r){if(r.outcome!=="accepted")ecrire("saare-install-plus-tard",Date.now())},function(){});invite=null;return}
+  afficher(coque(L("Installer l'appli","Install the app"),'<ol class="etapes"><li>'+L("Touchez <b>Partager</b>","Tap <b>Share</b>")+' <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;vertical-align:-3px"><use href="#ico-partager"/></svg> '+L("en bas de Safari.","at the bottom of Safari.")+"</li><li>"+
+    L("Choisissez <b>Sur l'écran d'accueil</b>.","Choose <b>Add to Home Screen</b>.")+"</li><li>"+L("Touchez <b>Ajouter</b> : l'icône Saaré Télécom rejoint vos applis.","Tap <b>Add</b>: the Saaré Télécom icon joins your apps.")+"</li></ol>"),"installer")});
+if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
 
 /* Relief 3D : les plaques de verre s'inclinent et le reflet suit le doigt ou la souris.
    Sur téléphone, le doigt fait pencher la plaque, puis elle revient avec un petit rebond ;
    l'affiche d'accueil suit aussi l'inclinaison du téléphone. */
 var calme=matchMedia("(prefers-reduced-motion: reduce)").matches;
-var RELIEF=".produit,.rayon,.tuile,.canal,.connexion,.evenement";
+var RELIEF=".produit,.rayon,.tuile,.canal,.connexion,.evenement,.mini";
 function incliner(el,x,y,fort){var b=el.getBoundingClientRect(),px=Math.min(1,Math.max(0,(x-b.left)/b.width)),py=Math.min(1,Math.max(0,(y-b.top)/b.height)),k=el.classList.contains("produit")?1:.45;
   el.style.transform="rotateX("+((.5-py)*14*k).toFixed(2)+"deg) rotateY("+((px-.5)*16*k).toFixed(2)+"deg) translateZ(6px)"+(fort?" scale(.975)":"");
   el.style.setProperty("--mx",(px*100).toFixed(1)+"%");el.style.setProperty("--my",(py*100).toFixed(1)+"%")}
@@ -256,7 +488,7 @@ function ligneAdmin(p,i){
      '<div class="champ"><label for="off-'+i+'">Type</label><select id="off-'+i+'" data-champ="offre">'+options(Object.keys(OFFRES).map(function(k){return[k,OFFRES[k]]}),p.offre)+"</select></div>"+
      '<div class="champ"'+(p.offre==="flash"?"":" hidden")+'><label for="fin-'+i+'">Fin de la vente flash</label><input id="fin-'+i+'" data-champ="fin" type="datetime-local" value="'+esc(p.fin)+'"></div>'+
      '<p class="apercu-prix" id="ap-'+i+'">'+apercu(p)+"</p></div></div>"+
-   '<div class="champ"><label for="stk-'+i+'">Stock</label><select id="stk-'+i+'" data-champ="stock">'+options([["ok","En stock"],["peu","Dernières pièces"]],p.stock)+"</select></div>"+
+   '<div class="champ"><label for="stk-'+i+'">Stock</label><select id="stk-'+i+'" data-champ="stock">'+options([["ok","En stock"],["peu","Dernières pièces"],["epuise","Épuisé"]],p.stock)+"</select></div>"+
    '<div class="champ"><label for="nv-'+i+'">Badge « Nouveau »</label><input id="nv-'+i+'" data-champ="nouveau" type="checkbox"'+(p.nouveau?" checked":"")+"></div>"+
    '<div class="champ"><label for="vis-'+i+'">Afficher en boutique</label><input id="vis-'+i+'" data-champ="visible" type="checkbox"'+(p.visible?" checked":"")+"></div>"+
    '</div><button class="danger" type="button" data-supprimer="'+i+'">Supprimer ce produit</button></div></details>'}
@@ -377,6 +609,7 @@ function route(){var h=location.hash,admin=h==="#admin";
   document.getElementById("vue-connexion").hidden=!(admin&&!gerant);
   document.getElementById("vue-admin").hidden=!(admin&&gerant);
   document.getElementById("wa-flottant").hidden=admin;
+  if(admin)bandeau.hidden=true;
   if(admin&&!gerant)preparerGoogle();
   if(admin&&gerant&&!adminCharge&&!chargementAdmin){chargerAdmin();return}
   ["tuiles","bloc-produits","bloc-comptes"].forEach(function(id){document.getElementById(id).hidden=!adminCharge});
@@ -385,4 +618,4 @@ function route(){var h=location.hash,admin=h==="#admin";
 function onglet(){var h=location.hash,cur=h==="#admin"?"lien-admin":h==="#contact"?"lien-contact":filtre==="offres"?"lien-promos":"lien-boutique";
   ["lien-boutique","lien-promos","lien-contact","lien-admin"].forEach(function(id){document.getElementById(id).setAttribute("aria-current",id===cur?"page":"false")})}
 window.addEventListener("hashchange",route);
-rendreBoutique();chargerBoutique();route();
+traduire();rendreBoutique();chargerBoutique();route();

@@ -23,6 +23,7 @@ async function page(nav, vue, s, erreurs) {
   const ctx = await nav.newContext({ viewport: vue, hasTouch: vue.width < 700, isMobile: vue.width < 700 });
   await ctx.route("https://accounts.google.com/gsi/client", r => r.fulfill({ contentType: "text/javascript", body: FAUX_GIS }));
   await ctx.route(/fonts\.(googleapis|gstatic)\.com/, r => r.fulfill({ body: "" }));
+  await ctx.route(/^https:\/\/wa\.me\//, r => r.fulfill({ contentType: "text/html", body: "WhatsApp" }));
   const p = await ctx.newPage();
   p.on("pageerror", e => erreurs.push(e.message));
   p.on("console", m => { if (m.type() === "error" && !/401|403|409|Failed to load resource/.test(m.text())) erreurs.push(m.text()); });
@@ -132,7 +133,7 @@ async function parcours(nav, vue) {
   verifie(await cartes(c) === 2, "le client voit les 2 produits");
   const ordre = await c.evaluate(() => { const b = [...document.querySelectorAll(".produit")].find(x => x.querySelector(".prix s")); return b ? [...b.querySelector(".prix").children].map(k => k.tagName).join(",") : ""; });
   verifie(ordre === "S,B", "ancien prix barré au-dessus du vrai prix");
-  const href = decodeURIComponent(await c.locator("#grille .produit", { hasText: "iPhone 13 Pro" }).locator(".bouton").getAttribute("href")).replace(/\u00a0/g, " ");
+  const href = decodeURIComponent(await c.locator("#grille .produit", { hasText: "iPhone 13 Pro" }).locator(".commander").getAttribute("href")).replace(/\u00a0/g, " ");
   verifie(href.includes("wa.me/237696300200") && href.includes("iPhone 13 Pro") && href.includes("285 000 FCFA"), "commande WhatsApp avec produit et prix promo (" + href + ")");
   const img = c.locator("#grille .produit", { hasText: "iPhone 13 Pro" }).locator("img");
   await img.scrollIntoViewIfNeeded(); await c.waitForFunction(() => [...document.querySelectorAll("#grille img")].every(i => i.complete));
@@ -142,6 +143,72 @@ async function parcours(nav, vue) {
   await c.locator('[data-fiche]').first().click();
   verifie(await c.locator(".fiche .galerie img").count() === 2, "fiche : 2 photos de l'ordinateur");
   await c.keyboard.press("Escape");
+  verifie(await c.locator("#recents .mini").count() === 1, "« Vus récemment » après la fiche");
+  await c.locator('[data-rayon="tous"]').click();
+
+  // Deux articles côte à côte sur téléphone
+  const hauts = await c.evaluate(() => [...document.querySelectorAll("#grille .produit")].map(x => Math.round(x.getBoundingClientRect().top)));
+  if (vue.width < 760) verifie(hauts[0] === hauts[1], "2 articles côte à côte (" + hauts.join(",") + ")");
+  verifie(await largeur(c) <= vue.width, "pas de défilement horizontal (grille)");
+
+  // Recherche : synonymes, budget, demande au vendeur
+  const cherche = async q => { await c.fill("#recherche", q); return cartes(c); };
+  verifie(await cherche("hp") === 1 && await c.locator("#suggestions button[data-fiche]").count() === 1, "recherche « hp » : 1 article et 1 suggestion");
+  verifie(await cherche("laptop") === 1, "recherche « laptop » trouve l'ordinateur");
+  verifie(await cherche("telephone") === 1, "recherche sans accent « telephone »");
+  verifie(await cherche("iphone 13") === 1, "recherche « iphone 13 »");
+  verifie(await cherche("200k") === 1 && /200\u00a0000/.test(await c.locator("#budget").textContent()), "budget « 200k » : seulement l'ordinateur");
+  verifie(await cherche("moins de 150 000") === 0, "budget « moins de 150 000 » : rien");
+  await c.locator("#grille [data-demander]").click();
+  const demandeHref = decodeURIComponent(await c.locator("#envoyer-alerte").getAttribute("href"));
+  verifie(demandeHref.includes("wa.me/237696300200") && demandeHref.includes("moins de 150 000"), "demande au vendeur pour un article introuvable");
+  await c.locator("#fermer").click();
+  await c.locator("#effacer-recherche").click();
+  verifie(await cartes(c) === 2, "recherche effacée");
+
+  // Panier : deux articles, quantité, livraison, un seul message WhatsApp
+  await c.locator("#grille .produit", { hasText: "iPhone 13 Pro" }).locator("[data-ajouter]").click();
+  await c.locator("#grille .produit", { hasText: "HP EliteBook" }).locator("[data-ajouter]").click();
+  await c.waitForFunction(() => document.getElementById("nb-panier").textContent === "2");
+  verifie(await c.locator("#grille .ajoute").count() === 2, "boutons « Ajouté »");
+  await c.locator("#ouvrir-panier").click();
+  verifie(await c.locator(".ligne-panier").count() === 2, "2 lignes dans le panier");
+  await c.locator('.ligne-panier', { hasText: "iPhone" }).locator('[data-d="1"]').click();
+  verifie(/755\u00a0000/.test(await c.locator(".totaux .total").textContent()), "total du panier : 755 000");
+  verifie(/30\u00a0000/.test(await c.locator(".totaux .eco").textContent()), "économies affichées : 30 000");
+  await c.fill("#cl-nom", "Paul"); await c.fill("#cl-quartier", "Bastos");
+  let cmd = decodeURIComponent(await c.locator("#envoyer-panier").getAttribute("href")).replace(/\u00a0/g, " ");
+  verifie(cmd.includes("2 × iPhone 13 Pro") && cmd.includes("1 × HP EliteBook") && cmd.includes("Total : 755 000 FCFA") && cmd.includes("Bastos") && cmd.includes("Paul"), "message de commande du panier (" + cmd + ")");
+  verifie(await largeur(c) <= vue.width, "pas de défilement horizontal (panier)");
+  await c.locator('[data-mode="retrait"]').click();
+  cmd = decodeURIComponent(await c.locator("#envoyer-panier").getAttribute("href"));
+  verifie(cmd.includes("récupérer en boutique") && !cmd.includes("Bastos"), "retrait en boutique");
+  await c.reload(); await c.waitForFunction(() => document.querySelectorAll("#grille .produit").length > 0);
+  verifie(await c.locator("#nb-panier").textContent() === "3", "panier gardé après rechargement");
+
+  // Favoris
+  await c.locator("#grille .produit", { hasText: "HP EliteBook" }).locator("[data-coeur]").click();
+  await c.locator('[data-f="favoris"]').click();
+  verifie(await cartes(c) === 1, "filtre Favoris");
+  await c.locator('[data-f="tous"]').click();
+
+  // Anglais
+  await c.locator("#langue").click();
+  verifie(await c.evaluate(() => document.documentElement.lang) === "en" && /best phones/.test(await c.locator("h1").textContent()), "interface en anglais");
+  const hrefEn = decodeURIComponent(await c.locator("#grille .produit", { hasText: "iPhone 13 Pro" }).locator(".commander").getAttribute("href"));
+  verifie(hrefEn.includes("I would like to order") && await c.locator("#langue").textContent() === "FR", "commande WhatsApp en anglais");
+  verifie(await largeur(c) <= vue.width, "pas de défilement horizontal (anglais)");
+  await c.locator("#langue").click();
+  verifie(/meilleurs téléphones/.test(await c.locator("h1").textContent()), "retour au français");
+
+  // Lien partagé vers un produit, appli installable
+  const idIphone = produitsDepot(s).find(x => x.nom === "iPhone 13 Pro").id;
+  await c.goto(s.url + "/#p=" + idIphone); await c.locator(".fiche h3").waitFor();
+  verifie(await c.locator(".fiche h3").textContent() === "iPhone 13 Pro", "lien partagé ouvre la fiche");
+  await c.keyboard.press("Escape");
+  const man = await c.evaluate(() => fetch("/manifest.webmanifest").then(r => r.json()));
+  verifie(man.display === "standalone" && man.icons.length === 3, "manifeste de l'appli");
+  verifie(await c.evaluate(() => navigator.serviceWorker.ready.then(r => !!r.active)), "service worker actif");
 
   // Promotion de masse : ordinateurs d'occasion -15 %
   await p.selectOption("#pr-rayon", "pc"); await p.selectOption("#pr-etat", "occasion");
@@ -152,6 +219,26 @@ async function parcours(nav, vue) {
   prods = produitsDepot(s);
   verifie(prods.find(x => x.nom.startsWith("HP")).prixPromo === 157500, "promo -15 % écrite (157 500)");
   verifie(/Promo HP EliteBook 840 G6/.test(s.depot.journal.at(-1)), "commit de promo : " + s.depot.journal.at(-1));
+
+  // Article épuisé : le client demande à être prévenu, puis l'article revient
+  const iE = await ouvrir(p, "HP EliteBook");
+  await p.selectOption("#stk-" + iE, "epuise");
+  await enregistrer(p);
+  verifie(produitsDepot(s).find(x => x.nom.startsWith("HP")).stock === "epuise", "stock « épuisé » écrit dans le dépôt");
+  await c.goto(s.url + "/"); await c.waitForFunction(() => document.querySelectorAll("#grille .produit").length > 0);
+  const hp = c.locator("#grille .produit", { hasText: "HP EliteBook" });
+  verifie(await hp.locator(".badge.epuise").count() === 1 && await hp.locator("[data-ajouter]").count() === 0, "carte épuisée : badge, pas d'ajout au panier");
+  verifie(await c.locator("#grille .produit").last().textContent().then(t => t.includes("HP")), "article épuisé en fin de liste");
+  await hp.locator("[data-prevenir]").click();
+  const alerte = decodeURIComponent(await c.locator("#envoyer-alerte").getAttribute("href"));
+  verifie(alerte.includes("prévenir") && alerte.includes("HP EliteBook 840 G6"), "demande de rappel au vendeur");
+  await c.locator("#envoyer-alerte").click();
+  await c.waitForFunction(() => document.getElementById("voile").hidden);
+  verifie(await hp.locator(".prevenir.fait").count() === 1, "« Demandé » sur la carte");
+  await p.selectOption("#stk-" + iE, "ok");
+  await enregistrer(p);
+  await c.reload(); await c.waitForFunction(() => /de retour/.test(document.getElementById("toast").textContent));
+  verifie(true, "le client est prévenu du retour de l'article");
 
   // Invitation d'un vendeur
   verifie(await p.locator("#zone-ajout-compte").isVisible(), "le propriétaire peut inviter");
