@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#071A3D">
 <meta property="og:title" content="Saaré Télécom">
 <meta property="og:description" content="Les meilleurs téléphones, aux meilleurs prix ! Téléphones, ordinateurs et accessoires, neufs ou d'occasion. Commandez sur WhatsApp.">
-<meta property="og:image" content="https://saare-telecom.apeledition.workers.dev/assets/logo.webp">
+<meta property="og:image" content="https://saare-telecom.apeledition.workers.dev/assets/accueil.webp">
 <link rel="icon" href="assets/mascotte.webp">
 <meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,7 +95,7 @@ h1,h2,h3{font-family:var(--affiche);line-height:1.08;margin:0;text-wrap:balance;
 .heros p{color:var(--texte-2);font-size:17px;max-width:46ch;margin:12px 0 20px}
 .scene{perspective:900px;justify-self:center;width:100%;max-width:360px}
 .affiche{position:relative;transform-style:preserve-3d;transform:rotateY(-14deg) rotateX(6deg);animation:flotte 7s ease-in-out infinite;transition:transform .2s ease-out}
-.affiche img{border-radius:30px;box-shadow:0 40px 60px -30px rgba(0,0,0,.9),0 0 0 1.5px rgba(255,255,255,.55)}
+.affiche img{width:100%;height:auto;border-radius:30px;box-shadow:0 40px 60px -30px rgba(0,0,0,.9),0 0 0 1.5px rgba(255,255,255,.55)}
 .affiche::after{content:"";position:absolute;inset:0;border-radius:30px;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,0) 32%,rgba(255,255,255,0) 70%,rgba(255,255,255,.14) 100%)}
 @keyframes flotte{0%,100%{translate:0 0}50%{translate:0 -10px}}
 .pastille{position:absolute;left:-14px;bottom:26px;transform:translateZ(60px) rotate(-5deg);padding:9px 15px;border-radius:18px;font-family:var(--affiche);font-weight:800;font-size:19px;line-height:1.05;
@@ -203,6 +203,24 @@ section{padding-block:30px 6px}
 .apercu-prix{grid-column:1/-1;font-size:13.5px;color:var(--texte-3);margin:0}
 .apercu-prix b{color:var(--texte)}
 
+/* Toucher : la plaque s'enfonce sous le doigt, puis revient avec un rebond */
+.rayon,.tuile,.canal,.connexion,.evenement{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.rayon::before,.tuile::before,.canal::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(220px circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.28),rgba(255,255,255,0) 60%)}
+.rayon:hover::before,.tuile:hover::before,.canal:hover::before,.appui::before{opacity:1}
+.appui{transition:transform .08s ease-out!important}
+.produit.appui::before{background:radial-gradient(200px circle at var(--mx) var(--my),rgba(255,255,255,.4),rgba(255,255,255,0) 60%)}
+.rebond{transition:transform .6s cubic-bezier(.34,1.56,.64,1)!important}
+.affiche.rebond{transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+.bouton,.puce-wa,.wa-flottant,.filtres button,.onglets a,.lien-bouton,.choix button,.fermer{transition:transform .35s cubic-bezier(.34,1.56,.64,1),filter .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+.bouton:active,.puce-wa:active,.wa-flottant:active,.fermer:active{transform:scale(.94);filter:brightness(1.15);transition-duration:.08s}
+.filtres button:active,.onglets a:active{transform:scale(.9);transition-duration:.08s}
+.onglets a[aria-current="page"] svg{animation:saut .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes saut{0%{transform:scale(.7)}100%{transform:scale(1)}}
+.produit .photo img{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.produit.appui .photo img,.produit:hover .photo img{transform:scale(1.06)}
+.wa-flottant{animation:pouls 3.2s ease-in-out infinite}
+@keyframes pouls{0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 14px 26px -10px rgba(37,211,102,.75),0 0 0 0 rgba(37,211,102,.45)}50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 14px 26px -10px rgba(37,211,102,.75),0 0 0 12px rgba(37,211,102,0)}}
+*{-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.affiche{transform:none}}
 
 /* Prix : l'ancien prix barré au-dessus, le vrai prix en dessous */
@@ -335,7 +353,7 @@ section{padding-block:30px 6px}
       </div>
       <div class="scene">
         <div class="affiche" id="affiche">
-          <img src="assets/logo.webp" alt="Affiche Saaré Télécom : la mascotte en polo rayé bleu, blanc, rouge et des téléphones" width="480" height="477">
+          <img src="assets/accueil.webp" alt="Affiche Saaré Télécom : la mascotte en polo rayé bleu, blanc, rouge, des téléphones, un ordinateur portable et des accessoires" width="720" height="716">
           <div class="pastille" id="pastille"></div>
         </div>
       </div>

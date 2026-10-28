@@ -17,7 +17,9 @@ function sha1(buf) { return crypto.createHash("sha1").update(buf).digest("hex");
 export function fauxDepot() {
   const commits = new Map(), blobs = new Map();
   const depart = new Map();
-  for (const f of ["site/donnees/produits.json", "site/donnees/comptes.json"]) depart.set(f, fs.readFileSync(path.join(RACINE, f)));
+  // Boutique vide, comme à la livraison (le vrai catalogue du dépôt n'est pas utilisé par les tests)
+  depart.set("site/donnees/produits.json", Buffer.from(JSON.stringify({ config: { whatsapp: "237696300200", gmail: PROPRIO, evenement: "", evenementFin: "" }, produits: [] }, null, 2) + "\n"));
+  depart.set("site/donnees/comptes.json", Buffer.from(JSON.stringify({ comptes: [] }, null, 2) + "\n"));
   const premier = sha1("depart");
   commits.set(premier, { fichiers: depart, parents: [], message: "Départ" });
   const depot = { head: premier, commits, blobs, journal: [], pannes: 0 };

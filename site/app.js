@@ -64,7 +64,10 @@ var rayon="tous",etatFiltre="tous",filtre="tous";
 function visibles(){return etat.produits.filter(function(p){return p.visible})}
 function rendreRayons(){var v=visibles();
   var items=[["tous","Tout voir","ico-tout",v.length]].concat(Object.keys(RAYONS).map(function(k){return[k,RAYONS[k].nom,RAYONS[k].ico,v.filter(function(p){return p.rayon===k}).length]}));
-  document.getElementById("rayons").innerHTML=items.map(function(r){return'<button type="button" class="rayon verre" data-rayon="'+r[0]+'" aria-pressed="'+(rayon===r[0])+'"><svg aria-hidden="true"><use href="#'+r[2]+'"/></svg><span><b>'+r[1]+"</b><small>"+r[3]+" article"+(r[3]>1?"s":"")+"</small></span></button>"}).join("")}
+  var zone=document.getElementById("rayons"),deja=zone.querySelectorAll("[data-rayon]");
+  // Mise à jour sur place : la plaque touchée garde son rebond
+  if(deja.length===items.length){items.forEach(function(r,i){deja[i].setAttribute("aria-pressed",rayon===r[0]);deja[i].querySelector("small").textContent=r[3]+" article"+(r[3]>1?"s":"")});return}
+  zone.innerHTML=items.map(function(r){return'<button type="button" class="rayon verre" data-rayon="'+r[0]+'" aria-pressed="'+(rayon===r[0])+'"><svg aria-hidden="true"><use href="#'+r[2]+'"/></svg><span><b>'+r[1]+"</b><small>"+r[3]+" article"+(r[3]>1?"s":"")+"</small></span></button>"}).join("")}
 function rendreFiltres(){
   document.getElementById("etats").innerHTML=[["tous","Tous états"]].concat(Object.keys(ETATS).map(function(k){return[k,ETATS[k]]})).map(function(f){return'<button type="button" data-etat="'+f[0]+'" aria-pressed="'+(etatFiltre===f[0])+'">'+f[1]+"</button>"}).join("");
   var marques=[];visibles().forEach(function(p){if((rayon==="tous"||p.rayon===rayon)&&p.marque&&marques.indexOf(p.marque)<0)marques.push(p.marque)});
@@ -139,19 +142,35 @@ document.addEventListener("click",function(e){
 function choisirRayon(k){rayon=k;filtre="tous";var h=k==="tous"?"#catalogue":"#"+RAYONS[k].hash;if(location.hash!==h)history.replaceState(null,"",h);rendreBoutique();onglet()}
 ["voir-promos","lien-promos"].forEach(function(id){document.getElementById(id).addEventListener("click",function(){filtre="offres";rendreBoutique();onglet()})});
 
-/* Relief 3D : la carte s'incline et le reflet suit le doigt ou la souris */
+/* Relief 3D : les plaques de verre s'inclinent et le reflet suit le doigt ou la souris.
+   Sur téléphone, le doigt fait pencher la plaque, puis elle revient avec un petit rebond ;
+   l'affiche d'accueil suit aussi l'inclinaison du téléphone. */
 var calme=matchMedia("(prefers-reduced-motion: reduce)").matches;
-function incliner(el,x,y){var b=el.getBoundingClientRect(),px=(x-b.left)/b.width,py=(y-b.top)/b.height;
-  el.style.transform="rotateX("+((.5-py)*14).toFixed(2)+"deg) rotateY("+((px-.5)*16).toFixed(2)+"deg) translateZ(6px)";
+var RELIEF=".produit,.rayon,.tuile,.canal,.connexion,.evenement";
+function incliner(el,x,y,fort){var b=el.getBoundingClientRect(),px=Math.min(1,Math.max(0,(x-b.left)/b.width)),py=Math.min(1,Math.max(0,(y-b.top)/b.height)),k=el.classList.contains("produit")?1:.45;
+  el.style.transform="rotateX("+((.5-py)*14*k).toFixed(2)+"deg) rotateY("+((px-.5)*16*k).toFixed(2)+"deg) translateZ(6px)"+(fort?" scale(.975)":"");
   el.style.setProperty("--mx",(px*100).toFixed(1)+"%");el.style.setProperty("--my",(py*100).toFixed(1)+"%")}
+function relacher(el){el.classList.add("rebond");el.style.transform="";el.style.setProperty("--mx","30%");el.style.setProperty("--my","0%");
+  clearTimeout(el._rebond);el._rebond=setTimeout(function(){el.classList.remove("rebond")},650)}
 if(!calme){
-  var grille=document.getElementById("grille");
-  grille.addEventListener("pointermove",function(e){var c=e.target.closest(".produit");if(c)incliner(c,e.clientX,e.clientY)});
-  grille.addEventListener("pointerout",function(e){var c=e.target.closest(".produit");if(c&&!c.contains(e.relatedTarget)){c.style.transform="";c.style.setProperty("--mx","30%");c.style.setProperty("--my","0%")}});
-  var aff=document.getElementById("affiche"),scene=aff.parentNode;
-  scene.addEventListener("pointermove",function(e){var b=scene.getBoundingClientRect(),px=(e.clientX-b.left)/b.width,py=(e.clientY-b.top)/b.height;
-    aff.style.transform="rotateY("+((px-.5)*28).toFixed(1)+"deg) rotateX("+((.5-py)*18).toFixed(1)+"deg)"});
-  scene.addEventListener("pointerleave",function(){aff.style.transform=""});
+  var appui=null;
+  document.addEventListener("pointerdown",function(e){var c=e.target.closest(RELIEF);if(!c)return;appui=c;c.classList.remove("rebond");c.classList.add("appui");incliner(c,e.clientX,e.clientY,true)},{passive:true});
+  document.addEventListener("pointermove",function(e){
+    if(appui){incliner(appui,e.clientX,e.clientY,true);return}
+    if(e.pointerType!=="mouse")return;
+    var c=e.target.closest(RELIEF);if(c)incliner(c,e.clientX,e.clientY,false)},{passive:true});
+  function fin(){if(appui){appui.classList.remove("appui");relacher(appui);appui=null}}
+  ["pointerup","pointercancel"].forEach(function(t){document.addEventListener(t,fin,{passive:true})});
+  document.addEventListener("pointerout",function(e){if(e.pointerType!=="mouse")return;var c=e.target.closest(RELIEF);if(c&&!c.contains(e.relatedTarget)&&c!==appui)relacher(c)},{passive:true});
+  // Affiche d'accueil : suit la souris, le doigt, ou l'inclinaison du téléphone
+  var aff=document.getElementById("affiche"),scene=aff.parentNode,gyro=false;
+  function pencher(ry,rx){aff.style.transform="rotateY("+ry.toFixed(1)+"deg) rotateX("+rx.toFixed(1)+"deg)"}
+  scene.addEventListener("pointermove",function(e){var b=scene.getBoundingClientRect();pencher(((e.clientX-b.left)/b.width-.5)*28,(.5-(e.clientY-b.top)/b.height)*18)});
+  scene.addEventListener("pointerdown",function(e){var b=scene.getBoundingClientRect();pencher(((e.clientX-b.left)/b.width-.5)*34,(.5-(e.clientY-b.top)/b.height)*22)});
+  scene.addEventListener("pointerleave",function(){if(!gyro)aff.style.transform=""});
+  scene.addEventListener("pointerup",function(){if(!gyro){aff.style.transform="";aff.classList.add("rebond");setTimeout(function(){aff.classList.remove("rebond")},650)}});
+  window.addEventListener("deviceorientation",function(e){if(e.gamma==null||e.beta==null)return;gyro=true;
+    var g=Math.max(-30,Math.min(30,e.gamma)),bt=Math.max(-30,Math.min(30,e.beta-45));pencher(-14+g*.9,6-bt*.5)},{passive:true});
 }
 
 /* Appels à la fonction gérant */
