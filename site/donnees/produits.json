@@ -5,5 +5,26 @@
     "evenement": "",
     "evenementFin": ""
   },
-  "produits": []
+  "produits": [
+    {
+      "id": "pmvroinhgjz6d",
+      "nom": "Iphone 11",
+      "marque": "Iphone",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "occasion",
+      "details": "64G/3G",
+      "garantie": "1 mois",
+      "prix": 150,
+      "prixPromo": 110,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": true,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvroinhgjz6d-mvrombz96wqw.jpg"
+      ]
+    }
+  ]
 }
