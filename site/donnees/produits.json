@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvs6la8un8vi",
+      "nom": "GOOGLE PIXEL 7 PRO",
+      "marque": "GOOGLE",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir vert blanc",
+      "garantie": "1",
+      "prix": 200000,
+      "prixPromo": 155000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvs6la8un8vi-mvs6mfyexrni.jpg"
+      ]
+    },
+    {
       "id": "pmvrowr8scfrm",
       "nom": "Ordinateur Dell",
       "marque": "Dell",
