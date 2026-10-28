@@ -231,9 +231,9 @@ function ouvrirFiche(id){var p=trouver(id);if(!p)return;var n=Math.max(1,p.photo
    (n>1?'<p style="color:var(--texte-3);font-size:13px;margin:6px 0 0">'+L("Glissez pour voir les "+n+" photos","Swipe to see the "+n+" photos")+"</p>":"")+
    "<h3>"+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+nomEtat(p.etat)+"</span><em>"+esc(nomRayon(p.rayon)+" · "+nomCat(p.categorie))+(p.garantie?" · "+L("Garantie ","Warranty ")+esc(p.garantie):"")+'</em></p><p class="details" style="color:var(--texte-2)">'+esc(p.details)+"</p>"+blocPrix(p)+ligneStock(p)+
    '<div class="rangee-actions">'+(ep?boutonPrevenir(p,true):boutonAjouter(p,true)+'<a class="bouton" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander","Order")+"</a>")+"</div>"+
-   '<div class="petits"><button class="bouton leger coeur-fiche" type="button" data-coeur="'+esc(p.id)+'" aria-pressed="'+(favoris.indexOf(p.id)>=0)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-coeur"/></svg>'+L("Favori","Favorite")+"</button>"+
-   '<button class="bouton leger" type="button" data-partager="'+esc(p.id)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-partager"/></svg>'+L("Partager","Share")+"</button></div>"+
-   (sim.length?"<h4>"+(ep?L("Disponibles maintenant","Available now"):L("Articles similaires","Similar items"))+'</h4><div class="defile">'+sim.map(mini).join("")+"</div>":"")+"</div>","fiche");
+   '<div class="petits"><button class="bouton leger coeur-fiche" type="button" data-coeur="'+esc(p.id)+'" aria-pressed="'+(favoris.indexOf(p.id)>=0)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-coeur"/></svg>'+L("Favori","Favorite")+"</button></div>"+
+   (sim.length?"<h4>"+(ep?L("Disponibles maintenant","Available now"):L("Articles similaires","Similar items"))+'</h4><div class="defile">'+sim.map(mini).join("")+"</div>":"")+
+   '<button class="bouton leger" type="button" style="width:100%;margin-top:16px" data-partager="'+esc(p.id)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-partager"/></svg>'+L("Partager cet article","Share this item")+"</button></div>","fiche");
   noterVu(p.id)}
 function noterVu(id){vus=[id].concat(vus.filter(function(x){return x!==id})).slice(0,12);ecrire("saare-vus",vus);rendreRecents()}
 function rendreRecents(){var l=vus.map(trouver).filter(function(p){return p&&p.visible});
