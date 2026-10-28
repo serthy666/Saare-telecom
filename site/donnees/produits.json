@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvs8ag8395ki",
+      "nom": "GOOGLE PIXEL 8",
+      "marque": "GOOGLE",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/ noir belge",
+      "garantie": "1",
+      "prix": 200000,
+      "prixPromo": 170000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvs8ag8395ki-mvs8awwyet3r.jpg"
+      ]
+    },
+    {
       "id": "pmvs6la8un8vi",
       "nom": "GOOGLE PIXEL 7 PRO",
       "marque": "GOOGLE",
