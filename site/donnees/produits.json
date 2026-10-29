@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvt18s03nu55",
+      "nom": "Redmi note 14 pro plus",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/ Noor blanc",
+      "garantie": "12",
+      "prix": 225000,
+      "prixPromo": 200000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt18s03nu55-mvt1995bka6r.jpg",
+        "photos/pmvt18s03nu55-mvt1997tttq1.jpg"
+      ]
+    },
+    {
       "id": "pmvt162056z26",
       "nom": "Motorola G24",
       "marque": "Motorola",
