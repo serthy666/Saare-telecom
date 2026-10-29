@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvt0h1yfiusv",
+      "nom": "Samsung  Galaxy S20 FE",
+      "marque": "SamsunG",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/noir vert",
+      "garantie": "1",
+      "prix": 120000,
+      "prixPromo": 105000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0h1yfiusv-mvt0hhf5wb1t.jpg",
+        "photos/pmvt0h1yfiusv-mvt0hhgl3061.jpg"
+      ]
+    },
+    {
       "id": "pmvt0ezuz8s3k",
       "nom": "Xiaomi 11 ultra",
       "marque": "XIAOMI",
