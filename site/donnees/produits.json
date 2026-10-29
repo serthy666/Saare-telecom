@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt100mrx7kx",
+      "nom": "Pixel 7 pro",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/12G/noir vert",
+      "garantie": "1",
+      "prix": 190000,
+      "prixPromo": 155000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt100mrx7kx-mvt10du6aob7.jpg"
+      ]
+    },
+    {
       "id": "pmvt0xkzv5qiv",
       "nom": "SamsunG S24",
       "marque": "SamsunG",
