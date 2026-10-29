@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt07wehniip",
+      "nom": "Google pixel 9 pro xl",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/blanc Noor gris",
+      "garantie": "",
+      "prix": 500000,
+      "prixPromo": 450000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt07wehniip-mvt088zuxmzl.jpg"
+      ]
+    },
+    {
       "id": "pmvsza90tcod3",
       "nom": "REDMI NOTE 10 PRO 256G",
       "marque": "Redmi",
