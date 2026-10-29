@@ -19,7 +19,7 @@
       "prixPromo": 170000,
       "offre": "promo",
       "fin": "",
-      "nouveau": false,
+      "nouveau": true,
       "stock": "ok",
       "visible": true,
       "photos": [
