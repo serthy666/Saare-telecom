@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt8la73guzx",
+      "nom": "Redmi 8A 2 sims",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/ rouge bleu noir",
+      "garantie": "1",
+      "prix": 50000,
+      "prixPromo": 45000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt8la73guzx-mvt8lhamowep.jpg"
+      ]
+    },
+    {
       "id": "pmvt8juumsqbi",
       "nom": "Iphone 7",
       "marque": "Apple",
