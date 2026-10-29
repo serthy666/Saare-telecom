@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt0d8aatq93",
+      "nom": "HUAWEI P20 PRO",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/Noir",
+      "garantie": "1",
+      "prix": 90000,
+      "prixPromo": 65000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0d8aatq93-mvt0dhy1ywu7.jpg"
+      ]
+    },
+    {
       "id": "pmvt07wehniip",
       "nom": "Google pixel 9 pro xl",
       "marque": "Google",
