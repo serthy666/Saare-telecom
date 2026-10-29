@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtosoy7c9q3",
+      "nom": "Samsung Galaxy  S23 FE",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/bleu",
+      "garantie": "1",
+      "prix": 220000,
+      "prixPromo": 190000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtosoy7c9q3-mvtothutijt4.jpg"
+      ]
+    },
+    {
       "id": "pmvtooru7rggr",
       "nom": "Redmi note 7 pro",
       "marque": "Redmi",
