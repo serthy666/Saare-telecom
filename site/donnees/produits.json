@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvteklca2rvz",
+      "nom": "Redmi note 8 pro",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/blanc noir",
+      "garantie": "1",
+      "prix": 80000,
+      "prixPromo": 70000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvteklca2rvz-mvtekqbvzba5.jpg"
+      ]
+    },
+    {
       "id": "pmvteemqefy8t",
       "nom": "Samsung Galaxy S22 ultra",
       "marque": "Samsung",
