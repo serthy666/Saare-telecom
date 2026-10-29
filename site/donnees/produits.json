@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt8ozxj2uqm",
+      "nom": "Redmi note 10 5G",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/bleu Noor",
+      "garantie": "1",
+      "prix": 100000,
+      "prixPromo": 80000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt8ozxj2uqm-mvt8pipprihk.jpg"
+      ]
+    },
+    {
       "id": "pmvt8n37nlqi0",
       "nom": "Huawei P50 pro",
       "marque": "Huawei",
