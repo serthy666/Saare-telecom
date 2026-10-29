@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtdm1pvv6ea",
+      "nom": "HUAWEI P30 lite",
+      "marque": "HUAWEI",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/bleu blanc noir",
+      "garantie": "1",
+      "prix": 60000,
+      "prixPromo": 50000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtdm1pvv6ea-mvtdmbw9wzhd.jpg"
+      ]
+    },
+    {
       "id": "pmvtdik02855j",
       "nom": "Samsung Galaxy  note 20",
       "marque": "Samsung",
