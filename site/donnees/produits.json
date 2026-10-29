@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvtfizqx3l3k",
+      "nom": "Redmi note 9",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/blanc Noor gris",
+      "garantie": "1",
+      "prix": 90000,
+      "prixPromo": 75000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtfizqx3l3k-mvtfj805r0g5.jpg",
+        "photos/pmvtfizqx3l3k-mvtfj81vq5wf.jpg"
+      ]
+    },
+    {
       "id": "pmvtfgr74e0mr",
       "nom": "Iphone 15 plus",
       "marque": "Apple",
