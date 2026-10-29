@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt162056z26",
+      "nom": "Motorola G24",
+      "marque": "Motorola",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/ vert noir rouge",
+      "garantie": "1",
+      "prix": 105000,
+      "prixPromo": 100000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt162056z26-mvt16xnvgw76.jpg"
+      ]
+    },
+    {
       "id": "pmvt11wdv9mfh",
       "nom": "Pixel 10 pro xl",
       "marque": "Google",
