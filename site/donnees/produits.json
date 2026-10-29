@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtojznrw7ch",
+      "nom": "TCL T7730",
+      "marque": "TCL",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/4G/gris",
+      "garantie": "1",
+      "prix": 110000,
+      "prixPromo": 90000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtojznrw7ch-mvtokd2ggymr.jpg"
+      ]
+    },
+    {
       "id": "pmvtg5ivw6v4n",
       "nom": "Samsung Galaxy S21 ultra",
       "marque": "Samsung",
