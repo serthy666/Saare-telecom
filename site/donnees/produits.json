@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvteokaj1iya",
+      "nom": "Google pixel 8 pro",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/12G/bleu blanc noir",
+      "garantie": "1",
+      "prix": 260000,
+      "prixPromo": 220000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvteokaj1iya-mvtepcnzj1sd.jpg"
+      ]
+    },
+    {
       "id": "pmvtemchnld71",
       "nom": "Redmi note 9 pro",
       "marque": "Redmi",
