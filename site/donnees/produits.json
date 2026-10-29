@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtsebbxtlvf",
+      "nom": "Iphone 14",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/rouge noir blanc bleu",
+      "garantie": "1",
+      "prix": 230000,
+      "prixPromo": 220000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtsebbxtlvf-mvtseg6oxkfg.jpg"
+      ]
+    },
+    {
       "id": "pmvtsc5f2hvh7",
       "nom": "Iphone 13",
       "marque": "Apple",
