@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtfxkktvygr",
+      "nom": "Motorola edge 60 fusion",
+      "marque": "Motorola",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/vert",
+      "garantie": "1",
+      "prix": 280000,
+      "prixPromo": 250000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtfxkktvygr-mvtfxog9dgcr.jpg"
+      ]
+    },
+    {
       "id": "pmvtfp3px4oqy",
       "nom": "👑 SÉRIE 18 PRO MAX (SIM PHYSIQUE)",
       "marque": "Apple",
