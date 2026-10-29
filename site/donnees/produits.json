@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmvt0q9ck4w8w",
+      "nom": "Samsung s26 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/16G/bleu Noor blanc",
+      "garantie": "12",
+      "prix": 890000,
+      "prixPromo": 810000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0q9ck4w8w-mvt0qxdlc2m0.jpg",
+        "photos/pmvt0q9ck4w8w-mvt0qxgkzly7.jpg",
+        "photos/pmvt0q9ck4w8w-mvt0qxi5jj72.jpg"
+      ]
+    },
+    {
       "id": "pmvt0o8acg552",
       "nom": "Iphone 11",
       "marque": "Apple",
