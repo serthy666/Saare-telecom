@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvtss8i96tqc",
+      "nom": "Iphone 16",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/ bleu blanc",
+      "garantie": "1",
+      "prix": 450000,
+      "prixPromo": 400000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtss8i96tqc-mvtssg2hwnkg.jpg",
+        "photos/pmvtss8i96tqc-mvtssg2y6iod.jpg"
+      ]
+    },
+    {
       "id": "pmvtsgi4zk12s",
       "nom": "Iphone 15",
       "marque": "Apple",
