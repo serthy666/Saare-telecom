@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt0ezuz8s3k",
+      "nom": "Xiaomi 11 ultra",
+      "marque": "XIAOMI",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/blanc Noir",
+      "garantie": "",
+      "prix": 210000,
+      "prixPromo": 190000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0ezuz8s3k-mvt0fm5hba0e.jpg"
+      ]
+    },
+    {
       "id": "pmvt0d8aatq93",
       "nom": "HUAWEI P20 PRO",
       "marque": "Huawei",
