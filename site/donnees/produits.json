@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtew8bd04gk",
+      "nom": "Samsung Galaxy S22",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/blanc noir",
+      "garantie": "1",
+      "prix": 180000,
+      "prixPromo": 160000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtew8bd04gk-mvtewkjszwcl.jpg"
+      ]
+    },
+    {
       "id": "pmvter6rqlpa0",
       "nom": "Google pixel 6",
       "marque": "Google",
