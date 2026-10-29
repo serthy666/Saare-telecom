@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtemchnld71",
+      "nom": "Redmi note 9 pro",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/bleu blanc",
+      "garantie": "1",
+      "prix": 100000,
+      "prixPromo": 90000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtemchnld71-mvtemie7dp64.jpg"
+      ]
+    },
+    {
       "id": "pmvteklca2rvz",
       "nom": "Redmi note 8 pro",
       "marque": "Redmi",
