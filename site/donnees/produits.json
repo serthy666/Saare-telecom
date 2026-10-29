@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtg5ivw6v4n",
+      "nom": "Samsung Galaxy S21 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/12G/noir",
+      "garantie": "1",
+      "prix": 195000,
+      "prixPromo": 185000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtg5ivw6v4n-mvtg5xtous22.jpg"
+      ]
+    },
+    {
       "id": "pmvtfxkktvygr",
       "nom": "Motorola edge 60 fusion",
       "marque": "Motorola",
