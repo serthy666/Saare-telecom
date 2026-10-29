@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvsza90tcod3",
+      "nom": "REDMI NOTE 10 PRO 256G",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/blanc bleu",
+      "garantie": "1",
+      "prix": 100000,
+      "prixPromo": 80000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": true,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvsza90tcod3-mvt05pvrcur2.jpg"
+      ]
+    },
+    {
       "id": "pmvs8ag8395ki",
       "nom": "GOOGLE PIXEL 8",
       "marque": "GOOGLE",
