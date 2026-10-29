@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtfn5abbauz",
+      "nom": "Pura 70 Pro (512/16)",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/16G",
+      "garantie": "1",
+      "prix": 400000,
+      "prixPromo": 330000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtfn5abbauz-mvtfnf7et695.jpg"
+      ]
+    },
+    {
       "id": "pmvtfl8kn14il",
       "nom": "Oppo A78",
       "marque": "Oppo",
