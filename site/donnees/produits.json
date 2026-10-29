@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt0l99xwwua",
+      "nom": "Pixel fold 256G",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/noir blanc",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 260000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0l99xwwua-mvt0mdjmvtxp.jpg"
+      ]
+    },
+    {
       "id": "pmvt0jaixzxea",
       "nom": "Iphone 8",
       "marque": "Apple",
