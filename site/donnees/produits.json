@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtfl8kn14il",
+      "nom": "Oppo A78",
+      "marque": "Oppo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/Noir",
+      "garantie": "1",
+      "prix": 95000,
+      "prixPromo": 75000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtfl8kn14il-mvtfle2awmji.jpg"
+      ]
+    },
+    {
       "id": "pmvtfizqx3l3k",
       "nom": "Redmi note 9",
       "marque": "Redmi",
