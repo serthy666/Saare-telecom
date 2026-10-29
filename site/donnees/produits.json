@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtbhjfejtde",
+      "nom": "Pixel 9",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 260000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtbhjfejtde-mvtbi6ou1gxo.jpg"
+      ]
+    },
+    {
       "id": "pmvtb9f9tesjb",
       "nom": "Iphone 5 no WhatsApp",
       "marque": "Apple",
