@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtovgo9gsoo",
+      "nom": "Iphone XR",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/4G/noir jaune blanc",
+      "garantie": "1",
+      "prix": 110000,
+      "prixPromo": 95000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtovgo9gsoo-mvtox4ywj61p.jpg"
+      ]
+    },
+    {
       "id": "pmvtosoy7c9q3",
       "nom": "Samsung Galaxy  S23 FE",
       "marque": "Samsung",
