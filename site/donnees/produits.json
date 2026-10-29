@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt0o8acg552",
+      "nom": "Iphone 11",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/vert blanc noir",
+      "garantie": "1",
+      "prix": 128888,
+      "prixPromo": 115000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0o8acg552-mvt0op0gf72e.jpg"
+      ]
+    },
+    {
       "id": "pmvt0l99xwwua",
       "nom": "Pixel fold 256G",
       "marque": "Google",
