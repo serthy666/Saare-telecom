@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt8juumsqbi",
+      "nom": "Iphone 7",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "32G/2G/Noir gris",
+      "garantie": "1",
+      "prix": 40000,
+      "prixPromo": 35000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt8juumsqbi-mvt8k0av4jj4.jpg"
+      ]
+    },
+    {
       "id": "pmvt18s03nu55",
       "nom": "Redmi note 14 pro plus",
       "marque": "Redmi",
