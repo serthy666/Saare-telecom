@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtooru7rggr",
+      "nom": "Redmi note 7 pro",
+      "marque": "Redmi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/bleu noir",
+      "garantie": "1",
+      "prix": 60000,
+      "prixPromo": 50000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtooru7rggr-mvtop4kfld0h.jpg"
+      ]
+    },
+    {
       "id": "pmvtomrbxnc3q",
       "nom": "SamsunG note 20 ultra",
       "marque": "Samsung",
