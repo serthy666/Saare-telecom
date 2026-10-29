@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtdik02855j",
+      "nom": "Samsung Galaxy  note 20",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/bordeaux vert noir",
+      "garantie": "1",
+      "prix": 150000,
+      "prixPromo": 140000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtdik02855j-mvtdis5kju8v.jpg"
+      ]
+    },
+    {
       "id": "pmvtbkiw4u09d",
       "nom": "Pixel 4xl",
       "marque": "Google",
