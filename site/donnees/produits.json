@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtomrbxnc3q",
+      "nom": "SamsunG note 20 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/12G/bordeaux",
+      "garantie": "1",
+      "prix": 180000,
+      "prixPromo": 170000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtomrbxnc3q-mvton8of2ir6.jpg"
+      ]
+    },
+    {
       "id": "pmvtojznrw7ch",
       "nom": "TCL T7730",
       "marque": "TCL",
