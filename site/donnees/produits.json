@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtsgi4zk12s",
+      "nom": "Iphone 15",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/vert noir",
+      "garantie": "1",
+      "prix": 350000,
+      "prixPromo": 300000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtsgi4zk12s-mvtsglqkgzjw.jpg"
+      ]
+    },
+    {
       "id": "pmvtsebbxtlvf",
       "nom": "Iphone 14",
       "marque": "Apple",
