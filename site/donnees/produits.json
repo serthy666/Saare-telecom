@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtb0cbkfoht",
+      "nom": "Tablette Lenovo Tab k9  SIM appel",
+      "marque": "Lenovo",
+      "rayon": "tel",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "64G/4G/ blqnc",
+      "garantie": "1",
+      "prix": 150000,
+      "prixPromo": 125000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtb0cbkfoht-mvtb1hmorzr8.jpg"
+      ]
+    },
+    {
       "id": "pmvt9dsxiqsp3",
       "nom": "Iphone 17 air",
       "marque": "Apple",
