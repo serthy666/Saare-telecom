@@ -7,6 +7,29 @@
   },
   "produits": [
     {
+      "id": "pmvt11wdv9mfh",
+      "nom": "Pixel 10 pro xl",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/blanc Noir gris",
+      "garantie": "12",
+      "prix": 650000,
+      "prixPromo": 600000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt11wdv9mfh-mvt149321qlm.jpg",
+        "photos/pmvt11wdv9mfh-mvt1494pdg5t.jpg",
+        "photos/pmvt11wdv9mfh-mvt1495puqta.jpg",
+        "photos/pmvt11wdv9mfh-mvt14978m0on.jpg"
+      ]
+    },
+    {
       "id": "pmvt100mrx7kx",
       "nom": "Pixel 7 pro",
       "marque": "Google",
