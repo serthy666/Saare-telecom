@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtoz4wr58iq",
+      "nom": "IPHONE 13 PRO",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/ vert noir",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 285000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtoz4wr58iq-mvtp8j3r5vt7.jpg"
+      ]
+    },
+    {
       "id": "pmvtovgo9gsoo",
       "nom": "Iphone XR",
       "marque": "Apple",
