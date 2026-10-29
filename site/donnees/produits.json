@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtsa4sygdqy",
+      "nom": "Iphone 12",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/rouge noir blanc",
+      "garantie": "1",
+      "prix": 155000,
+      "prixPromo": 130000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtsa4sygdqy-mvtsambcq0ls.jpg"
+      ]
+    },
+    {
       "id": "pmvtoz4wr58iq",
       "nom": "IPHONE 13 PRO",
       "marque": "Apple",
