@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtfp3px4oqy",
+      "nom": "👑 SÉRIE 18 PRO MAX (SIM PHYSIQUE)",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/bordeaux noir bleu",
+      "garantie": "12",
+      "prix": 1400000,
+      "prixPromo": 1250000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtfp3px4oqy-mvtfq7d3ys4i.jpg"
+      ]
+    },
+    {
       "id": "pmvtfn5abbauz",
       "nom": "Pura 70 Pro (512/16)",
       "marque": "Huawei",
