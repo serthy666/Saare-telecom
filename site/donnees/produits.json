@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvtfgr74e0mr",
+      "nom": "Iphone 15 plus",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/jaune rouge noir bleu",
+      "garantie": "1",
+      "prix": 345000,
+      "prixPromo": 320000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtfgr74e0mr-mvtfgzj3jogc.jpg",
+        "photos/pmvtfgr74e0mr-mvtfgzjtz25m.jpg"
+      ]
+    },
+    {
       "id": "pmvtew8bd04gk",
       "nom": "Samsung Galaxy S22",
       "marque": "Samsung",
