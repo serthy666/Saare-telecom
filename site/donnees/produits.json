@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt0jaixzxea",
+      "nom": "Iphone 8",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/2G/noir blanc",
+      "garantie": "1",
+      "prix": 50000,
+      "prixPromo": 42000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0jaixzxea-mvt0jwnvdljc.jpg"
+      ]
+    },
+    {
       "id": "pmvt0h1yfiusv",
       "nom": "Samsung  Galaxy S20 FE",
       "marque": "SamsunG",
