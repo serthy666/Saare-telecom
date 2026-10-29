@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvt8n37nlqi0",
+      "nom": "Huawei P50 pro",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/gris",
+      "garantie": "1",
+      "prix": 200000,
+      "prixPromo": 150000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt8n37nlqi0-mvt8nnth9y3c.jpg",
+        "photos/pmvt8n37nlqi0-mvt8nnv1z1ae.jpg"
+      ]
+    },
+    {
       "id": "pmvt8la73guzx",
       "nom": "Redmi 8A 2 sims",
       "marque": "Redmi",
