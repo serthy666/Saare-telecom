@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtb9f9tesjb",
+      "nom": "Iphone 5 no WhatsApp",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "16G/1G",
+      "garantie": "1",
+      "prix": 25000,
+      "prixPromo": 20000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtb9f9tesjb-mvtb9mkhz7kv.jpg"
+      ]
+    },
+    {
       "id": "pmvtb68odu7ya",
       "nom": "Motorola g8 plus",
       "marque": "Motorola",
