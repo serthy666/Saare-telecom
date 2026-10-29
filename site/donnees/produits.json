@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvtbkiw4u09d",
+      "nom": "Pixel 4xl",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/noir blanc orange",
+      "garantie": "1",
+      "prix": 100000,
+      "prixPromo": 80000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvtbkiw4u09d-mvtbkz8enmsq.jpg"
+      ]
+    },
+    {
       "id": "pmvtbhjfejtde",
       "nom": "Pixel 9",
       "marque": "Google",
