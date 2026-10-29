@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvteemqefy8t",
+      "nom": "Samsung Galaxy S22 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/12G/noir bordeaux",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 250000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvteemqefy8t-mvteihnxg65e.jpg"
+      ]
+    },
+    {
       "id": "pmvtdm1pvv6ea",
       "nom": "HUAWEI P30 lite",
       "marque": "HUAWEI",
