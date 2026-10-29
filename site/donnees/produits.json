@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvt0vowdc09p",
+      "nom": "SamsunG A7",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/noir",
+      "garantie": "1",
+      "prix": 75000,
+      "prixPromo": 60000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0vowdc09p-mvt0w98xlyn7.jpg",
+        "photos/pmvt0vowdc09p-mvt0w9nickol.jpg"
+      ]
+    },
+    {
       "id": "pmvt0q9ck4w8w",
       "nom": "Samsung s26 ultra",
       "marque": "Samsung",
