@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvt0xkzv5qiv",
+      "nom": "SamsunG S24",
+      "marque": "SamsunG",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 240000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvt0xkzv5qiv-mvt0yd4lrmmr.jpg"
+      ]
+    },
+    {
       "id": "pmvt0vowdc09p",
       "nom": "SamsunG A7",
       "marque": "Samsung",
