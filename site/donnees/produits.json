@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmvuq4t156shr",
+      "nom": "Motorola Razr 50 Ultra",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/vert noir rouge",
+      "garantie": "1",
+      "prix": 270000,
+      "prixPromo": 235000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvuq4t156shr-mvuq6bpuzirp.jpg",
+        "photos/pmvuq4t156shr-mvuq6bsov8wr.jpg",
+        "photos/pmvuq4t156shr-mvuq6bua6rp7.jpg"
+      ]
+    },
+    {
       "id": "pmvupyn2ywily",
       "nom": "Motorola Razr 40 Ultra",
       "marque": "",
