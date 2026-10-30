@@ -7,6 +7,29 @@
   },
   "produits": [
     {
+      "id": "pmvvbaxbfrauc",
+      "nom": "Motorola 50Fusion",
+      "marque": "Motorola",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/bleu vert",
+      "garantie": "1",
+      "prix": 200000,
+      "prixPromo": 165000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvbaxbfrauc-mvvbb9g0100b.jpg",
+        "photos/pmvvbaxbfrauc-mvvbb9hcwwco.jpg",
+        "photos/pmvvbaxbfrauc-mvvbb9iea37u.jpg",
+        "photos/pmvvbaxbfrauc-mvvbb9jdelzn.jpg"
+      ]
+    },
+    {
       "id": "pmvuvb0a518dp",
       "nom": "Samsung note 20 ultra",
       "marque": "Samsung",
