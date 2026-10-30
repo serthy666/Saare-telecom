@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvuppl34vpdx",
+      "nom": "Google pixel 7 A",
+      "marque": "GOOGLE",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/blanc noir",
+      "garantie": "1",
+      "prix": 155000,
+      "prixPromo": 135000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvuppl34vpdx-mvupq8nmc8ac.jpg"
+      ]
+    },
+    {
       "id": "pmvuplew1cs8b",
       "nom": "Samsung Galaxy A57",
       "marque": "Samsung",
