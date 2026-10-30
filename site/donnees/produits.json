@@ -8,21 +8,23 @@
   "produits": [
     {
       "id": "pmvuplew1cs8b",
-      "nom": "Nouveau produit",
-      "marque": "",
+      "nom": "Samsung Galaxy A57",
+      "marque": "Samsung",
       "rayon": "tel",
       "categorie": "Smartphones",
       "etat": "neuf",
-      "details": "",
-      "garantie": "",
-      "prix": 0,
-      "prixPromo": 0,
+      "details": "256G/12/ noir gris",
+      "garantie": "1",
+      "prix": 360000,
+      "prixPromo": 325000,
       "offre": "promo",
       "fin": "",
       "nouveau": false,
       "stock": "ok",
       "visible": true,
-      "photos": []
+      "photos": [
+        "photos/pmvuplew1cs8b-mvupo9vrjcxh.jpg"
+      ]
     },
     {
       "id": "pmvupje7t1277",
