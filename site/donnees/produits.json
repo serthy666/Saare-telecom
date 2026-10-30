@@ -7,8 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvuplew1cs8b",
+      "nom": "Nouveau produit",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "",
+      "prix": 0,
+      "prixPromo": 0,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmvupje7t1277",
-      "nom": "",
+      "nom": "LENOVO YOGA 11E",
       "marque": "Lenovo",
       "rayon": "pc",
       "categorie": "Portables",
