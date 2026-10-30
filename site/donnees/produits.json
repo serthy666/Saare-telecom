@@ -7,6 +7,29 @@
   },
   "produits": [
     {
+      "id": "pmvupyn2ywily",
+      "nom": "Motorola Razr 40 Ultra",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/noir rouge",
+      "garantie": "1",
+      "prix": 250000,
+      "prixPromo": 200000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvupyn2ywily-mvuq1wyavkqu.jpg",
+        "photos/pmvupyn2ywily-mvuq1x0670wx.jpg",
+        "photos/pmvupyn2ywily-mvuq1x2yosu3.jpg",
+        "photos/pmvupyn2ywily-mvuq1x498z9m.jpg"
+      ]
+    },
+    {
       "id": "pmvuprb76j6dv",
       "nom": "Motorola RAZR 40 S",
       "marque": "Motorola",
