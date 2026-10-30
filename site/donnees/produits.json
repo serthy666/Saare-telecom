@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvupje7t1277",
+      "nom": "",
+      "marque": "Lenovo",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/4G/noir",
+      "garantie": "6",
+      "prix": 120000,
+      "prixPromo": 100000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvupje7t1277-mvupk6t9hgdc.jpg"
+      ]
+    },
+    {
       "id": "pmvtss8i96tqc",
       "nom": "Iphone 16",
       "marque": "Apple",
