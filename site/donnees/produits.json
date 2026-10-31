@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvucuf44gnc",
+      "nom": "Samsung Galaxy S24FE",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir vert blanc",
+      "garantie": "1",
+      "prix": 290000,
+      "prixPromo": 270000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvucuf44gnc-mvvucy2wswe4.jpg"
+      ]
+    },
+    {
       "id": "pmvvu64wjhmnn",
       "nom": "Samsung Galaxy S23+",
       "marque": "Samsung",
