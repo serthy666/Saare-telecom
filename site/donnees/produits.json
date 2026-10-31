@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvnq3dhqx6f",
+      "nom": "Oppo 8lite 5g",
+      "marque": "Oppo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/translucide",
+      "garantie": "1",
+      "prix": 160000,
+      "prixPromo": 140000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvnq3dhqx6f-mvvnqeldz85n.jpg"
+      ]
+    },
+    {
       "id": "pmvvnoiff7znz",
       "nom": "Oppo Find X3 Pro",
       "marque": "Oppo",
