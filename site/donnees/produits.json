@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmvvnoiff7znz",
+      "nom": "Oppo Find X3 Pro",
+      "marque": "Oppo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256/12",
+      "garantie": "1",
+      "prix": 160000,
+      "prixPromo": 140000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvnoiff7znz-mvvnopjf4s69.jpg",
+        "photos/pmvvnoiff7znz-mvvnopl389g9.jpg",
+        "photos/pmvvnoiff7znz-mvvnopmyxbbt.jpg"
+      ]
+    },
+    {
       "id": "pmvvnlvjmh8uz",
       "nom": "Motorola Edge+ 2022",
       "marque": "Motorola",
