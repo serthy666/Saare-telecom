@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvw3ossk2hq8",
+      "nom": "Samsung Galaxy S25",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/blanc",
+      "garantie": "1",
+      "prix": 450000,
+      "prixPromo": 400000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvw3ossk2hq8-mvw3p0gaj68p.jpg"
+      ]
+    },
+    {
       "id": "pmvvun28aqcn2",
       "nom": "Samsung Galaxy S24 ultra",
       "marque": "Samsung",
