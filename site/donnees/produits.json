@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvw4s9155hzp",
+      "nom": "Samsung Galaxy S25+",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/bleue",
+      "garantie": "1",
+      "prix": 500000,
+      "prixPromo": 450000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvw4s9155hzp-mvw4suyd54fx.jpg"
+      ]
+    },
+    {
       "id": "pmvw3rcwplg68",
       "nom": "Samsung Galaxy S8",
       "marque": "Samsung",
