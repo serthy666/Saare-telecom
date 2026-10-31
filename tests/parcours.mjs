@@ -166,25 +166,9 @@ async function parcours(nav, vue) {
   await c.locator("#effacer-recherche").click();
   verifie(await cartes(c) === 2, "recherche effacée");
 
-  // Panier : deux articles, quantité, livraison, un seul message WhatsApp
-  await c.locator("#grille .produit", { hasText: "iPhone 13 Pro" }).locator("[data-ajouter]").click();
-  await c.locator("#grille .produit", { hasText: "HP EliteBook" }).locator("[data-ajouter]").click();
-  await c.waitForFunction(() => document.getElementById("nb-panier").textContent === "2");
-  verifie(await c.locator("#grille .ajoute").count() === 2, "boutons « Ajouté »");
-  await c.locator("#ouvrir-panier").click();
-  verifie(await c.locator(".ligne-panier").count() === 2, "2 lignes dans le panier");
-  await c.locator('.ligne-panier', { hasText: "iPhone" }).locator('[data-d="1"]').click();
-  verifie(/755\u00a0000/.test(await c.locator(".totaux .total").textContent()), "total du panier : 755 000");
-  verifie(/30\u00a0000/.test(await c.locator(".totaux .eco").textContent()), "économies affichées : 30 000");
-  await c.fill("#cl-nom", "Paul"); await c.fill("#cl-quartier", "Bastos");
-  let cmd = decodeURIComponent(await c.locator("#envoyer-panier").getAttribute("href")).replace(/\u00a0/g, " ");
-  verifie(cmd.includes("2 × iPhone 13 Pro") && cmd.includes("1 × HP EliteBook") && cmd.includes("Total : 755 000 FCFA") && cmd.includes("Bastos") && cmd.includes("Paul"), "message de commande du panier (" + cmd + ")");
-  verifie(await largeur(c) <= vue.width, "pas de défilement horizontal (panier)");
-  await c.locator('[data-mode="retrait"]').click();
-  cmd = decodeURIComponent(await c.locator("#envoyer-panier").getAttribute("href"));
-  verifie(cmd.includes("récupérer en boutique") && !cmd.includes("Bastos"), "retrait en boutique");
-  await c.reload(); await c.waitForFunction(() => document.querySelectorAll("#grille .produit").length > 0);
-  verifie(await c.locator("#nb-panier").textContent() === "3", "panier gardé après rechargement");
+  // Plus de panier : chaque carte commande directement sur WhatsApp
+  verifie(await c.locator("#ouvrir-panier, [data-ajouter]").count() === 0, "pas de panier");
+  verifie(await c.locator("#grille .produit .commander").count() === 2, "bouton WhatsApp sur chaque carte");
 
   // Favoris
   await c.locator("#grille .produit", { hasText: "HP EliteBook" }).locator("[data-coeur]").click();
@@ -227,7 +211,7 @@ async function parcours(nav, vue) {
   verifie(produitsDepot(s).find(x => x.nom.startsWith("HP")).stock === "epuise", "stock « épuisé » écrit dans le dépôt");
   await c.goto(s.url + "/"); await c.waitForFunction(() => document.querySelectorAll("#grille .produit").length > 0);
   const hp = c.locator("#grille .produit", { hasText: "HP EliteBook" });
-  verifie(await hp.locator(".badge.epuise").count() === 1 && await hp.locator("[data-ajouter]").count() === 0, "carte épuisée : badge, pas d'ajout au panier");
+  verifie(await hp.locator(".badge.epuise").count() === 1 && await hp.locator(".commander").count() === 0, "carte épuisée : badge, pas de commande");
   verifie(await c.locator("#grille .produit").last().textContent().then(t => t.includes("HP")), "article épuisé en fin de liste");
   await hp.locator("[data-prevenir]").click();
   const alerte = decodeURIComponent(await c.locator("#envoyer-alerte").getAttribute("href"));

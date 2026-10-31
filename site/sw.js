@@ -1,7 +1,7 @@
 // Appli installée : la boutique s'ouvre même avec un réseau faible.
 // Pages, script et catalogue : le réseau d'abord (toujours les derniers prix), la copie sinon.
 // Images : la copie tout de suite, rafraîchie en arrière-plan. L'espace gérant (/api) et les autres sites ne passent jamais par ici.
-const CACHE = "saare-v1";
+const CACHE = "bimak-v1";
 const BASE = ["/", "/app.js", "/manifest.webmanifest", "/assets/accueil.webp", "/assets/logo-rond.webp", "/assets/icone-192.png"];
 
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE)).catch(() => {})); self.skipWaiting(); });

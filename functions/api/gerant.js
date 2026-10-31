@@ -1,4 +1,4 @@
-// Espace gérant de la boutique Saaré Télécom (fonction Cloudflare Pages, adresse /api/gerant).
+// Espace gérant de la boutique BIMAK Store (fonction Cloudflare Pages, adresse /api/gerant).
 // Vérifie la connexion Google, contrôle la liste des Gmail autorisés et écrit les produits
 // et les photos dans le dépôt GitHub. Le site se republie tout seul après chaque commit.
 //
@@ -14,7 +14,7 @@ const FICHIER_PRODUITS = "site/donnees/produits.json";
 const FICHIER_COMPTES = "site/donnees/comptes.json";
 const DOSSIER_PHOTOS = "site/photos/";
 const DUREE_SESSION = 8 * 3600; // secondes
-const RAYONS = ["tel", "pc", "autres"];
+const RAYONS = ["tel", "tab", "pc", "autres", "menager"];
 const ETATS = ["neuf", "occasion", "pieces"];
 const OFFRES = ["promo", "flash", "bf"];
 const CHEMIN_PHOTO = /^photos\/[a-z0-9-]{1,80}\.(jpg|webp|png)$/;

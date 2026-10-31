@@ -1,21 +1,25 @@
-/* Boutique Saaré Télécom : vitrine et espace gérant.
+/* Boutique BIMAK Store : vitrine et espace gérant.
    Les produits viennent de donnees/produits.json, écrit dans le dépôt GitHub par la fonction /api/gerant. */
 var API="/api/gerant";
 
 /* Illustrations provisoires pour les produits sans photo */
 var DESSINS={
-  portable:'<path d="M70 70h100v66H70z" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M50 150h140l-12-14H62z" fill="#fff"/>',
-  telephone:'<rect x="86" y="44" width="68" height="132" rx="12" fill="none" stroke="#fff" stroke-width="7"/><path d="M110 160h20" stroke="#fff" stroke-width="7" stroke-linecap="round"/>',
-  chargeur:'<rect x="84" y="54" width="72" height="72" rx="14" fill="none" stroke="#fff" stroke-width="7"/><path d="M106 40v16M134 40v16M120 126v24c0 16 30 16 30 34" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>'
+  portable:'<path d="M70 70h100v66H70z" fill="none" stroke="#111" stroke-width="7" stroke-linejoin="round"/><path d="M50 150h140l-12-14H62z" fill="#111"/>',
+  telephone:'<rect x="86" y="44" width="68" height="132" rx="12" fill="none" stroke="#111" stroke-width="7"/><path d="M110 160h20" stroke="#111" stroke-width="7" stroke-linecap="round"/>',
+  tablette:'<rect x="66" y="52" width="108" height="140" rx="14" fill="none" stroke="#111" stroke-width="7"/><circle cx="120" cy="178" r="4" fill="#111"/>',
+  machine:'<rect x="70" y="44" width="100" height="140" rx="12" fill="none" stroke="#111" stroke-width="7"/><path d="M70 72h100" stroke="#111" stroke-width="6"/><circle cx="120" cy="126" r="32" fill="none" stroke="#111" stroke-width="7"/>',
+  chargeur:'<rect x="84" y="54" width="72" height="72" rx="14" fill="none" stroke="#111" stroke-width="7"/><path d="M106 40v16M134 40v16M120 126v24c0 16 30 16 30 34" fill="none" stroke="#111" stroke-width="7" stroke-linecap="round"/>'
 };
-function dessin(nom){var c=["#2F6FDB","#0B2559"];
-  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c[0]+'"/><stop offset="1" stop-color="'+c[1]+'"/></linearGradient></defs><rect width="240" height="240" fill="url(#g)"/><circle cx="60" cy="40" r="90" fill="#fff" opacity=".12"/>'+DESSINS[nom]+'<text x="120" y="214" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#fff" opacity=".8">Photo à venir</text></svg>';
+function dessin(nom){var c=["#FFE15A","#F2A900"];
+  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c[0]+'"/><stop offset="1" stop-color="'+c[1]+'"/></linearGradient></defs><rect width="240" height="240" fill="url(#g)"/><circle cx="60" cy="40" r="90" fill="#fff" opacity=".3"/>'+DESSINS[nom]+'<text x="120" y="214" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#111" opacity=".75">Photo à venir</text></svg>';
   return"data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)}
 
 var RAYONS={
-  tel:{nom:"Téléphones",long:"Téléphones & tablettes",hash:"telephones",ico:"ico-tel",cats:["Smartphones","Tablettes","Téléphones simples"]},
+  tel:{nom:"Smartphones",long:"Smartphones & téléphones",hash:"smartphones",ico:"ico-tel",cats:["Smartphones","Téléphones simples"]},
+  tab:{nom:"Tablettes",long:"Tablettes",hash:"tablettes",ico:"ico-tablette",cats:["Tablettes","Liseuses"]},
   pc:{nom:"Ordinateurs",long:"Ordinateurs",hash:"ordinateurs",ico:"ico-pc",cats:["Portables","Ordinateurs de bureau","Écrans & imprimantes","Stockage"]},
-  autres:{nom:"Accessoires",long:"Accessoires & autres",hash:"accessoires",ico:"ico-autres",cats:["Chargeurs & câbles","Écouteurs & audio","Montres connectées","Autres appareils"]}
+  autres:{nom:"Accessoires",long:"Accessoires & autres",hash:"accessoires",ico:"ico-autres",cats:["Chargeurs & câbles","Écouteurs & audio","Montres connectées","Autres appareils"]},
+  menager:{nom:"Électroménager",long:"Électroménager",hash:"electromenager",ico:"ico-menager",cats:["Machines à laver","Réfrigérateurs & congélateurs","Télévisions","Climatiseurs & ventilateurs","Cuisine & petit électroménager"]}
 };
 var ETATS={neuf:"Neuf",occasion:"Occasion",pieces:"Pièces détachées"};
 var OFFRES={promo:"Promo",flash:"Vente flash",bf:"Black Friday"};
@@ -26,7 +30,9 @@ function locale(d){var p=function(n){return String(n).padStart(2,"0")};return d.
 function nouvelId(){return"p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function P(o){return Object.assign({id:nouvelId(),nom:"",marque:"",rayon:"tel",categorie:"Smartphones",etat:"neuf",details:"",garantie:"",prix:0,prixPromo:0,offre:"promo",fin:"",nouveau:false,stock:"ok",visible:true,photos:[]},o)}
 function vide(){return{config:{whatsapp:WA_DEFAUT,gmail:MAIL_DEFAUT,evenement:"",evenementFin:""},produits:[]}}
-function completer(d){d=d&&typeof d==="object"?d:vide();d.config=Object.assign(vide().config,d.config||{});d.produits=(d.produits||[]).map(P);return d}
+function completer(d){d=d&&typeof d==="object"?d:vide();d.config=Object.assign(vide().config,d.config||{});d.produits=(d.produits||[]).map(P).map(ranger);return d}
+// Les tablettes ont leur propre boutique depuis qu'elles sont séparées des smartphones
+function ranger(p){if(p.rayon==="tel"&&p.categorie==="Tablettes")p.rayon="tab";if(!RAYONS[p.rayon])p.rayon="tel";return p}
 
 var etat=vide();            // ce que la page affiche (le brouillon du gérant quand il modifie)
 var publie=JSON.stringify(etat); // dernière version enregistrée
@@ -38,7 +44,7 @@ try{gerant=JSON.parse(sessionStorage.getItem("saare-gerant"))}catch(e){}
 if(gerant&&!(gerant.expire>Date.now()/1000))gerant=null;
 
 function fcfa(n){return Math.round(n).toLocaleString("fr-FR").replace(/[\s\u00a0\u202f]/g,"\u00a0")+"\u00a0FCFA"}
-function photo(p,i){var k=p.photos[i||0];if(!k)return dessin(p.rayon==="pc"?"portable":p.rayon==="tel"?"telephone":"chargeur");return nouvellesPhotos[k]||k}
+function photo(p,i){var k=p.photos[i||0];if(!k)return dessin({pc:"portable",tel:"telephone",tab:"tablette",menager:"machine"}[p.rayon]||"chargeur");return nouvellesPhotos[k]||k}
 function expire(p){return p.offre==="flash"&&p.fin&&new Date(p.fin)<new Date()}
 function enPromo(p){if(!(p.prixPromo>0&&p.prixPromo<p.prix))return false;if(expire(p))return false;if(p.offre==="bf"&&!etat.config.evenement)return false;return true}
 function prixFinal(p){return enPromo(p)?p.prixPromo:p.prix}
@@ -57,17 +63,17 @@ function ecrire(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 var LANG=lire("saare-langue","fr")==="en"?"en":"fr";
 function L(fr,en){return LANG==="en"?en:fr}
 var EN={slogan:"The best phones at the best prices!",ev_fin:"ends in",h1:"The best phones, <em>at the best prices!</em>",
-  heros:"Phones, computers, accessories and spare parts: new or used, tested in front of you. Pick, then order in one WhatsApp message.",
+  heros:"Smartphones, tablets, computers, accessories and home appliances: new or used, tested in front of you. Pick, then order in one WhatsApp message.",
   voir_promos:"See the deals",btn_pc:"Computer shop",g1:"Pay on delivery",g2:"Mobile Money",g3:"Shop warranty",
   contact_titre:"Contact us",contact_wa:"The fastest: a photo, a price, an answer within minutes.",ouvrir_wa:"Open WhatsApp",copier:"Copy",
-  contact_mail:"For bulk quotes, invoices or after-sales service.",ecrire_mail:"Send an e-mail",pied:"© Saaré Télécom · Prices in CFA francs (FCFA).",
+  contact_mail:"For bulk quotes, invoices or after-sales service.",ecrire_mail:"Send an e-mail",pied:"© BIMAK Store · Prices in CFA francs (FCFA).",
   tab_boutique:"Shop",tab_promos:"Deals",tab_contact:"Contact",tab_gerant:"Manager",tri:"Sort",recents:"Recently viewed",
-  inst_titre:"Install the Saaré Télécom app",inst_texte:"One tap to come back, even on 3G.",inst_oui:"Install",
+  inst_titre:"Install the BIMAK Store app",inst_texte:"One tap to come back, even on 3G.",inst_oui:"Install",
   recherche:"Search: iPhone, HP, 150000…"};
-var RAYONS_EN={tel:["Phones","Phones & tablets"],pc:["Computers","Computers"],autres:["Accessories","Accessories & more"]};
+var RAYONS_EN={tel:["Smartphones","Smartphones & phones"],tab:["Tablets","Tablets"],pc:["Computers","Computers"],autres:["Accessories","Accessories & more"],menager:["Home appliances","Home appliances"]};
 var ETATS_EN={neuf:"New",occasion:"Used",pieces:"Spare parts"};
 var OFFRES_EN={promo:"Sale",flash:"Flash sale",bf:"Black Friday"};
-var CATS_EN={"Smartphones":"Smartphones","Tablettes":"Tablets","Téléphones simples":"Basic phones","Portables":"Laptops","Ordinateurs de bureau":"Desktops","Écrans & imprimantes":"Screens & printers","Stockage":"Storage",
+var CATS_EN={"Smartphones":"Smartphones","Tablettes":"Tablets","Liseuses":"E-readers","Machines à laver":"Washing machines","Réfrigérateurs & congélateurs":"Fridges & freezers","Télévisions":"TVs","Climatiseurs & ventilateurs":"Air conditioners & fans","Cuisine & petit électroménager":"Kitchen & small appliances","Téléphones simples":"Basic phones","Portables":"Laptops","Ordinateurs de bureau":"Desktops","Écrans & imprimantes":"Screens & printers","Stockage":"Storage",
   "Chargeurs & câbles":"Chargers & cables","Écouteurs & audio":"Earphones & audio","Montres connectées":"Smartwatches","Autres appareils":"Other devices"};
 var EVENEMENTS_EN={"Soldes de fin d'année":"Year-end sale","Fête de la Saint-Valentin":"Valentine's Day","Rentrée scolaire":"Back to school"};
 function nomRayon(k,long){return LANG==="en"?RAYONS_EN[k][long?1:0]:RAYONS[k][long?"long":"nom"]}
@@ -83,15 +89,13 @@ function traduire(){document.documentElement.lang=LANG;
     if(h){if(el._fr==null)el._fr=el.innerHTML;el.innerHTML=LANG==="en"?EN[h]:el._fr}
     if(pl){if(el._fr==null)el._fr=el.placeholder;el.placeholder=LANG==="en"?EN[pl]:el._fr}});
   var b=document.getElementById("langue");b.textContent=LANG==="en"?"FR":"EN";b.setAttribute("aria-label",LANG==="en"?"Passer en français":"Switch to English");
-  document.getElementById("ouvrir-panier").setAttribute("aria-label",L("Panier","Cart"));
   document.getElementById("installer-non").setAttribute("aria-label",L("Plus tard","Later"));
   rendreTri()}
 
-/* Ce que le client garde sur son téléphone : panier, favoris, articles vus, demandes de rappel */
-var panier=lire("saare-panier",{}),favoris=lire("saare-favoris",[]),vus=lire("saare-vus",[]),alertes=lire("saare-alertes",{});
-var mode=lire("saare-mode","livraison"),client=lire("saare-client",{nom:"",quartier:""});
-client={nom:String(client.nom||""),quartier:String(client.quartier||"")};
-Object.keys(panier).forEach(function(k){panier[k]=Math.min(20,parseInt(panier[k],10)||0);if(!(panier[k]>0))delete panier[k]});
+/* Ce que le client garde sur son téléphone : favoris, articles vus, demandes de rappel */
+var favoris=lire("saare-favoris",[]),vus=lire("saare-vus",[]),alertes=lire("saare-alertes",{});
+var client=lire("saare-client",{nom:""});
+client={nom:String(client.nom||"")};
 function trouver(id){return etat.produits.find(function(p){return p.id===id})}
 var toastMin;function toast(txt,action){var el=document.getElementById("toast");el.textContent=txt;el.hidden=false;el.style.animation="none";void el.offsetWidth;el.style.animation="";
   el.onclick=action?function(){el.hidden=true;action()}:null;el.style.cursor=action?"pointer":"";clearTimeout(toastMin);toastMin=setTimeout(function(){el.hidden=true},action?4500:2600)}
@@ -104,12 +108,12 @@ function chargerBoutique(){var recu=false;
     .then(function(d){if(gerant&&modifie())return;etat=completer(d);publie=JSON.stringify(etat);recu=true})
     .catch(function(){})
     .then(function(){charge=true;
-      if(recu){Object.keys(panier).forEach(function(id){if(!trouver(id))delete panier[id]});sauverPanier();verifierRetours()}
+      if(recu)verifierRetours()
       rendreBoutique();lienProduit()})}
 
 /* Recherche : sans accents, avec synonymes, et un budget (« 150000 », « 150k », « moins de 100 000 ») */
 function plat(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
-var GROUPES=[["telephone","phone","smartphone","mobile","tel","cellulaire","android"],["ordinateur","computer","laptop","pc","notebook","macbook"],
+var GROUPES=[["telephone","phone","smartphone","mobile","tel","cellulaire","android"],["machine","lave","laver","washing","washer","electromenager","appliance"],["frigo","refrigerateur","fridge","congelateur","freezer"],["tele","television","tv"],["climatiseur","clim","ventilateur","fan"],["ordinateur","computer","laptop","pc","notebook","macbook"],
   ["ecouteur","casque","headphone","earphone","earbud","airpods","audio","enceinte","speaker"],["chargeur","charger","cable","usb"],["montre","watch"],
   ["tablette","tablet","ipad"],["occasion","used","seconde"],["neuf","new"],["piece","parts","ecran","screen","batterie","battery"]];
 var VIDES=["de","du","des","le","la","les","un","une","pour","a","moins","max","maximum","under","less","than","the","for","fcfa","cfa","f","prix","price","budget","jusqu","jusqua","to","up"];
@@ -162,10 +166,9 @@ function garde(p){if(!p.visible)return false;if(rayon!=="tous"&&p.rayon!==rayon)
   if(filtre==="offres")return enPromo(p);if(filtre==="flash")return enPromo(p)&&p.offre==="flash";if(filtre==="tous")return true;return p.marque===filtre}
 function ligneStock(p){var c=p.stock==="epuise"?"epuise":p.stock==="peu"?"peu":"";
   return'<p class="stock '+c+'">'+(c==="epuise"?L("Épuisé pour le moment","Sold out for now"):c==="peu"?L("Dernières pièces","Last items"):L("En stock","In stock"))+"</p>"}
-function boutonAjouter(p,large){return'<button class="bouton rouge ajouter'+(panier[p.id]?" ajoute":"")+'" type="button" data-ajouter="'+esc(p.id)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-panier"/></svg><span class="txt"><span class="hors">'+L("Ajouter","Add")+(large?L(" au panier"," to cart"):"")+'</span><span class="dans">'+(large?L("Dans le panier","In your cart"):L("Ajouté","Added"))+"</span></span></button>"}
 function textePrevenir(id,large){return alertes[id]?(large?L("Demande envoyée","Request sent"):L("Demandé","Requested")):(large?L("Me prévenir quand il revient","Notify me when it's back"):L("Me prévenir","Notify me"))}
 function boutonPrevenir(p,large){return'<button class="bouton prevenir'+(alertes[p.id]?" fait":"")+'" type="button" data-prevenir="'+esc(p.id)+'"'+(large?' data-large="1"':"")+'><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cloche"/></svg><span class="txt">'+textePrevenir(p.id,large)+"</span></button>"}
-function lienCommande(p){return'<a class="bouton commander" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'" aria-label="'+L("Commander sur WhatsApp","Order on WhatsApp")+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg></a>'}
+function lienCommande(p){return'<a class="bouton commander" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span class="txt">'+L("Commander","Order")+"</span></a>"}
 function carte(p){var r=enPromo(p),ep=p.stock==="epuise",o=ep?"epuise":r?p.offre:(p.nouveau?"nouveau":"");
   var badge=o?'<span class="badge '+o+'">'+(o==="epuise"?L("Épuisé","Sold out"):o==="nouveau"?L("Nouveau","New"):nomOffre(o))+"</span>":"";
   var rem=r&&!ep?'<span class="remise">-'+remise(p)+"%</span>":"";
@@ -173,9 +176,9 @@ function carte(p){var r=enPromo(p),ep=p.stock==="epuise",o=ep?"epuise":r?p.offre
   return'<article class="produit verre'+(ep?" epuise":"")+'"><div class="photo"><button class="ouvrir" type="button" data-fiche="'+esc(p.id)+'" aria-label="'+L("Voir ","See ")+esc(p.nom)+'"><img src="'+esc(photo(p))+'" alt="'+esc(p.nom)+'" loading="lazy"></button>'+badge+rem+"</div>"+
    '<button class="coeur" type="button" data-coeur="'+esc(p.id)+'" aria-pressed="'+(favoris.indexOf(p.id)>=0)+'" aria-label="'+L("Favori","Favorite")+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-coeur"/></svg></button>'+
    '<div class="corps"><h3>'+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+nomEtat(p.etat)+"</span>"+(p.garantie?"<em>"+L("Garantie ","Warranty ")+esc(p.garantie)+"</em>":"")+'</p><p class="details">'+esc(p.details)+"</p>"+mins+blocPrix(p)+ligneStock(p)+
-   '<div class="actions">'+(ep?boutonPrevenir(p):boutonAjouter(p)+lienCommande(p))+"</div></div></article>"}
+   '<div class="actions">'+(ep?boutonPrevenir(p):lienCommande(p))+"</div></div></article>"}
 function details(p){return nomEtat(p.etat)+(p.details?", "+p.details:"")}
-function messageCommande(p){return L("Bonjour Saaré Télécom, je souhaite commander : ","Hello Saaré Télécom, I would like to order: ")+p.nom+" ("+details(p)+")"+(p.prix?L(" au prix de "," at ")+fcfa(prixFinal(p)):"")+L(". Est-il disponible ?",". Is it available?")}
+function messageCommande(p){return L("Bonjour BIMAK Store, je souhaite commander : ","Hello BIMAK Store, I would like to order: ")+p.nom+" ("+details(p)+")"+(p.prix?L(" au prix de "," at ")+fcfa(prixFinal(p)):"")+L(". Est-il disponible ?",". Is it available?")}
 function videBoutique(){
   if(!charge)return'<p style="color:var(--texte-3)">'+L("Chargement des articles…","Loading items…")+"</p>";
   if(!visibles().length)return'<div class="admin-intro verre" style="grid-column:1/-1">'+L("Les articles arrivent très bientôt. En attendant, dites-nous ce que vous cherchez sur WhatsApp : nous vous répondons en quelques minutes.","Items are coming very soon. Meanwhile, tell us what you are looking for on WhatsApp: we answer within minutes.")+"</div>";
@@ -195,13 +198,13 @@ function rendreBoutique(){
   document.getElementById("wa-a-remplir").hidden=true;
   document.getElementById("mail-adresse").textContent=mail;
   document.getElementById("mail-a-remplir").hidden=true;
-  document.getElementById("mail-lien").href="mailto:"+mail+"?subject="+encodeURIComponent(L("Demande Saaré Télécom","Saaré Télécom request"));
-  var bonjour=lienWa(L("Bonjour Saaré Télécom, je cherche un appareil.","Hello Saaré Télécom, I am looking for a device."));
+  document.getElementById("mail-lien").href="mailto:"+mail+"?subject="+encodeURIComponent(L("Demande BIMAK Store","BIMAK Store request"));
+  var bonjour=lienWa(L("Bonjour BIMAK Store, je cherche un appareil.","Hello BIMAK Store, I am looking for a device."));
   ["wa-heros","wa-contact","wa-flottant"].forEach(function(id){document.getElementById(id).href=bonjour});
   var meilleure=visibles().filter(function(p){return enPromo(p)&&p.stock!=="epuise"}).sort(function(a,b){return remise(b)-remise(a)})[0];
   var pa=document.getElementById("pastille");
   if(meilleure){pa.hidden=false;pa.innerHTML="<small>"+esc(meilleure.nom)+"</small>"+fcfa(meilleure.prixPromo)}else pa.hidden=true;
-  rendreRecents();majBadge();tic()}
+  rendreRecents();tic()}
 function tic(){
   var c=etat.config,ev=document.getElementById("evenement"),r=c.evenement&&c.evenementFin?restant(c.evenementFin):null;
   ev.hidden=!r;
@@ -213,7 +216,7 @@ function tic(){
   if(perime)rendreBoutique()}
 setInterval(tic,1000);
 
-/* Feuilles de verre : fiche produit, panier, demande de rappel */
+/* Feuilles de verre : fiche produit, demande de rappel */
 var voile=document.getElementById("voile"),feuille=null;
 function afficher(html,quoi,garderPlace){var f=voile.querySelector(".fiche"),haut=garderPlace&&f&&feuille===quoi?f.scrollTop:0;
   voile.innerHTML=html;voile.hidden=false;feuille=quoi;document.getElementById("toast").hidden=true;
@@ -230,7 +233,7 @@ function ouvrirFiche(id){var p=trouver(id);if(!p)return;var n=Math.max(1,p.photo
    '<div class="galerie">'+Array.from({length:n},function(_,i){return'<img src="'+esc(photo(p,i))+'" alt="'+esc(p.nom)+" photo "+(i+1)+'">'}).join("")+"</div>"+
    (n>1?'<p style="color:var(--texte-3);font-size:13px;margin:6px 0 0">'+L("Glissez pour voir les "+n+" photos","Swipe to see the "+n+" photos")+"</p>":"")+
    "<h3>"+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+nomEtat(p.etat)+"</span><em>"+esc(nomRayon(p.rayon)+" · "+nomCat(p.categorie))+(p.garantie?" · "+L("Garantie ","Warranty ")+esc(p.garantie):"")+'</em></p><p class="details" style="color:var(--texte-2)">'+esc(p.details)+"</p>"+blocPrix(p)+ligneStock(p)+
-   '<div class="rangee-actions">'+(ep?boutonPrevenir(p,true):boutonAjouter(p,true)+'<a class="bouton" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander","Order")+"</a>")+"</div>"+
+   '<div class="rangee-actions">'+(ep?boutonPrevenir(p,true):'<a class="bouton commander" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander sur WhatsApp","Order on WhatsApp")+"</a>")+"</div>"+
    '<div class="petits"><button class="bouton leger coeur-fiche" type="button" data-coeur="'+esc(p.id)+'" aria-pressed="'+(favoris.indexOf(p.id)>=0)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-coeur"/></svg>'+L("Favori","Favorite")+"</button></div>"+
    (sim.length?"<h4>"+(ep?L("Disponibles maintenant","Available now"):L("Articles similaires","Similar items"))+'</h4><div class="defile">'+sim.map(mini).join("")+"</div>":"")+
    '<button class="bouton leger" type="button" style="width:100%;margin-top:16px" data-partager="'+esc(p.id)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-partager"/></svg>'+L("Partager cet article","Share this item")+"</button></div>","fiche");
@@ -240,7 +243,7 @@ function rendreRecents(){var l=vus.map(trouver).filter(function(p){return p&&p.v
   document.getElementById("recents").hidden=!l.length;document.getElementById("recents-liste").innerHTML=l.map(mini).join("")}
 function lienProduit(){var m=location.hash.match(/^#p=(.+)$/);if(!m||!charge)return;history.replaceState(null,"","#catalogue");ouvrirFiche(decodeURIComponent(m[1]))}
 window.addEventListener("hashchange",lienProduit);
-function partager(p){if(!p)return;var url=location.origin+"/#p="+encodeURIComponent(p.id),txt=p.nom+" · "+prixTexte(p)+" · Saaré Télécom";
+function partager(p){if(!p)return;var url=location.origin+"/#p="+encodeURIComponent(p.id),txt=p.nom+" · "+prixTexte(p)+" · BIMAK Store";
   if(navigator.share){navigator.share({title:p.nom,text:txt,url:url}).catch(function(){});return}
   var wa=function(){window.open("https://wa.me/?text="+encodeURIComponent(txt+" "+url),"_blank","noopener")};
   try{navigator.clipboard.writeText(txt+" "+url).then(function(){toast(L("Lien copié : collez-le où vous voulez","Link copied: paste it anywhere"))},wa)}catch(e){wa()}}
@@ -252,56 +255,17 @@ function basculerFavori(id,bouton){var i=favoris.indexOf(id),oui=i<0;if(oui)favo
   toast(oui?L("Ajouté aux favoris ♥","Added to favorites ♥"):L("Retiré des favoris","Removed from favorites"));
   if(filtre==="favoris"&&!oui)rendreBoutique();else rendreFiltres()}
 
-/* Panier : un seul message WhatsApp pour toute la commande */
-function sauverPanier(){ecrire("saare-panier",panier);majBadge()}
-function nbArticles(){return Object.keys(panier).reduce(function(s,k){return s+panier[k]},0)}
-function majBadge(secouer){var b=document.getElementById("nb-panier"),n=nbArticles();b.hidden=!n;b.textContent=n>99?"99+":n;
-  if(secouer){var pu=document.getElementById("ouvrir-panier");pu.classList.remove("secoue");void pu.offsetWidth;pu.classList.add("secoue")}}
 function majBoutons(){
-  document.querySelectorAll("[data-ajouter]").forEach(function(b){b.classList.toggle("ajoute",!!panier[b.getAttribute("data-ajouter")])});
   document.querySelectorAll("[data-prevenir]").forEach(function(b){var id=b.getAttribute("data-prevenir");b.classList.toggle("fait",!!alertes[id]);b.querySelector(".txt").textContent=textePrevenir(id,b.hasAttribute("data-large"))})}
-function voler(depuis,p){if(calme||!depuis||!document.body.animate)return;
-  var zone=depuis.closest(".produit,.fiche"),img=zone&&zone.querySelector("img"),a=(img||depuis).getBoundingClientRect(),c=document.getElementById("ouvrir-panier").getBoundingClientRect();
-  var b=document.createElement("div");b.className="bulle";b.style.backgroundImage='url("'+photo(p)+'")';b.style.left=(a.left+a.width/2-23)+"px";b.style.top=(a.top+a.height/2-23)+"px";document.body.appendChild(b);
-  var dx=c.left+c.width/2-(a.left+a.width/2),dy=c.top+c.height/2-(a.top+a.height/2);
-  b.animate([{transform:"translate(0,0) scale(1.5)",opacity:1},{transform:"translate("+(dx*.4)+"px,"+(dy*.4-70)+"px) scale(1.1)",opacity:1,offset:.45},{transform:"translate("+dx+"px,"+dy+"px) scale(.3)",opacity:.5}],{duration:650,easing:"cubic-bezier(.5,0,.5,1)"}).onfinish=function(){b.remove()}}
-function ajouter(id,depuis){var p=trouver(id);if(!p||p.stock==="epuise")return;panier[id]=Math.min(20,(panier[id]||0)+1);ecrire("saare-panier",panier);vibrer();
-  voler(depuis,p);setTimeout(function(){majBadge(true)},calme?0:600);majBoutons();
-  if(feuille!=="fiche")toast(L("Ajouté au panier · voir","Added to cart · view"),ouvrirPanier)}
-function lignesPanier(){return Object.keys(panier).map(function(id){return{p:trouver(id),id:id,q:panier[id]}}).filter(function(x){return x.p})}
-function messagePanier(){var tot=0,aConfirmer=false;
-  var l=lignesPanier().filter(function(x){return x.p.stock!=="epuise"}).map(function(x){var p=x.p;if(p.prix)tot+=prixFinal(p)*x.q;else aConfirmer=true;
-    return"• "+x.q+" × "+p.nom+" ("+details(p)+") : "+(p.prix?fcfa(prixFinal(p)*x.q):L("prix à confirmer","price to confirm"))});
-  return L("Bonjour Saaré Télécom, je souhaite commander :","Hello Saaré Télécom, I would like to order:")+"\n"+l.join("\n")+"\n"+L("Total : ","Total: ")+fcfa(tot)+(aConfirmer?L(" + articles à confirmer"," + items to confirm"):"")+"\n"+
-    (mode==="livraison"?L("Livraison à : ","Deliver to: ")+(client.quartier.trim()||L("quartier à préciser","area to confirm")):L("Je passe récupérer en boutique.","I will pick it up at the shop."))+
-    (client.nom.trim()?"\n"+L("Nom : ","Name: ")+client.nom.trim():"")+"\n"+L("Est-ce disponible ?","Is it available?")}
-function ouvrirPanier(garderPlace){var l=lignesPanier(),titre=L("Mon panier","My cart");
-  if(!l.length){afficher(coque(titre,'<div class="vide-panier"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-panier"/></svg><p>'+L("Votre panier est vide.","Your cart is empty.")+'</p><button class="bouton rouge" type="button" data-fermer>'+L("Voir les articles","Browse items")+"</button></div>"),"panier");return}
-  var sous=0,eco=0,surDemande=0,dispo=0;
-  var lignes=l.map(function(x){var p=x.p,ind=p.stock==="epuise",id=esc(x.id);
-    if(!ind){dispo++;if(p.prix){sous+=p.prix*x.q;eco+=(p.prix-prixFinal(p))*x.q}else surDemande++}
-    return'<div class="ligne-panier'+(ind?" indispo":"")+'"><img src="'+esc(photo(p))+'" alt=""><div><b>'+esc(p.nom)+"</b><small>"+esc(details(p))+'</small><div class="bas">'+
-      (ind?"<small>"+L("Épuisé pour le moment","Sold out for now")+'</small><button class="lien-bouton" type="button" data-qte="'+id+'" data-d="-99">'+L("Retirer","Remove")+"</button>":
-      '<span class="quantite"><button type="button" data-qte="'+id+'" data-d="-1" aria-label="'+L("Un de moins","One less")+'">−</button><output>'+x.q+'</output><button type="button" data-qte="'+id+'" data-d="1" aria-label="'+L("Un de plus","One more")+'">+</button></span>'+
-      '<span class="montant">'+(p.prix?(enPromo(p)?"<s>"+fcfa(p.prix*x.q)+"</s>":"")+fcfa(prixFinal(p)*x.q):L("Prix sur demande","Price on request"))+"</span>")+"</div></div></div>"}).join("");
-  var bas='<div class="totaux">'+(eco?"<p><span>"+L("Sous-total","Subtotal")+"</span><span>"+fcfa(sous)+'</span></p><p class="eco"><span>'+L("Vous économisez","You save")+"</span><span>−"+fcfa(eco)+"</span></p>":"")+
-    '<p class="total"><span>Total</span><span>'+fcfa(sous-eco)+"</span></p>"+(surDemande?"<p><small>"+L("+ prix sur demande pour ","+ price on request for ")+nArticles(surDemande)+"</small></p>":"")+"</div>"+
-    '<div class="segment" role="group" aria-label="'+L("Réception","Delivery")+'"><button type="button" data-mode="livraison" aria-pressed="'+(mode==="livraison")+'">'+L("Livraison","Delivery")+'</button><button type="button" data-mode="retrait" aria-pressed="'+(mode==="retrait")+'">'+L("Retrait en boutique","Shop pickup")+"</button></div>"+
-    '<div class="champs"><div class="champ"><label for="cl-nom">'+L("Votre nom","Your name")+'</label><input id="cl-nom" autocomplete="given-name" maxlength="60" value="'+esc(client.nom)+'"></div>'+
-    (mode==="livraison"?'<div class="champ"><label for="cl-quartier">'+L("Quartier, ville","Area, city")+'</label><input id="cl-quartier" autocomplete="address-level2" maxlength="80" value="'+esc(client.quartier)+'"></div>':"")+"</div>"+
-    (dispo?'<a class="bouton" style="width:100%;margin-top:14px" id="envoyer-panier" target="_blank" rel="noopener" href="'+lienWa(messagePanier())+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander sur WhatsApp","Order on WhatsApp")+"</a>":"")+
-    '<p style="color:var(--texte-3);font-size:12.5px;margin:10px 4px 0">'+L("Paiement à la livraison ou Mobile Money. Le vendeur confirme la disponibilité avant tout paiement.","Pay on delivery or with Mobile Money. The seller confirms availability before any payment.")+"</p>";
-  afficher(coque(titre+" · "+nArticles(nbArticles()),lignes+bas),"panier",garderPlace)}
-document.getElementById("ouvrir-panier").addEventListener("click",function(){ouvrirPanier()});
 
 /* Article épuisé ou introuvable : le client demande au vendeur de le prévenir */
 var demande=null;
-function messageAlerte(){var p=demande.p;return L("Bonjour Saaré Télécom, pouvez-vous me prévenir quand cet article sera disponible : ","Hello Saaré Télécom, could you let me know when this item is available: ")+(p?p.nom+" ("+details(p)+")":demande.q)+L(" ?","?")+
+function messageAlerte(){var p=demande.p;return L("Bonjour BIMAK Store, pouvez-vous me prévenir quand cet article sera disponible : ","Hello BIMAK Store, could you let me know when this item is available: ")+(p?p.nom+" ("+details(p)+")":demande.q)+L(" ?","?")+
   (client.nom.trim()?"\n"+L("Nom : ","Name: ")+client.nom.trim():"")+"\n"+L("Merci !","Thank you!")}
 function ouvrirAlerte(id,q){var p=id?trouver(id):null;if(!p&&!q)return;demande={p:p,q:q,cle:p?p.id:"q:"+plat(q)};
   document.getElementById("suggestions").hidden=true;var sim=p?similaires(p):[];
   afficher(coque(p?L("Être prévenu du retour","Get notified"):L("Demander au vendeur","Ask the seller"),
-    (p?'<div class="ligne-panier"><img src="'+esc(photo(p))+'" alt=""><div><b>'+esc(p.nom)+"</b><small>"+esc(details(p))+"</small>"+ligneStock(p)+"</div></div>":"")+
+    (p?'<div class="ligne-alerte"><img src="'+esc(photo(p))+'" alt=""><div><b>'+esc(p.nom)+"</b><small>"+esc(details(p))+"</small>"+ligneStock(p)+"</div></div>":"")+
     '<p style="color:var(--texte-2)">'+(p?L("Touchez le bouton : le message part tout prêt vers le vendeur sur WhatsApp, et il vous écrit dès que l'article revient.","Tap the button: a ready-made message goes to the seller on WhatsApp, and they write to you as soon as the item is back."):
       L("Vous cherchez « ","Looking for “")+esc(q)+L(" » ? Le vendeur peut souvent le trouver. Touchez le bouton : le message part tout prêt sur WhatsApp.","”? The seller can often find it. Tap the button: a ready-made message goes out on WhatsApp."))+"</p>"+
     '<div class="champ"><label for="cl-nom">'+L("Votre nom (facultatif)","Your name (optional)")+'</label><input id="cl-nom" autocomplete="given-name" maxlength="60" value="'+esc(client.nom)+'"></div>'+
@@ -313,22 +277,16 @@ function verifierRetours(){var revenu=null;
   if(revenu)toast(L("Bonne nouvelle : ","Good news: ")+revenu.nom+L(" est de retour !"," is back in stock!"),function(){ouvrirFiche(revenu.id)})}
 
 voile.addEventListener("click",function(e){if(e.target===voile||e.target.id==="fermer")fermer()});
-voile.addEventListener("input",function(e){var id=e.target.id;if(id==="cl-nom")client.nom=e.target.value;else if(id==="cl-quartier")client.quartier=e.target.value;else return;ecrire("saare-client",client);
-  var a=document.getElementById("envoyer-panier");if(a)a.href=lienWa(messagePanier());var b=document.getElementById("envoyer-alerte");if(b)b.href=lienWa(messageAlerte())});
+voile.addEventListener("input",function(e){if(e.target.id!=="cl-nom")return;client.nom=e.target.value;ecrire("saare-client",client);
+  var b=document.getElementById("envoyer-alerte");if(b)b.href=lienWa(messageAlerte())});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){fermer();document.getElementById("suggestions").hidden=true}});
 
 document.addEventListener("click",function(e){var x;
-  if((x=e.target.closest("[data-ajouter]"))){var id=x.getAttribute("data-ajouter");if(panier[id])ouvrirPanier();else ajouter(id,x);return}
   if((x=e.target.closest("[data-coeur]"))){basculerFavori(x.getAttribute("data-coeur"),x);return}
   if((x=e.target.closest("[data-prevenir]"))){ouvrirAlerte(x.getAttribute("data-prevenir"));return}
   if((x=e.target.closest("[data-demander]"))){ouvrirAlerte(null,requete.trim()||L("un appareil","a device"));return}
-  if((x=e.target.closest("[data-qte]"))){var k=x.getAttribute("data-qte"),q=(panier[k]||0)+(+x.getAttribute("data-d"));if(q>0)panier[k]=Math.min(20,q);else delete panier[k];sauverPanier();majBoutons();vibrer();ouvrirPanier(true);return}
-  if((x=e.target.closest("[data-mode]"))){mode=x.getAttribute("data-mode");ecrire("saare-mode",mode);ouvrirPanier(true);return}
   if((x=e.target.closest("[data-partager]"))){partager(trouver(x.getAttribute("data-partager")));return}
   if(e.target.closest("[data-fermer]")){fermer();return}
-  if(e.target.closest("#envoyer-panier")){toast(L("Votre commande s'ouvre dans WhatsApp","Your order opens in WhatsApp"));
-    if(!document.getElementById("vider-panier"))e.target.closest("#envoyer-panier").insertAdjacentHTML("afterend",'<button class="bouton leger" type="button" id="vider-panier" style="width:100%;margin-top:8px">'+L("Message envoyé ? Vider le panier","Message sent? Empty the cart")+"</button>");return}
-  if(e.target.closest("#vider-panier")){panier={};sauverPanier();majBoutons();fermer();toast(L("Panier vidé. Merci pour votre commande !","Cart emptied. Thank you for your order!"));return}
   if(e.target.closest("#envoyer-alerte")){alertes[demande.cle]={nom:demande.p?demande.p.nom:demande.q,t:Date.now()};ecrire("saare-alertes",alertes);majBoutons();
     setTimeout(function(){fermer();toast(demande.p?L("Demande envoyée : on vous prévient dès son retour","Request sent: we'll let you know when it's back"):L("Demande envoyée au vendeur","Request sent to the seller"))},300);return}
   var r=e.target.closest("[data-rayon]");if(r){choisirRayon(r.getAttribute("data-rayon"));return}
@@ -355,7 +313,7 @@ document.getElementById("effacer-recherche").addEventListener("click",function()
 document.addEventListener("pointerdown",function(e){if(!e.target.closest(".zone-recherche"))document.getElementById("suggestions").hidden=true},{passive:true});
 
 document.getElementById("langue").addEventListener("click",function(){LANG=LANG==="en"?"fr":"en";ecrire("saare-langue",LANG);traduire();rendreBoutique();
-  if(feuille==="panier")ouvrirPanier(true);else if(feuille)fermer();toast(L("Version française","English version"))});
+  if(feuille)fermer();toast(L("Version française","English version"))});
 
 /* Invitation à installer l'appli (raccourci sur l'écran d'accueil) */
 var invite=null,estIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
@@ -371,7 +329,7 @@ document.getElementById("installer-non").addEventListener("click",function(){ban
 document.getElementById("installer-oui").addEventListener("click",function(){bandeau.hidden=true;
   if(invite){invite.prompt();invite.userChoice.then(function(r){if(r.outcome!=="accepted")ecrire("saare-install-plus-tard",Date.now())},function(){});invite=null;return}
   afficher(coque(L("Installer l'appli","Install the app"),'<ol class="etapes"><li>'+L("Touchez <b>Partager</b>","Tap <b>Share</b>")+' <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;vertical-align:-3px"><use href="#ico-partager"/></svg> '+L("en bas de Safari.","at the bottom of Safari.")+"</li><li>"+
-    L("Choisissez <b>Sur l'écran d'accueil</b>.","Choose <b>Add to Home Screen</b>.")+"</li><li>"+L("Touchez <b>Ajouter</b> : l'icône Saaré Télécom rejoint vos applis.","Tap <b>Add</b>: the Saaré Télécom icon joins your apps.")+"</li></ol>"),"installer")});
+    L("Choisissez <b>Sur l'écran d'accueil</b>.","Choose <b>Add to Home Screen</b>.")+"</li><li>"+L("Touchez <b>Ajouter</b> : l'icône BIMAK Store rejoint vos applis.","Tap <b>Add</b>: the BIMAK Store icon joins your apps.")+"</li></ol>"),"installer")});
 if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
 
 /* Relief 3D : les plaques de verre s'inclinent et le reflet suit le doigt ou la souris.
@@ -571,7 +529,7 @@ document.getElementById("ajouter-compte").addEventListener("click",function(){va
   if(m===proprio||comptes.some(function(c){return c.email===m})){er.hidden=false;er.textContent="Ce compte est déjà administrateur.";return}
   er.hidden=true;bt.disabled=true;bt.textContent="Invitation…";
   appel("POST",{action:"inviter",email:m}).then(function(r){comptes=r.comptes;ip.value="";rendreComptes();
-    var t="Bonjour, vous êtes invité comme administrateur de la boutique Saaré Télécom. Ouvrez "+lienBoutique()+"#admin et connectez-vous avec votre compte Google "+m+".";
+    var t="Bonjour, vous êtes invité comme administrateur de la boutique BIMAK Store. Ouvrez "+lienBoutique()+"#admin et connectez-vous avec votre compte Google "+m+".";
     document.getElementById("texte-invit").textContent=t;document.getElementById("invit-wa").href="https://wa.me/?text="+encodeURIComponent(t);document.getElementById("invitation").hidden=false})
   .catch(function(e){if(!sessionPerdue(e)){er.hidden=false;er.textContent=e.message}})
   .then(function(){bt.disabled=false;bt.textContent="Inviter"})});
