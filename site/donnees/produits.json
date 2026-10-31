@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvw3rcwplg68",
+      "nom": "Samsung Galaxy S8",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/bleu",
+      "garantie": "1",
+      "prix": 80000,
+      "prixPromo": 70000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvw3rcwplg68-mvw3rsawwnpn.jpg"
+      ]
+    },
+    {
       "id": "pmvw3ossk2hq8",
       "nom": "Samsung Galaxy S25",
       "marque": "Samsung",
