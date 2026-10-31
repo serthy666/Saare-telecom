@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvsxya22p8h",
+      "nom": "Samsung Galaxy S20+",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir vert blanc",
+      "garantie": "1",
+      "prix": 180000,
+      "prixPromo": 160000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvsxya22p8h-mvvsy33nfcnr.jpg"
+      ]
+    },
+    {
       "id": "pmvvstyfdvvfp",
       "nom": "Samsung Galaxy S20",
       "marque": "Samsung",
