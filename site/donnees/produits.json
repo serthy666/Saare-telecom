@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvr4lyqhpmo",
+      "nom": "Samsung Galaxy S9",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/noir orange",
+      "garantie": "1",
+      "prix": 90000,
+      "prixPromo": 75000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvr4lyqhpmo-mvvr4qzxgmug.jpg"
+      ]
+    },
+    {
       "id": "pmvvnymiu7l36",
       "nom": "Samsung galaxy S9+",
       "marque": "Samsung",
