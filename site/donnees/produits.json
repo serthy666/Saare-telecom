@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvvun28aqcn2",
+      "nom": "Samsung Galaxy S24 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir  blanc",
+      "garantie": "1",
+      "prix": 490000,
+      "prixPromo": 460000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvun28aqcn2-mvvun8tbmvpc.jpg",
+        "photos/pmvvun28aqcn2-mvvun8u7hyng.jpg"
+      ]
+    },
+    {
       "id": "pmvvui57i6ov3",
       "nom": "Samsung Galaxy S24 +",
       "marque": "Samsung",
