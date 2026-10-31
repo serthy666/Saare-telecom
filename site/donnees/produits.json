@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvsqwm569me",
+      "nom": "Samsung Galaxy S22+",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/noir blanc",
+      "garantie": "180000",
+      "prix": 210000,
+      "prixPromo": 170000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvsqwm569me-mvvsr4vg6giu.jpg"
+      ]
+    },
+    {
       "id": "pmvvspbjn0jd5",
       "nom": "Samsung Galaxy S21+",
       "marque": "Samsung",
