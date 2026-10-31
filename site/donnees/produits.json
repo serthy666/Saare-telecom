@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvr764tpq0z",
+      "nom": "Samsung S10",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/rouge blanc",
+      "garantie": "1",
+      "prix": 120000,
+      "prixPromo": 100000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvr764tpq0z-mvvr7i14sn2a.jpg"
+      ]
+    },
+    {
       "id": "pmvvr4lyqhpmo",
       "nom": "Samsung Galaxy S9",
       "marque": "Samsung",
