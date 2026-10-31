@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmvw599aito0l",
+      "nom": "Samsung Galaxy note 9",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/violet",
+      "garantie": "1",
+      "prix": 170000,
+      "prixPromo": 140000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvw599aito0l-mvw59gkokkf5.jpg",
+        "photos/pmvw599aito0l-mvw59gokss3d.jpg",
+        "photos/pmvw599aito0l-mvw59grw5xjt.jpg"
+      ]
+    },
+    {
       "id": "pmvw4xhm4y6n6",
       "nom": "Samsung Galaxy S25 ultra",
       "marque": "Samsung",
