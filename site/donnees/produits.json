@@ -7,6 +7,24 @@
   },
   "produits": [
     {
+      "id": "pmvvr8r21jjz2",
+      "nom": "Nouveau produit",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "",
+      "prix": 0,
+      "prixPromo": 0,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmvvr764tpq0z",
       "nom": "Samsung S10",
       "marque": "Samsung",
