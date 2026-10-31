@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvsmtwhn2dj",
+      "nom": "Samsung Galaxy S21",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir bleu blanc",
+      "garantie": "1",
+      "prix": 170000,
+      "prixPromo": 135000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvsmtwhn2dj-mvvsn0j1mwjt.jpg"
+      ]
+    },
+    {
       "id": "pmvvskf9vjjcx",
       "nom": "Samsung Galaxy S10+",
       "marque": "Samsung",
