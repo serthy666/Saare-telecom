@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvu64wjhmnn",
+      "nom": "Samsung Galaxy S23+",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12/blanc",
+      "garantie": "1",
+      "prix": 350000,
+      "prixPromo": 300000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvu64wjhmnn-mvvu6912ddpt.jpg"
+      ]
+    },
+    {
       "id": "pmvvtjqw5rqwa",
       "nom": "Samsung Galaxy S23 ultra",
       "marque": "Samsung",
