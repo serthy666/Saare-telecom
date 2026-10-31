@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvvsi98uzfjv",
+      "nom": "Samsung Galaxy S10",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/bleu",
+      "garantie": "1",
+      "prix": 170000,
+      "prixPromo": 150000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvsi98uzfjv-mvvsipekkpvd.jpg",
+        "photos/pmvvsi98uzfjv-mvvsiphyf3jy.jpg"
+      ]
+    },
+    {
       "id": "pmvvr8r21jjz2",
       "nom": "Samsung Galaxy S10e",
       "marque": "Samsung",
