@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvvnlvjmh8uz",
+      "nom": "Motorola Edge+ 2022",
+      "marque": "Motorola",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/vert",
+      "garantie": "1",
+      "prix": 120000,
+      "prixPromo": 100000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvnlvjmh8uz-mvvnmb5xt60p.jpg",
+        "photos/pmvvnlvjmh8uz-mvvnmb72zel2.jpg"
+      ]
+    },
+    {
       "id": "pmvvbaxbfrauc",
       "nom": "Motorola 50Fusion",
       "marque": "Motorola",
