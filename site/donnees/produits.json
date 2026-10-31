@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvstyfdvvfp",
+      "nom": "Samsung Galaxy S20",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir rose blanc",
+      "garantie": "1",
+      "prix": 150000,
+      "prixPromo": 130000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvstyfdvvfp-mvvsudo9ukrh.jpg"
+      ]
+    },
+    {
       "id": "pmvvsqwm569me",
       "nom": "Samsung Galaxy S22+",
       "marque": "Samsung",
