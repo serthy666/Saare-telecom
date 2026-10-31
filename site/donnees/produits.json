@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvnvjb3owjs",
+      "nom": "Google pixel 9",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/noir",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 260000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvnvjb3owjs-mvvnx2kaw7wl.jpg"
+      ]
+    },
+    {
       "id": "pmvvnt5ribtvw",
       "nom": "Google pixel fold",
       "marque": "GOOGLE",
