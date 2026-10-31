@@ -7,6 +7,29 @@
   },
   "produits": [
     {
+      "id": "pmvw4xhm4y6n6",
+      "nom": "Samsung Galaxy S25 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/blanc noir bleue",
+      "garantie": "1",
+      "prix": 600000,
+      "prixPromo": 550000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvw4xhm4y6n6-mvw4xtfkiz4m.jpg",
+        "photos/pmvw4xhm4y6n6-mvw4xthppmgw.jpg",
+        "photos/pmvw4xhm4y6n6-mvw4xtjqf776.jpg",
+        "photos/pmvw4xhm4y6n6-mvw4xtlmreln.jpg"
+      ]
+    },
+    {
       "id": "pmvw4s9155hzp",
       "nom": "Samsung Galaxy S25+",
       "marque": "Samsung",
