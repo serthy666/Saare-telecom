@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvskf9vjjcx",
+      "nom": "Samsung Galaxy S10+",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/noir",
+      "garantie": "1",
+      "prix": 250000,
+      "prixPromo": 200000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvskf9vjjcx-mvvslke1njst.jpg"
+      ]
+    },
+    {
       "id": "pmvvsi98uzfjv",
       "nom": "Samsung Galaxy S10",
       "marque": "Samsung",
