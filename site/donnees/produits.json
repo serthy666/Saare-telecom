@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvui57i6ov3",
+      "nom": "Samsung Galaxy S24 +",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/blanc",
+      "garantie": "1",
+      "prix": 500000,
+      "prixPromo": 400000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvui57i6ov3-mvvui924f757.jpg"
+      ]
+    },
+    {
       "id": "pmvvucuf44gnc",
       "nom": "Samsung Galaxy S24FE",
       "marque": "Samsung",
