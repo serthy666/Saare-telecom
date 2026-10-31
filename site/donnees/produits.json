@@ -8,21 +8,23 @@
   "produits": [
     {
       "id": "pmvvr8r21jjz2",
-      "nom": "Nouveau produit",
-      "marque": "",
+      "nom": "Samsung Galaxy S10e",
+      "marque": "Samsung",
       "rayon": "tel",
       "categorie": "Smartphones",
       "etat": "neuf",
-      "details": "",
-      "garantie": "",
-      "prix": 0,
-      "prixPromo": 0,
+      "details": "128G/8G/noir vert blanc",
+      "garantie": "1",
+      "prix": 120000,
+      "prixPromo": 110000,
       "offre": "promo",
       "fin": "",
       "nouveau": false,
       "stock": "ok",
       "visible": true,
-      "photos": []
+      "photos": [
+        "photos/pmvvr8r21jjz2-mvvrkcdz90h5.jpg"
+      ]
     },
     {
       "id": "pmvvr764tpq0z",
