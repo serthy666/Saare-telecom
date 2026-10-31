@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvt8nns57cf",
+      "nom": "Samsung Galaxy S20 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir vert blanc",
+      "garantie": "1",
+      "prix": 190000,
+      "prixPromo": 165000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvt8nns57cf-mvvt8vpdhejt.jpg"
+      ]
+    },
+    {
       "id": "pmvvsxya22p8h",
       "nom": "Samsung Galaxy S20+",
       "marque": "Samsung",
