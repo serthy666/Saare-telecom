@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvtjqw5rqwa",
+      "nom": "Samsung Galaxy S23 ultra",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/blanc Noir gris",
+      "garantie": "1",
+      "prix": 450000,
+      "prixPromo": 390000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvtjqw5rqwa-mvvtmdbrztsf.jpg"
+      ]
+    },
+    {
       "id": "pmvvta7fnt0hc",
       "nom": "Samsung Galaxy S23",
       "marque": "Samsung",
