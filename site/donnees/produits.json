@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvvnt5ribtvw",
+      "nom": "Google pixel fold",
+      "marque": "GOOGLE",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/noir blanc",
+      "garantie": "1",
+      "prix": 290000,
+      "prixPromo": 265000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvvnt5ribtvw-mvvntqmt6yvs.jpg"
+      ]
+    },
+    {
       "id": "pmvvnq3dhqx6f",
       "nom": "Oppo 8lite 5g",
       "marque": "Oppo",
