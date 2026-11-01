@@ -7,6 +7,47 @@
   },
   "produits": [
     {
+      "id": "pmvxc9wd8jqql",
+      "nom": "Nova 2s",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/gris noir bleu",
+      "garantie": "",
+      "prix": 0,
+      "prixPromo": 0,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxc9wd8jqql-mvxcb83lf9i7.jpg",
+        "photos/pmvxc9wd8jqql-mvxcb871qpym.jpg"
+      ]
+    },
+    {
+      "id": "pmvxc7s1q2tst",
+      "nom": "Honor 9 lite",
+      "marque": "Honor",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "1",
+      "prix": 50000,
+      "prixPromo": 35000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxc7s1q2tst-mvxc9ba49ieb.jpg"
+      ]
+    },
+    {
       "id": "pmvx9bmmjtuya",
       "nom": "Samsung Galaxy fold 7",
       "marque": "Samsung",
