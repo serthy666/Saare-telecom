@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvx82pg4beq6",
+      "nom": "Samsung Galaxy Flip 3",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/bleu noir violet",
+      "garantie": "1",
+      "prix": 160000,
+      "prixPromo": 135000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvx82pg4beq6-mvx84eh1sgh0.jpg",
+        "photos/pmvx82pg4beq6-mvx84ehqnggd.jpg"
+      ]
+    },
+    {
       "id": "pmvw599aito0l",
       "nom": "Samsung Galaxy note 9",
       "marque": "Samsung",
