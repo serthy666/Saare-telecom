@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvx97jdt68t7",
+      "nom": "Samsung Galaxy fold 6",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/belge noir",
+      "garantie": "1",
+      "prix": 590000,
+      "prixPromo": 550000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvx97jdt68t7-mvx98xb44w2w.jpg"
+      ]
+    },
+    {
       "id": "pmvx92z3s6zrc",
       "nom": "Samsung  Galaxy fold 5",
       "marque": "Samsung",
