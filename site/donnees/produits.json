@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxwlhbckogp",
+      "nom": "Oppo A56",
+      "marque": "Oppo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/ gris",
+      "garantie": "1",
+      "prix": 80000,
+      "prixPromo": 65000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxwlhbckogp-mvxwqby69zh4.jpg"
+      ]
+    },
+    {
       "id": "pmvxwjm79kwba",
       "nom": "Nova +",
       "marque": "Huawei",
