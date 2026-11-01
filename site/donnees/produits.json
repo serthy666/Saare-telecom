@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy2iseoceti",
+      "nom": "Iphone X",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G",
+      "garantie": "1",
+      "prix": 90000,
+      "prixPromo": 70000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy2iseoceti-mvy2ivmsgtu9.jpg"
+      ]
+    },
+    {
       "id": "pmvy1l6tzajyv",
       "nom": "Google pixel 9A",
       "marque": "Google",
