@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxchgrkdtae",
+      "nom": "Redmi 9T",
+      "marque": "Xiaomi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/blanc bleu Noir rouge",
+      "garantie": "1",
+      "prix": 80000,
+      "prixPromo": 55000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxchgrkdtae-mvxcjt6v4467.jpg"
+      ]
+    },
+    {
       "id": "pmvxcf3jx1eyt",
       "nom": "Redmi 9A",
       "marque": "Xiaomi",
