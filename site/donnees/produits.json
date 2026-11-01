@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvy0ozxuqz84",
+      "nom": "Google pixel 6A",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "1",
+      "prix": 150000,
+      "prixPromo": 110000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy0ozxuqz84-mvy0r9tvpyai.jpg",
+        "photos/pmvy0ozxuqz84-mvy0r9ugb0z9.jpg"
+      ]
+    },
+    {
       "id": "pmvy0msgx1pgo",
       "nom": "Google pixel 5A",
       "marque": "Google",
