@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy0se4f6u3t",
+      "nom": "Google pixel 6 pro",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/noir",
+      "garantie": "",
+      "prix": 0,
+      "prixPromo": 0,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy0se4f6u3t-mvy0uck5ezwp.jpg"
+      ]
+    },
+    {
       "id": "pmvy0ozxuqz84",
       "nom": "Google pixel 6A",
       "marque": "Google",
