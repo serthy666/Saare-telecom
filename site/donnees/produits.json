@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxwjm79kwba",
+      "nom": "Nova +",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/2G/gris",
+      "garantie": "1",
+      "prix": 40000,
+      "prixPromo": 30000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxwjm79kwba-mvxwkuwiguxe.jpg"
+      ]
+    },
+    {
       "id": "pmvxwfrb8ocz4",
       "nom": "P20 lite",
       "marque": "Huawei",
