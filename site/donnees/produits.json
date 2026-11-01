@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvy1cnewp1jk",
+      "nom": "Google pixel 8A",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "128G/8G",
+      "prix": 170000,
+      "prixPromo": 160000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy1cnewp1jk-mvy1gapssxnp.jpg",
+        "photos/pmvy1cnewp1jk-mvy1gaqa5f47.jpg"
+      ]
+    },
+    {
       "id": "pmvy0v0ncdas3",
       "nom": "Google pixel 7",
       "marque": "Google",
