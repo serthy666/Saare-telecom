@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxwu6bwszjr",
+      "nom": "Google pixel 3",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/blanc noir gris",
+      "garantie": "1",
+      "prix": 70000,
+      "prixPromo": 58000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxwu6bwszjr-mvxwwavhg0xk.jpg"
+      ]
+    },
+    {
       "id": "pmvxwlhbckogp",
       "nom": "Oppo A56",
       "marque": "Oppo",
