@@ -7,6 +7,44 @@
   },
   "produits": [
     {
+      "id": "pmvxvyy44uhdf",
+      "nom": "Gaming msi  Core i7-10 eme gen  6g dédié nvidia",
+      "marque": "MSI",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "512G/16G",
+      "garantie": "",
+      "prix": 600000,
+      "prixPromo": 480000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxvyy44uhdf-mvxvzbclekas.jpg"
+      ]
+    },
+    {
+      "id": "pmvxvyqtggdvz",
+      "nom": "Nouveau produit",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "",
+      "prix": 0,
+      "prixPromo": 0,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmvxchgrkdtae",
       "nom": "Redmi 9T",
       "marque": "Xiaomi",
