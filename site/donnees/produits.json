@@ -7,6 +7,24 @@
   },
   "produits": [
     {
+      "id": "pmvx8cklwl33g",
+      "nom": "Samsung  Galaxy Flip 6",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G/vert bleu violet noir",
+      "garantie": "1",
+      "prix": 290000,
+      "prixPromo": 260000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmvx89web1ozh",
       "nom": "Samsung Galaxy Flip 5",
       "marque": "Samsung",
