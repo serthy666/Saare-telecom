@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxw716qqzcf",
+      "nom": "Y9 prime",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/bleu blanc",
+      "garantie": "1",
+      "prix": 70000,
+      "prixPromo": 50000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxw716qqzcf-mvxw7rr8f9wi.jpg"
+      ]
+    },
+    {
       "id": "pmvxvyy44uhdf",
       "nom": "Gaming msi  Core i7-10 eme gen  6g dédié nvidia",
       "marque": "MSI",
