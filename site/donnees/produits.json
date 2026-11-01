@@ -7,8 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy081x71q5o",
+      "nom": "Nouveau produit",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "",
+      "prix": 0,
+      "prixPromo": 0,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmvy05gfrdddo",
-      "nom": "Google pixel 3a",
+      "nom": "Google pixel 3axl",
       "marque": "Google",
       "rayon": "tel",
       "categorie": "Smartphones",
