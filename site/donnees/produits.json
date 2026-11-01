@@ -8,21 +8,23 @@
   "produits": [
     {
       "id": "pmvy081x71q5o",
-      "nom": "Nouveau produit",
-      "marque": "",
+      "nom": "Google pixel 3XL",
+      "marque": "Google",
       "rayon": "tel",
       "categorie": "Smartphones",
       "etat": "neuf",
-      "details": "",
+      "details": "64G/4G",
       "garantie": "",
-      "prix": 0,
-      "prixPromo": 0,
+      "prix": 75000,
+      "prixPromo": 70000,
       "offre": "promo",
       "fin": "",
       "nouveau": false,
       "stock": "ok",
       "visible": true,
-      "photos": []
+      "photos": [
+        "photos/pmvy081x71q5o-mvy08ozamcb1.jpg"
+      ]
     },
     {
       "id": "pmvy05gfrdddo",
