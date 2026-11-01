@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy2kpxkyl5x",
+      "nom": "Iphone 11 pro",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/noir",
+      "garantie": "1",
+      "prix": 150000,
+      "prixPromo": 135000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy2kpxkyl5x-mvy2ok7uv9pz.jpg"
+      ]
+    },
+    {
       "id": "pmvy2iseoceti",
       "nom": "Iphone X",
       "marque": "Apple",
