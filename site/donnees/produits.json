@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy0ehbj71z7",
+      "nom": "Google pixel 4A",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/noir",
+      "garantie": "1",
+      "prix": 100000,
+      "prixPromo": 85000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy0ehbj71z7-mvy0ev1esd3l.jpg"
+      ]
+    },
+    {
       "id": "pmvy081x71q5o",
       "nom": "Google pixel 3XL",
       "marque": "Google",
