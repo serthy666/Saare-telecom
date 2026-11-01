@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvx85httdrqp",
+      "nom": "Samsung Galaxy Flip 4",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/Noor bleu violet",
+      "garantie": "",
+      "prix": 180000,
+      "prixPromo": 150000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvx85httdrqp-mvx85lqwm2ld.jpg"
+      ]
+    },
+    {
       "id": "pmvx82pg4beq6",
       "nom": "Samsung Galaxy Flip 3",
       "marque": "Samsung",
