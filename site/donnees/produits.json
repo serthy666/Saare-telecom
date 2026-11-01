@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvx9bmmjtuya",
+      "nom": "Samsung Galaxy fold 7",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/bleu noir",
+      "garantie": "1",
+      "prix": 800000,
+      "prixPromo": 780000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvx9bmmjtuya-mvx9c9p6grd2.jpg"
+      ]
+    },
+    {
       "id": "pmvx97jdt68t7",
       "nom": "Samsung Galaxy fold 6",
       "marque": "Samsung",
