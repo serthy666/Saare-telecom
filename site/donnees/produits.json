@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvy3js3kwrct",
+      "nom": "Iphone 13 mini",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 160000,
+      "prixPromo": 155000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy3js3kwrct-mvy3kuwcox4u.jpg",
+        "photos/pmvy3js3kwrct-mvy3kuxx7bf4.jpg"
+      ]
+    },
+    {
       "id": "pmvy32p8fvmo8",
       "nom": "Iphone 12 promax",
       "marque": "Apple",
