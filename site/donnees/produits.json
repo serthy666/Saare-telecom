@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvy2zu2fbzfz",
+      "nom": "Iphone 12 mini",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G",
+      "garantie": "1",
+      "prix": 140000,
+      "prixPromo": 120000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy2zu2fbzfz-mvy32d1nzuvn.jpg",
+        "photos/pmvy2zu2fbzfz-mvy32d2ub260.jpg"
+      ]
+    },
+    {
       "id": "pmvy2t71b42pq",
       "nom": "Iphone 12 pro",
       "marque": "Apple",
