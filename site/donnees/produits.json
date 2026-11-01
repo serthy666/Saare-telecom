@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvx90yk13nwq",
+      "nom": "Samsung Galaxy fold 4",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/noir",
+      "garantie": "1",
+      "prix": 350000,
+      "prixPromo": 330000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvx90yk13nwq-mvx91jw78ibz.jpg"
+      ]
+    },
+    {
       "id": "pmvx8x7phxolj",
       "nom": "Samsung Galaxy Fold 3",
       "marque": "Samsung",
