@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy05gfrdddo",
+      "nom": "Google pixel 3a",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "64G/4G/bleu blanc noir",
+      "garantie": "1",
+      "prix": 80000,
+      "prixPromo": 65000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy05gfrdddo-mvy05njw51lu.jpg"
+      ]
+    },
+    {
       "id": "pmvxwu6bwszjr",
       "nom": "Google pixel 3",
       "marque": "Google",
