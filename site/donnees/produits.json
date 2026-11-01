@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy0v0ncdas3",
+      "nom": "Google pixel 7",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 140000,
+      "prixPromo": 125000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy0v0ncdas3-mvy0y0dyux2h.jpg"
+      ]
+    },
+    {
       "id": "pmvy0se4f6u3t",
       "nom": "Google pixel 6 pro",
       "marque": "Google",
