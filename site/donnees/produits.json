@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy0msgx1pgo",
+      "nom": "Google pixel 5A",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G/Noir",
+      "garantie": "1",
+      "prix": 105000,
+      "prixPromo": 100000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy0msgx1pgo-mvy0nrlxasec.jpg"
+      ]
+    },
+    {
       "id": "pmvy0ehbj71z7",
       "nom": "Google pixel 4A",
       "marque": "Google",
