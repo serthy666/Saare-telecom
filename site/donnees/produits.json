@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxwfrb8ocz4",
+      "nom": "P20 lite",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G",
+      "garantie": "1",
+      "prix": 50000,
+      "prixPromo": 38000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxwfrb8ocz4-mvxwfuud62be.jpg"
+      ]
+    },
+    {
       "id": "pmvxw9csymqnv",
       "nom": "Nova 3i",
       "marque": "Huawei",
