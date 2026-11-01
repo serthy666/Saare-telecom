@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxcf3jx1eyt",
+      "nom": "Redmi 9A",
+      "marque": "Xiaomi",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/bleu blanc noir vert",
+      "garantie": "1",
+      "prix": 70000,
+      "prixPromo": 50000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxcf3jx1eyt-mvxch1ofb7r5.jpg"
+      ]
+    },
+    {
       "id": "pmvxccbffkgcv",
       "nom": "Nova 2 plus",
       "marque": "Huawei",
