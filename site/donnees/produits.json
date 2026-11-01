@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy32p8fvmo8",
+      "nom": "Iphone 12 promax",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 210000,
+      "prixPromo": 190000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy32p8fvmo8-mvy32vlsjgyn.jpg"
+      ]
+    },
+    {
       "id": "pmvy2zu2fbzfz",
       "nom": "Iphone 12 mini",
       "marque": "Apple",
