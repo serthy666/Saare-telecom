@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvx92z3s6zrc",
+      "nom": "Samsung  Galaxy fold 5",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/Noor bleu",
+      "garantie": "1",
+      "prix": 400000,
+      "prixPromo": 375000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvx92z3s6zrc-mvx93xrsxsnf.jpg"
+      ]
+    },
+    {
       "id": "pmvx90yk13nwq",
       "nom": "Samsung Galaxy fold 4",
       "marque": "Samsung",
