@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvxw9csymqnv",
+      "nom": "Nova 3i",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G/bleu noir blanc",
+      "garantie": "1",
+      "prix": 60000,
+      "prixPromo": 50000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvxw9csymqnv-mvxw9oucb4fd.jpg"
+      ]
+    },
+    {
       "id": "pmvxw716qqzcf",
       "nom": "Y9 prime",
       "marque": "Huawei",
