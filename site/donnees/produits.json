@@ -28,21 +28,23 @@
     },
     {
       "id": "pmvxvyqtggdvz",
-      "nom": "Nouveau produit",
-      "marque": "",
+      "nom": "Redmi note 9",
+      "marque": "Xiaomi",
       "rayon": "tel",
       "categorie": "Smartphones",
       "etat": "neuf",
-      "details": "",
-      "garantie": "",
-      "prix": 0,
-      "prixPromo": 0,
+      "details": "128G/6G/noir bleu",
+      "garantie": "1",
+      "prix": 70000,
+      "prixPromo": 55000,
       "offre": "promo",
       "fin": "",
       "nouveau": false,
       "stock": "ok",
       "visible": true,
-      "photos": []
+      "photos": [
+        "photos/pmvxvyqtggdvz-mvxw5kytco5g.jpg"
+      ]
     },
     {
       "id": "pmvxchgrkdtae",
