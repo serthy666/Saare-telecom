@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvx89web1ozh",
+      "nom": "Samsung Galaxy Flip 5",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/vert noir violet",
+      "garantie": "1",
+      "prix": 290000,
+      "prixPromo": 220000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvx89web1ozh-mvx8a45xdb1d.jpg"
+      ]
+    },
+    {
       "id": "pmvx85httdrqp",
       "nom": "Samsung Galaxy Flip 4",
       "marque": "Samsung",
