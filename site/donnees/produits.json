@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvy3r605devo",
+      "nom": "Iphone 13 promax",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 280000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvy3r605devo-mvy3se5almv9.jpg"
+      ]
+    },
+    {
       "id": "pmvy3mbmx5r05",
       "nom": "Iphone 13 pro",
       "marque": "Apple",
