@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmvyo5wa9h2x4",
+      "nom": "Iphone 17 pro",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G",
+      "garantie": "1",
+      "prix": 820000,
+      "prixPromo": 780000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvyo5wa9h2x4-mvyo7ni282aq.jpg",
+        "photos/pmvyo5wa9h2x4-mvyo7njcq1q6.jpg",
+        "photos/pmvyo5wa9h2x4-mvyo7nkaipl4.jpg"
+      ]
+    },
+    {
       "id": "pmvyo4vt7tkqz",
       "nom": "Iphone 17",
       "marque": "Apple",
