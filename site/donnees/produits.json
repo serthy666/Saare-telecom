@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvyo2wmmmz0s",
+      "nom": "Iphone 16 promax",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G",
+      "garantie": "1",
+      "prix": 670000,
+      "prixPromo": 630000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvyo2wmmmz0s-mvyo32uoak0l.jpg"
+      ]
+    },
+    {
       "id": "pmvyo132hqysn",
       "nom": "Iphone 16 pro",
       "marque": "Apple",
