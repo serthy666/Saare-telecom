@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvyobn7tg54p",
+      "nom": "Iphone 18 pro",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G",
+      "garantie": "1",
+      "prix": 1100000,
+      "prixPromo": 985000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvyobn7tg54p-mvyodyv30i6n.jpg"
+      ]
+    },
+    {
       "id": "pmvyo9bw1yf2x",
       "nom": "Iphone 17 promax",
       "marque": "Apple",
