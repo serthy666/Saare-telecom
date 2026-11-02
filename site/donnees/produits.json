@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmvyofhbrbcl8",
+      "nom": "Iphone Duo",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G",
+      "garantie": "12",
+      "prix": 2300000,
+      "prixPromo": 2200000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvyofhbrbcl8-mvyofoe3kmxe.jpg",
+        "photos/pmvyofhbrbcl8-mvyofof3jil9.jpg",
+        "photos/pmvyofhbrbcl8-mvyofog4ufxh.jpg"
+      ]
+    },
+    {
       "id": "pmvyobn7tg54p",
       "nom": "Iphone 18 pro",
       "marque": "Apple",
