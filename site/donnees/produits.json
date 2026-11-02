@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvynnk2jqzbk",
+      "nom": "Iphone 15 pro",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 450000,
+      "prixPromo": 400000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvynnk2jqzbk-mvynnoxjb3wm.jpg"
+      ]
+    },
+    {
       "id": "pmvynhjn6dlg0",
       "nom": "Iphone 14 promax",
       "marque": "Apple",
