@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvyo132hqysn",
+      "nom": "Iphone 16 pro",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 595000,
+      "prixPromo": 585000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvyo132hqysn-mvyo18b12zhd.jpg"
+      ]
+    },
+    {
       "id": "pmvynzko6zcf0",
       "nom": "Iphone 16 plus",
       "marque": "Apple",
