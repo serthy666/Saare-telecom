@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvyo4vt7tkqz",
+      "nom": "Iphone 17",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "1",
+      "prix": 650000,
+      "prixPromo": 625000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvyo4vt7tkqz-mvyo4yphej3f.jpg"
+      ]
+    },
+    {
       "id": "pmvyo2wmmmz0s",
       "nom": "Iphone 16 promax",
       "marque": "Apple",
