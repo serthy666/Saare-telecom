@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvynzko6zcf0",
+      "nom": "Iphone 16 plus",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 550000,
+      "prixPromo": 470000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvynzko6zcf0-mvynzu747461.jpg"
+      ]
+    },
+    {
       "id": "pmvynoykzzvn3",
       "nom": "Iphone 15 promax",
       "marque": "Apple",
