@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmvyo9bw1yf2x",
+      "nom": "Iphone 17 promax",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G",
+      "garantie": "1",
+      "prix": 900000,
+      "prixPromo": 890000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvyo9bw1yf2x-mvyob7fr8pw6.jpg",
+        "photos/pmvyo9bw1yf2x-mvyob7go0y3r.jpg"
+      ]
+    },
+    {
       "id": "pmvyo5wa9h2x4",
       "nom": "Iphone 17 pro",
       "marque": "Apple",
