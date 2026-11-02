@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvynhjn6dlg0",
+      "nom": "Iphone 14 promax",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 400000,
+      "prixPromo": 345000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvynhjn6dlg0-mvynhtbvdv8w.jpg"
+      ]
+    },
+    {
       "id": "pmvyndekryups",
       "nom": "Iphone 14 pro",
       "marque": "Apple",
