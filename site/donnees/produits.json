@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmvynoykzzvn3",
+      "nom": "Iphone 15 promax",
+      "marque": "Apple",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G",
+      "garantie": "1",
+      "prix": 500000,
+      "prixPromo": 475000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmvynoykzzvn3-mvynp3i9yh2d.jpg"
+      ]
+    },
+    {
       "id": "pmvynnk2jqzbk",
       "nom": "Iphone 15 pro",
       "marque": "Apple",
