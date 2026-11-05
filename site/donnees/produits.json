@@ -7,6 +7,29 @@
   },
   "produits": [
     {
+      "id": "pmw3eqbsndsmr",
+      "nom": "Google pixel 9 pro fold",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12/gris noir",
+      "garantie": "",
+      "prix": 500000,
+      "prixPromo": 450000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3eqbsndsmr-mw3eqsr7kss9.jpg",
+        "photos/pmw3eqbsndsmr-mw3eqst1c229.jpg",
+        "photos/pmw3eqbsndsmr-mw3eqsuczxux.jpg",
+        "photos/pmw3eqbsndsmr-mw3eqsvm9jwa.jpg"
+      ]
+    },
+    {
       "id": "pmw3ekdspxxa1",
       "nom": "🔵 Vivo X100 Ultra",
       "marque": "Vivo",
