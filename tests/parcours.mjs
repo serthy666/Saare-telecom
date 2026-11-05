@@ -327,6 +327,102 @@ for (const vue of [{ width: 320, height: 640 }, { width: 390, height: 844 }, { w
   verifie(true, "message si la connexion Google n'est pas configurée");
   await p.ctx.close(); await s.arreter();
 }
+// Statistiques du vendeur et liens d'article avec aperçu
+{
+  console.log("\n== Statistiques et liens d'article");
+  const fs = await import("node:fs");
+  const s = await demarrer();
+  // Une partie du vrai catalogue, avec ses photos, comme après une republication
+  const vrai = JSON.parse(fs.readFileSync(new URL("../site/donnees/produits.json", import.meta.url)));
+  const choix = vrai.produits.filter(x => x.visible && x.photos.length && x.prix).slice(0, 12);
+  const fichiers = s.depot.fichiers();
+  fichiers.set("site/donnees/produits.json", Buffer.from(JSON.stringify({ config: vrai.config, produits: choix })));
+  for (const x of choix) for (const ph of x.photos) fichiers.set("site/" + ph, fs.readFileSync(new URL("../site/" + ph, import.meta.url)));
+  const lignes = () => s.env.STATS.db.prepare("SELECT type, cle, SUM(n) AS n FROM compteurs GROUP BY type, cle").all().reduce((m, r) => (m[r.type + ":" + r.cle] = r.n, m), {});
+  const attendre = async (cond, quoi) => { for (let i = 0; i < 40; i++) { try { if (cond(lignes())) return verifie(true, quoi); } catch (e) {} await new Promise(r => setTimeout(r, 100)); } verifie(false, quoi + " " + JSON.stringify(lignes())); };
+  const erreurs = [];
+  const a = choix[0];
+
+  // Un client arrive par le lien du statut WhatsApp
+  const c = await page(nav, { width: 390, height: 844 }, s, erreurs);
+  await c.goto(s.url + "/?s=statut");
+  await c.locator("#grille .produit").first().waitFor();
+  await attendre(l => l["visite:"] === 1 && l["source:statut"] === 1 && l["visiteur:"] === 1, "visite comptée avec sa source");
+  await c.locator('#grille [data-fiche="' + a.id + '"]').first().click();
+  await c.locator(".fiche h3").waitFor();
+  await c.locator(".fiche [data-fermer], #fermer").first().click();
+  await c.locator('#grille [data-fiche="' + a.id + '"]').first().click();
+  await attendre(l => l["vue:" + a.id] === 1, "fiche vue comptée une seule fois par visite");
+  const [onglet] = await Promise.all([c.ctx.waitForEvent("page"), c.locator(".fiche [data-commande]").click()]);
+  await onglet.close();
+  await attendre(l => l["commande:" + a.id] === 1 && l["commande-source:statut"] === 1, "clic Commander compté, avec sa source");
+  await c.locator("#recherche").fill("zzz introuvable");
+  await attendre(l => l["vide:zzz introuvable"] === 1, "recherche sans résultat comptée");
+  await c.reload();
+  await c.locator("#grille .produit").first().waitFor();
+  await new Promise(r => setTimeout(r, 400));
+  verifie(lignes()["visite:"] === 1, "pas de nouvelle visite en rechargeant la page");
+
+  // Lien d'article : aperçu avec nom, prix et photo, puis la fiche s'ouvre
+  const lien = await c.evaluate(id => lienArticle(trouver(id)), a.id);
+  verifie(/\/p\/[a-z0-9-]+-[a-z0-9]+$/.test(lien) && lien.endsWith(a.id), "lien d'article lisible (" + lien + ")");
+  const html = await (await fetch(lien)).text();
+  verifie(html.includes('<meta property="og:title" content="' + a.nom.replace(/&/g, "&amp;").replace(/"/g, "&quot;")) && /og:title" content="[^"]*FCFA/.test(html), "aperçu avec le nom et le prix");
+  verifie(html.includes('og:image" content="' + s.url + "/" + a.photos[0] + '"'), "aperçu avec la photo de l'article");
+  verifie(html.includes('<base href="/">') && html.includes('rel="canonical"'), "page d'article qui charge les fichiers depuis la racine");
+  const r404 = await fetch(s.url + "/p/article-inconnu-zzzz", { redirect: "manual" });
+  verifie(r404.status === 302, "article inconnu : retour à la boutique");
+  const v = await page(nav, { width: 390, height: 844 }, s, erreurs);
+  await v.goto(lien + "?s=partage");
+  await v.locator(".fiche h3").waitFor();
+  verifie((await v.locator(".fiche h3").textContent()) === a.nom, "le lien ouvre la fiche de l'article");
+  verifie(new URL(v.url()).pathname === "/", "adresse remise à la racine après ouverture");
+  verifie(await v.locator(".fiche .galerie img").first().evaluate(i => i.complete && i.naturalWidth > 0), "photo affichée sur la page d'article");
+  await attendre(l => l["source:partage"] === 1, "visite par article partagé comptée");
+  await v.locator(".fiche [data-partager]").click();
+  const copie = await v.evaluate(() => navigator.clipboard ? navigator.clipboard.readText().catch(() => "") : "");
+  verifie(!copie || copie.includes("/p/"), "le bouton Partager donne le lien d'article");
+
+  // Appels refusés ou ignorés
+  const avant = JSON.stringify(lignes());
+  await fetch(s.url + "/api/stats", { method: "POST", headers: { "user-agent": "facebookexternalhit/1.1" }, body: JSON.stringify({ e: [{ t: "visite" }] }) });
+  const ailleurs = await fetch(s.url + "/api/stats", { method: "POST", headers: { origin: "https://autre-site.example" }, body: JSON.stringify({ e: [{ t: "visite" }] }) });
+  await fetch(s.url + "/api/stats", { method: "POST", body: JSON.stringify({ e: [{ t: "vue", p: "<script>" }, { t: "pirate" }] }) });
+  verifie(ailleurs.status === 403 && JSON.stringify(lignes()) === avant, "robots, autres sites et événements invalides ignorés");
+  verifie((await fetch(s.url + "/api/gerant?action=stats")).status === 401, "statistiques fermées sans session");
+
+  // Le gérant voit ses chiffres ; ses propres visites ne comptent pas
+  const g = await page(nav, { width: 390, height: 844 }, s, erreurs);
+  await connecter(g, s, PROPRIO);
+  await g.locator("#stats .chiffres").waitFor();
+  const texte = await g.locator("#stats").textContent();
+  verifie(/Visites\s*2/.test(texte.replace(/ /g, " ")), "nombre de visites affiché (" + texte.slice(0, 80) + ")");
+  verifie(texte.includes(a.nom) && texte.includes("zzz introuvable") && texte.includes("Statut WhatsApp") && texte.includes("Article partagé"), "articles, recherches vides et sources affichés");
+  verifie(await g.locator("#stats .courbe .jour-barre").count() === 7, "courbe des 7 derniers jours");
+  await g.locator('#periodes [data-jours="30"]').click();
+  await g.waitForFunction(() => document.querySelectorAll("#stats .courbe .jour-barre").length === 30);
+  verifie(true, "période de 30 jours");
+  verifie((await g.locator("#ls-statut").textContent()) === s.url + "/?s=statut", "lien suivi du statut à copier");
+  verifie(await largeur(g) <= 390, "tableau des statistiques sans défilement horizontal (" + await g.evaluate(() => [...document.querySelectorAll("body *")].filter(e => e.getBoundingClientRect().right > 391).slice(0, 4).map(e => e.tagName + "#" + e.id + "." + e.className).join(" ")) + ")");
+  await g.screenshot({ path: process.env.CAPTURES ? process.env.CAPTURES + "/stats-gerant.png" : "/dev/null", fullPage: false }).catch(() => {});
+  const g2 = await g.ctx.newPage();
+  await g2.goto(s.url + "/");
+  await g2.locator("#grille .produit").first().waitFor();
+  await new Promise(r => setTimeout(r, 400));
+  verifie(lignes()["visite:"] === 2, "les visites du gérant ne comptent pas");
+  verifie(erreurs.length === 0, "aucune erreur JavaScript (" + erreurs.join(" | ") + ")");
+  for (const x of [c, v, g]) await x.ctx.close();
+  await s.arreter();
+
+  // Sans base liée : la boutique marche et le gérant est prévenu
+  const s2 = await demarrer({ stats: false });
+  verifie((await fetch(s2.url + "/api/stats", { method: "POST", body: JSON.stringify({ e: [{ t: "visite" }] }) })).status === 204, "comptage ignoré sans base");
+  const g3 = await page(nav, { width: 390, height: 844 }, s2, erreurs);
+  await connecter(g3, s2, PROPRIO);
+  await g3.waitForFunction(() => /base de comptage/.test(document.getElementById("stats").textContent));
+  verifie(true, "message si la base des statistiques n'est pas branchée");
+  await g3.ctx.close(); await s2.arreter();
+}
 await nav.close();
 console.log("\n" + ok + " vérifications réussies, " + ko + " échec(s).");
 process.exit(ko ? 1 : 0);

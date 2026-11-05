@@ -9,6 +9,9 @@
 //   GITHUB_REPO       facultatif, par défaut serthy666/saare-telecom
 //   GITHUB_BRANCH     facultatif, par défaut main
 //   SESSION_SECRET    facultatif, clé des sessions (sinon dérivée du jeton GitHub)
+//   STATS             base Cloudflare D1 des statistiques (liaison déclarée dans wrangler.jsonc)
+
+import { lireStats } from "./stats.js";
 
 const FICHIER_PRODUITS = "site/donnees/produits.json";
 const FICHIER_COMPTES = "site/donnees/comptes.json";
@@ -29,6 +32,7 @@ export async function onRequest(contexte) {
       const action = new URL(request.url).searchParams.get("action");
       if (action === "config") return json({ clientId: env.GOOGLE_CLIENT_ID || "", pret: pret(env) });
       if (action === "donnees") return await donnees(request, env);
+      if (action === "stats") return await statistiques(request, env);
       return erreur(400, "Action inconnue.");
     }
     if (request.method !== "POST") return erreur(405, "Méthode non acceptée.");
@@ -122,6 +126,14 @@ async function donnees(request, env) {
   const f = await lireFichier(env, FICHIER_PRODUITS);
   const contenu = f ? JSON.parse(f.texte) : { config: {}, produits: [] };
   return json({ donnees: contenu, version: f ? f.sha : null, comptes, moi: email, proprietaire: proprietaire(env) });
+}
+
+/* Statistiques des visites : réservées aux administrateurs connectés */
+async function statistiques(request, env) {
+  if (!pret(env)) return erreur(503, "L'espace gérant n'est pas encore configuré.");
+  const { comptes } = await lireComptes(env);
+  await session(request, env, comptes);
+  return json(await lireStats(env, Number(new URL(request.url).searchParams.get("jours"))));
 }
 
 /* Enregistrer : produits, coordonnées et photos en un seul commit, donc une seule republication */
