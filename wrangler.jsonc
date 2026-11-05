@@ -13,5 +13,8 @@
   // Base des statistiques (visites, vues, clics Commander). Sans identifiant ici :
   // Cloudflare crée la base « bimak-stats » toute seule à la première publication.
   "d1_databases": [{ "binding": "STATS", "database_name": "bimak-stats" }],
+  // Aperçus des branches (commande « wrangler preview » de Cloudflare) : bloc obligatoire.
+  // Vide : l'aperçu n'a pas la base des statistiques, la boutique y marche quand même.
+  "previews": {},
   "observability": { "enabled": true }
 }
