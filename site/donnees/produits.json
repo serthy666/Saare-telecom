@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmw3ekdspxxa1",
+      "nom": "🔵 Vivo X100 Ultra",
+      "marque": "Vivo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/12G/noir",
+      "garantie": "12",
+      "prix": 400000,
+      "prixPromo": 350000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3ekdspxxa1-mw3ekyi1nf89.jpg",
+        "photos/pmw3ekdspxxa1-mw3ekyjm5msi.jpg",
+        "photos/pmw3ekdspxxa1-mw3ekykvoo3y.jpg"
+      ]
+    },
+    {
       "id": "pmvyofhbrbcl8",
       "nom": "Iphone Duo",
       "marque": "Apple",
