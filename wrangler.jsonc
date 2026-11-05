@@ -10,8 +10,5 @@
   },
   // Garde les variables réglées dans le tableau de bord Cloudflare à chaque publication
   "keep_vars": true,
-  // Base des statistiques (visites, vues, clics Commander). Sans identifiant ici :
-  // Cloudflare crée la base « bimak-stats » toute seule à la première publication.
-  "d1_databases": [{ "binding": "STATS", "database_name": "bimak-stats" }],
   "observability": { "enabled": true }
 }
