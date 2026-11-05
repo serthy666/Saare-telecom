@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw3x4vbxabwy",
+      "nom": "Huawei M3 lite SIM 📞",
+      "marque": "Huawei",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "32G/2G",
+      "garantie": "1",
+      "prix": 69000,
+      "prixPromo": 60000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3x4vbxabwy-mw3x4z5it8pe.jpg"
+      ]
+    },
+    {
       "id": "pmw3wwzzzkn89",
       "nom": "Samsung Tab A9+  wifi open box 11 pouces",
       "marque": "Samsung",
