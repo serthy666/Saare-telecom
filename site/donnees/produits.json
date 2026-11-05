@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw3xh5dfpgb8",
+      "nom": "Tab S2 Samsung SIM data  10’’ pouces ✨",
+      "marque": "Samsung",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "32G/2G/noir",
+      "garantie": "1",
+      "prix": 85000,
+      "prixPromo": 65000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3xh5dfpgb8-mw3xi6fynnvy.jpg"
+      ]
+    },
+    {
       "id": "pmw3xdd8jwvaz",
       "nom": "Ipad Air 2 wifi",
       "marque": "Apple",
