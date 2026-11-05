@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw3x9tqlbil1",
+      "nom": "Samsung Tab A 2016 /sim appels",
+      "marque": "Samsung",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "16G/2G",
+      "garantie": "1",
+      "prix": 80000,
+      "prixPromo": 60000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3x9tqlbil1-mw3xaat0rw1e.jpg"
+      ]
+    },
+    {
       "id": "pmw3x7cm24t5q",
       "nom": "Huawei 50 jeux enfants téléchargé",
       "marque": "Huawei",
