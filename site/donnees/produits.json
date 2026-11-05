@@ -7,6 +7,24 @@
   },
   "produits": [
     {
+      "id": "pmw3wotz4dwt6",
+      "nom": "Samsung Tab A8 SIM",
+      "marque": "Samsung",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "64G/4G/gris noir",
+      "garantie": "",
+      "prix": 170000,
+      "prixPromo": 125000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmw3wmzi9rzee",
       "nom": "Ipad 6eme génération",
       "marque": "Apple",
