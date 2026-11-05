@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmw3wmzi9rzee",
+      "nom": "Ipad 6eme génération",
+      "marque": "Apple",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "32G/2G/gris",
+      "garantie": "",
+      "prix": 80000,
+      "prixPromo": 70000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3wmzi9rzee-mw3wn4lndp5l.jpg",
+        "photos/pmw3wmzi9rzee-mw3wn4mauahj.jpg"
+      ]
+    },
+    {
       "id": "pmw3eqbsndsmr",
       "nom": "Google pixel 9 pro fold",
       "marque": "Google",
