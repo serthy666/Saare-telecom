@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw3xjstnkkid",
+      "nom": "Ipad 10ème génération wifi",
+      "marque": "Apple",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "64G/4G/gris bleu",
+      "garantie": "1",
+      "prix": 300000,
+      "prixPromo": 250000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3xjstnkkid-mw3xjx7i20v7.jpg"
+      ]
+    },
+    {
       "id": "pmw3xh5dfpgb8",
       "nom": "Tab S2 Samsung SIM data  10’’ pouces ✨",
       "marque": "Samsung",
