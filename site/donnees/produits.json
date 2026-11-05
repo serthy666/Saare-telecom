@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw3xdd8jwvaz",
+      "nom": "Ipad Air 2 wifi",
+      "marque": "Apple",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "128G/6G",
+      "garantie": "1",
+      "prix": 80000,
+      "prixPromo": 65000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3xdd8jwvaz-mw3xeewcfpuo.jpg"
+      ]
+    },
+    {
       "id": "pmw3x9tqlbil1",
       "nom": "Samsung Tab A 2016 /sim appels",
       "marque": "Samsung",
