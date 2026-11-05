@@ -434,6 +434,38 @@ section{padding-block:30px 6px}
 @media (max-width:440px){.sauvegarde{padding-left:12px;gap:6px}.sauvegarde .bouton{padding:9px 12px}.sv-plus{display:none}}
 .sauvegarde.erreur-sv{box-shadow:var(--relief),inset 0 0 0 1.5px var(--danger)}
 .danger{border:0;background:none;color:var(--danger);font-weight:800;cursor:pointer;padding:8px 0;min-height:40px}
+/* Statistiques du gérant */
+.stats-tete{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.stats-tete h3{margin:0}
+.periodes{display:flex;gap:6px}
+.periodes button{border:0;cursor:pointer;min-height:36px;padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px;background:rgba(0,0,0,.06);color:var(--texte)}
+.periodes button[aria-pressed="true"]{background:var(--noir);color:var(--jaune)}
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+@media (max-width:620px){.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chiffre{padding:12px 14px;border-radius:18px;background:rgba(0,0,0,.04);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07);min-width:0}
+.chiffre small{display:block;color:var(--texte-3);font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.chiffre b{display:block;font-family:var(--affiche);font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.chiffre span{font-size:12px;font-weight:700;color:var(--texte-2)}
+.courbe{display:flex;align-items:flex-end;gap:2px;height:96px;padding-top:6px;border-bottom:1px solid rgba(0,0,0,.18);margin-bottom:4px}
+.courbe .jour-barre{flex:1;min-width:0;height:100%;display:flex;align-items:flex-end;position:relative;cursor:default}
+.courbe .jour-barre i{display:block;width:100%;max-width:28px;margin-inline:auto;min-height:2px;border-radius:4px 4px 0 0;background:var(--or)}
+.courbe .jour-barre:hover i,.courbe .jour-barre:focus i{background:var(--noir)}
+.courbe-axe{display:flex;justify-content:space-between;font-size:11.5px;color:var(--texte-3);font-weight:700;margin-bottom:14px}
+.bulle-stat{font-size:12.5px;font-weight:700;color:var(--texte-2);min-height:18px;margin:0 0 4px}
+.stats-sous{font-size:14px;font-weight:800;margin:16px 0 6px}
+.tableau-stats{width:100%;border-collapse:collapse;font-size:13.5px}
+.tableau-stats th{text-align:right;font-size:11px;font-weight:800;color:var(--texte-3);text-transform:uppercase;letter-spacing:.05em;padding:4px 6px}
+.tableau-stats th:first-child,.tableau-stats td:first-child{text-align:left;padding-left:0}
+.tableau-stats td{text-align:right;padding:7px 6px;border-top:1px solid rgba(0,0,0,.08);font-variant-numeric:tabular-nums;vertical-align:middle}
+.tableau-stats td:first-child{max-width:0;width:60%}
+.tableau-stats .art{display:flex;align-items:center;gap:8px;min-width:0}
+.tableau-stats .art img{width:34px;height:34px;border-radius:9px;object-fit:cover;flex:none;background:rgba(0,0,0,.05)}
+.tableau-stats .art span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.liens-suivis{display:grid;gap:8px}
+.lien-suivi{display:flex;align-items:center;gap:8px;min-width:0}
+.lien-suivi b{flex:none;width:84px;font-size:13px}
+.lien-suivi .bouton{flex:none;min-height:36px;padding:6px 14px;font-size:13.5px}
+.lien-suivi code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;background:rgba(0,0,0,.05);padding:6px 8px;border-radius:10px}
 </style>
 </head>
 <body>
@@ -544,6 +576,21 @@ section{padding-block:30px 6px}
       <div class="session verre"><span>Connecté : <b id="qui"></b></span><button class="lien-bouton" type="button" id="deconnexion">Se déconnecter</button></div>
 
       <div class="tuiles" id="tuiles"></div>
+
+      <div class="admin-bloc verre" id="bloc-stats">
+        <div class="stats-tete">
+          <h3>Statistiques</h3>
+          <div class="periodes" id="periodes" role="group" aria-label="Période">
+            <button type="button" data-jours="1" aria-pressed="false">Aujourd'hui</button>
+            <button type="button" data-jours="7" aria-pressed="true">7 jours</button>
+            <button type="button" data-jours="30" aria-pressed="false">30 jours</button>
+          </div>
+        </div>
+        <div id="stats"><p class="note-demo">Chargement des statistiques…</p></div>
+        <h4 class="stats-sous">Liens suivis à partager</h4>
+        <p class="note-demo" style="margin:0 0 8px">Mettez le bon lien dans chaque publication : vous verrez ci-dessus combien de visites et de commandes chacune vous amène.</p>
+        <div class="liens-suivis" id="liens-suivis"></div>
+      </div>
 
       <div class="admin-bloc verre">
         <h3>Lancer une promotion</h3>

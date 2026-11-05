@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { DatabaseSync } from "node:sqlite";
 
 const RACINE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const CLIENT_ID = "test-client.apps.googleusercontent.com";
@@ -83,6 +84,18 @@ function fauxGithub(depot, url, init) {
   return reponse(404, { message: "faux GitHub : " + m + " " + p });
 }
 
+// Fausse base Cloudflare D1 (SQLite en mémoire), avec les appels qu'utilise functions/api/stats.js
+export function fausseD1() {
+  const db = new DatabaseSync(":memory:");
+  const ordre = (sql, params = []) => ({
+    bind: (...p) => ordre(sql, p),
+    run: async () => { db.prepare(sql).run(...params); return { success: true }; },
+    all: async () => ({ results: db.prepare(sql).all(...params) }),
+    executer: () => /^\s*select/i.test(sql) ? { results: db.prepare(sql).all(...params) } : (db.prepare(sql).run(...params), { results: [] })
+  });
+  return { prepare: sql => ordre(sql), batch: async ordres => { db.exec("BEGIN"); try { const r = ordres.map(o => o.executer()); db.exec("COMMIT"); return r; } catch (e) { db.exec("ROLLBACK"); throw e; } }, db };
+}
+
 function fauxGoogle(url) {
   const jeton = new URL(url).searchParams.get("id_token") || "";
   const m = jeton.match(/^test:(.+)$/);
@@ -93,7 +106,7 @@ function fauxGoogle(url) {
 
 const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".json": "application/json", ".webp": "image/webp", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml", ".webmanifest": "application/manifest+json" };
 
-export async function demarrer({ port = 0, env = {} } = {}) {
+export async function demarrer({ port = 0, env = {}, stats = true } = {}) {
   const depot = fauxDepot();
   const vraiFetch = globalThis.fetch;
   globalThis.fetch = async (url, init) => {
@@ -103,13 +116,20 @@ export async function demarrer({ port = 0, env = {} } = {}) {
     return vraiFetch(url, init);
   };
   const { onRequest } = await import(path.join(RACINE, "functions/api/gerant.js"));
-  const ENV = { GOOGLE_CLIENT_ID: CLIENT_ID, PROPRIETAIRE: PROPRIO, GITHUB_TOKEN: "test-jeton", GITHUB_REPO: "serthy666/saare-telecom", ...env };
+  const { onRequest: surStats } = await import(path.join(RACINE, "functions/api/stats.js"));
+  const { onRequest: surArticle } = await import(path.join(RACINE, "functions/p/[[chemin]].js"));
+  let adresse = "";
+  // Comme env.ASSETS de Cloudflare : les fichiers du site, demandés au serveur de test lui-même
+  const ASSETS = { fetch: req => vraiFetch(adresse + new URL(req.url).pathname) };
+  const ENV = { GOOGLE_CLIENT_ID: CLIENT_ID, PROPRIETAIRE: PROPRIO, GITHUB_TOKEN: "test-jeton", GITHUB_REPO: "serthy666/saare-telecom", ASSETS, ...(stats ? { STATS: fausseD1() } : {}), ...env };
+  const fonctions = { "/api/gerant": onRequest, "/api/stats": surStats };
   const serveur = http.createServer(async (req, res) => {
     const u = new URL(req.url, "http://localhost");
-    if (u.pathname === "/api/gerant") {
+    const fonction = fonctions[u.pathname] || (u.pathname.startsWith("/p/") ? surArticle : null);
+    if (fonction) {
       const morceaux = []; for await (const c of req) morceaux.push(c);
-      const request = new Request("http://localhost" + req.url, { method: req.method, headers: req.headers, body: req.method === "GET" ? undefined : Buffer.concat(morceaux) });
-      const r = await onRequest({ request, env: ENV });
+      const request = new Request(adresse + req.url, { method: req.method, headers: req.headers, body: req.method === "GET" ? undefined : Buffer.concat(morceaux) });
+      const r = await fonction({ request, env: ENV });
       res.writeHead(r.status, Object.fromEntries(r.headers)); res.end(Buffer.from(await r.arrayBuffer())); return;
     }
     // Comme Cloudflare après republication : données et photos lues dans le dépôt
@@ -123,7 +143,7 @@ export async function demarrer({ port = 0, env = {} } = {}) {
     res.writeHead(200, { "content-type": TYPES[path.extname(chemin)] || "application/octet-stream" }); res.end(contenu);
   });
   await new Promise(ok => serveur.listen(port, ok));
-  const adresse = "http://localhost:" + serveur.address().port;
+  adresse = "http://localhost:" + serveur.address().port;
   return { url: adresse, depot, env: ENV, arreter: () => new Promise(ok => { serveur.close(ok); globalThis.fetch = vraiFetch; }) };
 }
 

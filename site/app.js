@@ -60,6 +60,27 @@ var minuterie;function montrer(t,long){var el=document.getElementById("enregistr
 /* Langue : français par défaut, anglais d'un geste. L'espace gérant reste en français. */
 function lire(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null||typeof v!==typeof d||Array.isArray(v)!==Array.isArray(d)?d:v}catch(e){return d}}
 function ecrire(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+/* Statistiques pour le vendeur : de simples compteurs anonymes (visites, fiches vues, clics « Commander »,
+   recherches sans résultat), envoyés à /api/stats. Les appareils des gérants ne comptent pas. */
+var gerantIci=lire("saare-appareil-gerant",false),dejaCompte={};
+var SOURCE=(function(){var s=null;try{s=sessionStorage.getItem("saare-source")}catch(e){}if(s)return s;
+  var q=(location.search.match(/[?&]s=([a-z0-9-]{1,20})/i)||[])[1],r="";
+  if(q)s=q.toLowerCase();else{try{r=document.referrer?new URL(document.referrer).hostname:""}catch(e){}
+    s=!r||r===location.hostname?"direct":/facebook|fb\.|messenger/.test(r)?"facebook":/instagram/.test(r)?"instagram":/tiktok/.test(r)?"tiktok":/google/.test(r)?"google":/whatsapp|wa\.me/.test(r)?"whatsapp":"autre"}
+  try{sessionStorage.setItem("saare-source",s)}catch(e){}return s})();
+function compter(evs,cle){if(gerantIci||gerant)return;if(cle){if(dejaCompte[cle])return;dejaCompte[cle]=1}
+  try{var corps=JSON.stringify({e:evs});if(!(navigator.sendBeacon&&navigator.sendBeacon("/api/stats",new Blob([corps],{type:"text/plain"}))))fetch("/api/stats",{method:"POST",body:corps,keepalive:true}).catch(function(){})}catch(e){}}
+function compterVisite(){if(location.hash==="#admin")return;var nouvelle=true;try{nouvelle=!sessionStorage.getItem("saare-visite");sessionStorage.setItem("saare-visite","1")}catch(e){}
+  if(!nouvelle)return;var evs=[{t:"visite",s:SOURCE}],auj=new Date().toDateString();
+  if(lire("saare-jour","")!==auj){ecrire("saare-jour",auj);evs.push({t:"visiteur"})}compter(evs)}
+var minuterieVide;function compterRechercheVide(q){clearTimeout(minuterieVide);minuterieVide=setTimeout(function(){var k=plat(q).trim();if(k.length>=2)compter([{t:"vide",q:k}],"vide:"+k)},1500)}
+
+/* Lien d'un article (/p/nom-de-l-article-id) : on retient l'article, puis on revient à l'adresse de la boutique */
+var produitDemande=(function(){var m=location.pathname.match(/^\/p\/([^\/]+)/);if(!m)return null;
+  var id=decodeURIComponent(m[1]).toLowerCase().split("-").pop();history.replaceState(null,"","/"+location.search+"#catalogue");return id})();
+function slug(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,60)}
+function lienArticle(p){return location.origin+"/p/"+(slug(p.nom)?slug(p.nom)+"-":"")+p.id}
 var LANG=lire("saare-langue","fr")==="en"?"en":"fr";
 function L(fr,en){return LANG==="en"?en:fr}
 var EN={slogan:"The best phones at the best prices!",ev_fin:"ends in",h1:"The best phones, <em>at the best prices!</em>",
@@ -168,7 +189,7 @@ function ligneStock(p){var c=p.stock==="epuise"?"epuise":p.stock==="peu"?"peu":"
   return'<p class="stock '+c+'">'+(c==="epuise"?L("Épuisé pour le moment","Sold out for now"):c==="peu"?L("Dernières pièces","Last items"):L("En stock","In stock"))+"</p>"}
 function textePrevenir(id,large){return alertes[id]?(large?L("Demande envoyée","Request sent"):L("Demandé","Requested")):(large?L("Me prévenir quand il revient","Notify me when it's back"):L("Me prévenir","Notify me"))}
 function boutonPrevenir(p,large){return'<button class="bouton prevenir'+(alertes[p.id]?" fait":"")+'" type="button" data-prevenir="'+esc(p.id)+'"'+(large?' data-large="1"':"")+'><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-cloche"/></svg><span class="txt">'+textePrevenir(p.id,large)+"</span></button>"}
-function lienCommande(p){return'<a class="bouton commander" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span class="txt">'+L("Commander","Order")+"</span></a>"}
+function lienCommande(p){return'<a class="bouton commander" data-commande="'+esc(p.id)+'" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span class="txt">'+L("Commander","Order")+"</span></a>"}
 function carte(p){var r=enPromo(p),ep=p.stock==="epuise",o=ep?"epuise":r?p.offre:(p.nouveau?"nouveau":"");
   var badge=o?'<span class="badge '+o+'">'+(o==="epuise"?L("Épuisé","Sold out"):o==="nouveau"?L("Nouveau","New"):nomOffre(o))+"</span>":"";
   var rem=r&&!ep?'<span class="remise">-'+remise(p)+"%</span>":"";
@@ -192,6 +213,7 @@ function rendreBoutique(){
   document.getElementById("titre-catalogue").textContent=q?L("Résultats pour « ","Results for “")+q+L(" »","”"):rayon==="tous"?L("Nos boutiques","Our shops"):LANG==="en"?nomRayon(rayon,true):"Boutique "+RAYONS[rayon].long.toLowerCase();
   var bu=document.getElementById("budget");bu.hidden=!analyse.budget;if(analyse.budget)bu.textContent=L("Budget : jusqu'à ","Budget: up to ")+fcfa(analyse.budget);
   document.getElementById("grille").innerHTML=liste.length?liste.map(carte).join(""):videBoutique();
+  if(q&&!liste.length&&charge&&visibles().length&&!gerant)compterRechercheVide(q);
   document.getElementById("compte-produits").textContent=nArticles(liste.length);
   var c=etat.config,num=chiffres(c.whatsapp)||WA_DEFAUT,mail=(c.gmail||"").trim()||MAIL_DEFAUT;
   document.getElementById("wa-numero").textContent="+"+num.replace(/^(\d{3})(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/,"$1 $2 $3 $4 $5 $6");
@@ -233,17 +255,18 @@ function ouvrirFiche(id){var p=trouver(id);if(!p)return;var n=Math.max(1,p.photo
    '<div class="galerie">'+Array.from({length:n},function(_,i){return'<img src="'+esc(photo(p,i))+'" alt="'+esc(p.nom)+" photo "+(i+1)+'">'}).join("")+"</div>"+
    (n>1?'<p style="color:var(--texte-3);font-size:13px;margin:6px 0 0">'+L("Glissez pour voir les "+n+" photos","Swipe to see the "+n+" photos")+"</p>":"")+
    "<h3>"+esc(p.nom)+'</h3><p class="etat"><span class="e-'+p.etat+'">'+nomEtat(p.etat)+"</span><em>"+esc(nomRayon(p.rayon)+" · "+nomCat(p.categorie))+(p.garantie?" · "+L("Garantie ","Warranty ")+esc(p.garantie):"")+'</em></p><p class="details" style="color:var(--texte-2)">'+esc(p.details)+"</p>"+blocPrix(p)+ligneStock(p)+
-   '<div class="rangee-actions">'+(ep?boutonPrevenir(p,true):'<a class="bouton commander" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander sur WhatsApp","Order on WhatsApp")+"</a>")+"</div>"+
+   '<div class="rangee-actions">'+(ep?boutonPrevenir(p,true):'<a class="bouton commander" data-commande="'+esc(p.id)+'" target="_blank" rel="noopener" href="'+lienWa(messageCommande(p))+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>'+L("Commander sur WhatsApp","Order on WhatsApp")+"</a>")+"</div>"+
    '<div class="petits"><button class="bouton leger coeur-fiche" type="button" data-coeur="'+esc(p.id)+'" aria-pressed="'+(favoris.indexOf(p.id)>=0)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-coeur"/></svg>'+L("Favori","Favorite")+"</button></div>"+
    (sim.length?"<h4>"+(ep?L("Disponibles maintenant","Available now"):L("Articles similaires","Similar items"))+'</h4><div class="defile">'+sim.map(mini).join("")+"</div>":"")+
    '<button class="bouton leger" type="button" style="width:100%;margin-top:16px" data-partager="'+esc(p.id)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-partager"/></svg>'+L("Partager cet article","Share this item")+"</button></div>","fiche");
-  noterVu(p.id)}
+  noterVu(p.id);compter([{t:"vue",p:p.id}],"vue:"+p.id)}
 function noterVu(id){vus=[id].concat(vus.filter(function(x){return x!==id})).slice(0,12);ecrire("saare-vus",vus);rendreRecents()}
 function rendreRecents(){var l=vus.map(trouver).filter(function(p){return p&&p.visible});
   document.getElementById("recents").hidden=!l.length;document.getElementById("recents-liste").innerHTML=l.map(mini).join("")}
-function lienProduit(){var m=location.hash.match(/^#p=(.+)$/);if(!m||!charge)return;history.replaceState(null,"","#catalogue");ouvrirFiche(decodeURIComponent(m[1]))}
+function lienProduit(){if(!charge)return;if(produitDemande){var id=produitDemande;produitDemande=null;ouvrirFiche(id);return}
+  var m=location.hash.match(/^#p=(.+)$/);if(!m)return;history.replaceState(null,"","#catalogue");ouvrirFiche(decodeURIComponent(m[1]))}
 window.addEventListener("hashchange",lienProduit);
-function partager(p){if(!p)return;var url=location.origin+"/#p="+encodeURIComponent(p.id),txt=p.nom+" · "+prixTexte(p)+" · BIMAK Store";
+function partager(p){if(!p)return;var url=lienArticle(p)+"?s=partage",txt=p.nom+" · "+prixTexte(p)+" · BIMAK Store";
   if(navigator.share){navigator.share({title:p.nom,text:txt,url:url}).catch(function(){});return}
   var wa=function(){window.open("https://wa.me/?text="+encodeURIComponent(txt+" "+url),"_blank","noopener")};
   try{navigator.clipboard.writeText(txt+" "+url).then(function(){toast(L("Lien copié : collez-le où vous voulez","Link copied: paste it anywhere"))},wa)}catch(e){wa()}}
@@ -282,6 +305,7 @@ voile.addEventListener("input",function(e){if(e.target.id!=="cl-nom")return;clie
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){fermer();document.getElementById("suggestions").hidden=true}});
 
 document.addEventListener("click",function(e){var x;
+  if((x=e.target.closest("[data-commande]"))){var ic=x.getAttribute("data-commande");compter([{t:"commande",p:ic,s:SOURCE}],"cmd:"+ic)}
   if((x=e.target.closest("[data-coeur]"))){basculerFavori(x.getAttribute("data-coeur"),x);return}
   if((x=e.target.closest("[data-prevenir]"))){ouvrirAlerte(x.getAttribute("data-prevenir"));return}
   if((x=e.target.closest("[data-demander]"))){ouvrirAlerte(null,requete.trim()||L("un appareil","a device"));return}
@@ -388,6 +412,7 @@ function connexion(credential){
   var rf=document.getElementById("refus");rf.hidden=true;
   appel("POST",{action:"connexion",credential:credential}).then(function(g){
     gerant=g;try{sessionStorage.setItem("saare-gerant",JSON.stringify(g))}catch(e){}
+    gerantIci=true;ecrire("saare-appareil-gerant",true);
     chargerAdmin()
   }).catch(function(e){rf.hidden=false;rf.textContent=e.message})}
 function deconnecter(){gerant=null;version=null;adminCharge=false;document.getElementById("chargement").hidden=true;try{sessionStorage.removeItem("saare-gerant")}catch(e){}
@@ -404,7 +429,7 @@ function chargerAdmin(){
   return appel("GET",null,"donnees").then(function(d){chargementAdmin=false;
     if(!modifie()||version===null){etat=completer(d.donnees);publie=JSON.stringify(etat);version=d.version}
     comptes=d.comptes||[];proprio=d.proprietaire;gerant.email=d.moi;
-    adminCharge=true;document.getElementById("chargement").hidden=true;route();rendreBoutique()
+    adminCharge=true;document.getElementById("chargement").hidden=true;route();rendreBoutique();chargerStats()
   }).catch(function(e){chargementAdmin=false;document.getElementById("chargement").textContent=e.message;sessionPerdue(e)})}
 function estProprio(){return!!gerant&&gerant.email===proprio}
 function modifie(){return JSON.stringify(etat)!==publie}
@@ -546,6 +571,44 @@ function rendreTuiles(){var t=[["tous","Toutes"]].concat(Object.keys(RAYONS).map
     return'<button type="button" class="tuile verre" data-tuile="'+x[0]+'" aria-pressed="'+(rayonAdmin===x[0])+'"><small>'+x[1]+"</small><b>"+l.length+"</b><span>"+(pr?"<em>"+pr+" en promo</em>":"Aucune promo")+(fl?" · "+fl+" flash":"")+(ms?" · "+ms+" masqué"+(ms>1?"s":""):"")+"</span></button>"}).join("")}
 document.getElementById("tuiles").addEventListener("click",function(e){var b=e.target.closest("[data-tuile]");if(!b)return;rayonAdmin=b.getAttribute("data-tuile");document.getElementById("admin-rayon").value=rayonAdmin;document.getElementById("pr-rayon").value=rayonAdmin;rendreTuiles();rendreListeAdmin();apercuPromo()});
 
+/* Statistiques : visites, fiches vues, clics « Commander », recherches sans résultat, d'où viennent les clients */
+var joursStats=7,stats=null,toutesStats=false;
+var SOURCES={statut:"Statut WhatsApp",whatsapp:"WhatsApp",partage:"Article partagé",facebook:"Facebook",instagram:"Instagram",tiktok:"TikTok",google:"Google",direct:"Lien direct ou favori",autre:"Autres sites"};
+var LIENS_SUIVIS=[["statut","Statut"],["facebook","Facebook"],["tiktok","TikTok"],["instagram","Instagram"]];
+function nb(n){return Number(n||0).toLocaleString("fr-FR").replace(/[\s ]/g," ")}
+function pct(a,b){return b?Math.round(a/b*100)+" %":"–"}
+function dateCourte(j,long){return new Date(j+"T12:00:00").toLocaleDateString("fr-FR",long?{weekday:"short",day:"numeric",month:"short"}:{day:"numeric",month:"short"})}
+function chargerStats(){var z=document.getElementById("stats");if(!stats)z.innerHTML='<p class="note-demo">Chargement des statistiques…</p>';
+  appel("GET",null,"stats&jours="+joursStats).then(function(d){stats=d;rendreStats()}).catch(function(e){if(!sessionPerdue(e))z.innerHTML='<p class="erreur">'+esc(e.message)+"</p>"})}
+function rendreStats(){var z=document.getElementById("stats"),d=stats;rendreLiensSuivis();
+  document.querySelectorAll("#periodes [data-jours]").forEach(function(b){b.setAttribute("aria-pressed",String(+b.getAttribute("data-jours")===joursStats))});
+  if(!d)return;
+  if(!d.actif){z.innerHTML='<p class="note-demo">Les statistiques démarrent dès que la base de comptage est branchée, à la prochaine publication du site.</p>';return}
+  var t={visites:0,visiteurs:0,vues:0,commandes:0};d.parJour.forEach(function(j){for(var k in t)t[k]+=j[k]});
+  var h='<div class="chiffres">'+[["Visites",t.visites,d.jours===1?"aujourd'hui":"sur "+d.jours+" jours"],["Visiteurs",t.visiteurs,d.jours>1?"comptés une fois par jour":"différents"],
+    ["Fiches vues",t.vues,t.visites?(t.vues/t.visites).toFixed(1).replace(".",",")+" par visite":""],["Clics Commander",t.commandes,t.visites?pct(t.commandes,t.visites)+" des visites":""]]
+    .map(function(c){return'<div class="chiffre"><small>'+c[0]+"</small><b>"+nb(c[1])+"</b><span>"+c[2]+"</span></div>"}).join("")+"</div>";
+  if(!t.visites){z.innerHTML=h+'<p class="note-demo">Pas encore de visite sur cette période. Partagez un lien suivi ci-dessous pour commencer.</p>';return}
+  if(d.jours>1){var max=Math.max.apply(null,d.parJour.map(function(j){return j.visites}))||1;
+    h+='<h4 class="stats-sous">Visites par jour</h4><p class="bulle-stat" id="bulle-stat" aria-live="polite">Touchez une barre pour voir le détail du jour.</p><div class="courbe" role="img" aria-label="Visites par jour, de '+dateCourte(d.parJour[0].jour)+" à "+dateCourte(d.parJour[d.parJour.length-1].jour)+", au plus "+max+' par jour">'+
+      d.parJour.map(function(j){var info=dateCourte(j.jour,true)+" : "+nb(j.visites)+" visite"+(j.visites>1?"s":"")+", "+nb(j.vues)+" fiche"+(j.vues>1?"s":"")+" vue"+(j.vues>1?"s":"")+", "+nb(j.commandes)+" clic"+(j.commandes>1?"s":"")+" Commander";
+        return'<span class="jour-barre" tabindex="0" data-info="'+esc(info)+'"><i style="height:'+(j.visites?Math.max(3,Math.round(j.visites/max*100)):0)+'%"></i></span>'}).join("")+
+      '</div><div class="courbe-axe"><span>'+dateCourte(d.parJour[0].jour)+"</span><span>"+dateCourte(d.parJour[d.parJour.length-1].jour)+"</span></div>"}
+  var arts=d.articles.filter(function(a){return a.vues||a.commandes}),vus=toutesStats?arts:arts.slice(0,10);
+  h+='<h4 class="stats-sous">Articles les plus regardés</h4>'+(arts.length?'<table class="tableau-stats"><thead><tr><th>Article</th><th>Vues</th><th>Commander</th><th>Taux</th></tr></thead><tbody>'+
+    vus.map(function(a){var p=trouver(a.id);return'<tr><td><span class="art">'+(p?'<img src="'+esc(photo(p))+'" alt="" loading="lazy">':"")+"<span>"+esc(p?p.nom:"Article supprimé")+"</span></span></td><td>"+nb(a.vues)+"</td><td>"+nb(a.commandes)+"</td><td>"+pct(a.commandes,a.vues)+"</td></tr>"}).join("")+
+    "</tbody></table>"+(arts.length>10?'<button class="lien-bouton" type="button" id="toutes-stats" style="margin-top:8px">'+(toutesStats?"Voir seulement les 10 premiers":"Voir les "+arts.length+" articles")+"</button>":""):'<p class="note-demo">Aucune fiche ouverte sur cette période.</p>');
+  h+='<h4 class="stats-sous">Recherches sans résultat</h4>'+(d.vides.length?'<p class="note-demo" style="margin:0 0 6px">Ce que les clients ont cherché sans le trouver : de bonnes idées d\'articles à ajouter.</p><table class="tableau-stats"><thead><tr><th>Recherche</th><th>Fois</th></tr></thead><tbody>'+
+    d.vides.map(function(v){return"<tr><td>« "+esc(v.q)+" »</td><td>"+nb(v.n)+"</td></tr>"}).join("")+"</tbody></table>":'<p class="note-demo">Toutes les recherches ont trouvé au moins un article.</p>');
+  h+='<h4 class="stats-sous">D\'où viennent les clients</h4><table class="tableau-stats"><thead><tr><th>Source</th><th>Visites</th><th>Commander</th></tr></thead><tbody>'+
+    d.sources.map(function(x){return"<tr><td>"+esc(SOURCES[x.source]||x.source)+"</td><td>"+nb(x.visites)+"</td><td>"+nb(x.commandes)+"</td></tr>"}).join("")+"</tbody></table>";
+  z.innerHTML=h}
+function rendreLiensSuivis(){var el=document.getElementById("liens-suivis");if(el.childElementCount)return;
+  el.innerHTML=LIENS_SUIVIS.map(function(x){return'<div class="lien-suivi"><b>'+x[1]+'</b><code id="ls-'+x[0]+'">'+esc(lienBoutique()+"?s="+x[0])+'</code><button class="bouton leger" type="button" data-copier="ls-'+x[0]+'">Copier</button></div>'}).join("")}
+document.getElementById("periodes").addEventListener("click",function(e){var b=e.target.closest("[data-jours]");if(!b)return;joursStats=+b.getAttribute("data-jours");toutesStats=false;rendreStats();chargerStats()});
+document.getElementById("stats").addEventListener("click",function(e){if(e.target.closest("#toutes-stats")){toutesStats=!toutesStats;rendreStats()}});
+["pointerover","focusin","click"].forEach(function(ev){document.getElementById("stats").addEventListener(ev,function(e){var b=e.target.closest(".jour-barre");if(b)document.getElementById("bulle-stat").textContent=b.getAttribute("data-info")})});
+
 /* Lancer une promotion sur une sélection */
 function selectionPromo(){var r=document.getElementById("pr-rayon").value,e=document.getElementById("pr-etat").value;return etat.produits.filter(function(p){return(r==="tous"||p.rayon===r)&&(e==="tous"||p.etat===e)&&p.prix>0})}
 function apercuPromo(){var l=selectionPromo(),rm=Math.min(90,Math.max(0,+document.getElementById("pr-remise").value||0)),t=document.getElementById("pr-type").value;
@@ -577,3 +640,5 @@ function onglet(){var h=location.hash,cur=h==="#admin"?"lien-admin":h==="#contac
   ["lien-boutique","lien-promos","lien-contact","lien-admin"].forEach(function(id){document.getElementById(id).setAttribute("aria-current",id===cur?"page":"false")})}
 window.addEventListener("hashchange",route);
 traduire();rendreBoutique();chargerBoutique();route();
+if(gerant){gerantIci=true;ecrire("saare-appareil-gerant",true)}
+compterVisite();
