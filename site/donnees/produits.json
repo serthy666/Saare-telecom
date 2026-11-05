@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw3wwzzzkn89",
+      "nom": "Samsung Tab A9+  wifi open box 11 pouces",
+      "marque": "Samsung",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "64G/4G/noir blanc",
+      "garantie": "1",
+      "prix": 150000,
+      "prixPromo": 130000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3wwzzzkn89-mw3wy2r7fioz.jpg"
+      ]
+    },
+    {
       "id": "pmw3wotz4dwt6",
       "nom": "Samsung Tab A8 SIM",
       "marque": "Samsung",
