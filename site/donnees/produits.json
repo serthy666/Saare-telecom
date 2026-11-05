@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw3x7cm24t5q",
+      "nom": "Huawei 50 jeux enfants téléchargé",
+      "marque": "Huawei",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "64G/4G/ gris",
+      "garantie": "1",
+      "prix": 55000,
+      "prixPromo": 50000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw3x7cm24t5q-mw3x87da07rc.jpg"
+      ]
+    },
+    {
       "id": "pmw3x4vbxabwy",
       "nom": "Huawei M3 lite SIM 📞",
       "marque": "Huawei",
