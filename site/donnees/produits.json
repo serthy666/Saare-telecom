@@ -7,6 +7,29 @@
   },
   "produits": [
     {
+      "id": "pmw4gpmfw6tlx",
+      "nom": "Oppo Find X8",
+      "marque": "Oppo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/16G/noir",
+      "garantie": "1",
+      "prix": 350000,
+      "prixPromo": 320000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4gpmfw6tlx-mw4gqlqu2mch.jpg",
+        "photos/pmw4gpmfw6tlx-mw4gqlsl6zf2.jpg",
+        "photos/pmw4gpmfw6tlx-mw4gqltmnkp5.jpg",
+        "photos/pmw4gpmfw6tlx-mw4gqlw12hfk.jpg"
+      ]
+    },
+    {
       "id": "pmw4go1skru5z",
       "nom": "Huawei p30 pro",
       "marque": "Huawei",
