@@ -7,6 +7,44 @@
   },
   "produits": [
     {
+      "id": "pmw4fhd4cyn76",
+      "nom": "Samsung Tab A11",
+      "marque": "Samsung",
+      "rayon": "tab",
+      "categorie": "Tablettes",
+      "etat": "neuf",
+      "details": "64G/4G/blanc",
+      "garantie": "1",
+      "prix": 160000,
+      "prixPromo": 150000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4fhd4cyn76-mw4fmquw2t4n.jpg"
+      ]
+    },
+    {
+      "id": "pmw4ffr07pbp3",
+      "nom": "Nouveau produit",
+      "marque": "",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "",
+      "garantie": "",
+      "prix": 0,
+      "prixPromo": 0,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmw3xjstnkkid",
       "nom": "Ipad 10ème génération wifi",
       "marque": "Apple",
