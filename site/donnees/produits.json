@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4phqon8tmk",
+      "nom": "HP PROBOOK 645 G4 RYZEN 3 PRO HDD 500GB 13.9 POUCES",
+      "marque": "Hp",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "512G/8G",
+      "garantie": "6",
+      "prix": 220000,
+      "prixPromo": 200000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4phqon8tmk-mw4phx8ohk04.jpg"
+      ]
+    },
+    {
       "id": "pmw4papkv1vgp",
       "nom": "LENOVO 300E SSD 128GB 11.6 POUCES TACTILE PLIABLE ROTATIVE",
       "marque": "Lenovo",
