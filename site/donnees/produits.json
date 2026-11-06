@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4pjxas9q8c",
+      "nom": "DELL LATITUDE 3410 CORE i3 10TH SSD 256GB 14 POUCES",
+      "marque": "",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "6",
+      "prix": 185000,
+      "prixPromo": 160000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4pjxas9q8c-mw4pkixq5h6x.jpg"
+      ]
+    },
+    {
       "id": "pmw4phqon8tmk",
       "nom": "HP PROBOOK 645 G4 RYZEN 3 PRO HDD 500GB 13.9 POUCES",
       "marque": "Hp",
