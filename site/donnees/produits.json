@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4pmor4odav",
+      "nom": "DELL LATITUDE 3340 CORE i3 4TH SSD 128GB / 500GB 14 POUCES",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "500G/8G",
+      "garantie": "6",
+      "prix": 125000,
+      "prixPromo": 110000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4pmor4odav-mw4pnbqgkpkp.jpg"
+      ]
+    },
+    {
       "id": "pmw4pjxas9q8c",
       "nom": "DELL LATITUDE 3410 CORE i3 10TH SSD 256GB 14 POUCES",
       "marque": "",
