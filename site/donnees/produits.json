@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmw4vn79748id",
+      "nom": "LENOVO THINKPAD L13 YOGA CORE i5 10TH SSD 256GB 13.3 POUCES TACTILE PLIABLE ROTATIVE",
+      "marque": "Lenovo",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "",
+      "prix": 240000,
+      "prixPromo": 225000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4vn79748id-mw4vng0humf6.jpg",
+        "photos/pmw4vn79748id-mw4vng1nmkgt.jpg"
+      ]
+    },
+    {
       "id": "pmw4psaolc06b",
       "nom": "LENOVO THINKPAD E490 CORE i5 8TH SSD 256GB 14 POUCES",
       "marque": "Dell",
