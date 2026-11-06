@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4psaolc06b",
+      "nom": "LENOVO THINKPAD E490 CORE i5 8TH SSD 256GB 14 POUCES",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "6",
+      "prix": 190000,
+      "prixPromo": 160000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4psaolc06b-mw4ptfsab3s3.jpg"
+      ]
+    },
+    {
       "id": "pmw4pq2fhsukn",
       "nom": "DELL LATITUDE 5490/5480 CORE i5 7TH SSD 255GB 14 POUCES",
       "marque": "Dell",
