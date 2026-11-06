@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4g2hlh2c82",
+      "nom": "Vivo X100 pro",
+      "marque": "Vivo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/32G",
+      "garantie": "12",
+      "prix": 400000,
+      "prixPromo": 300000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4g2hlh2c82-mw4g3jieia3h.jpg"
+      ]
+    },
+    {
       "id": "pmw4g09uriayv",
       "nom": "Vivo X 200 ultra",
       "marque": "Vivo",
