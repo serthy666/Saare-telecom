@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4g09uriayv",
+      "nom": "Vivo X 200 ultra",
+      "marque": "Vivo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/32G",
+      "garantie": "12",
+      "prix": 600000,
+      "prixPromo": 520000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4g09uriayv-mw4g0seke81l.jpg"
+      ]
+    },
+    {
       "id": "pmw4fvgt2k1qm",
       "nom": "Honor 600",
       "marque": "Huawei",
