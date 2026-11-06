@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4g75jfjwp9",
+      "nom": "Vivo X90 Pro +",
+      "marque": "Vivo",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "512G/16G",
+      "garantie": "12",
+      "prix": 290000,
+      "prixPromo": 250000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4g75jfjwp9-mw4g82m7okkk.jpg"
+      ]
+    },
+    {
       "id": "pmw4g2hlh2c82",
       "nom": "Vivo X100 pro",
       "marque": "Vivo",
