@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4nw3bh3dki",
+      "nom": "HP 250 G7 core i7 8th SSD 15.6 pouces",
+      "marque": "Hp",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "6",
+      "prix": 250000,
+      "prixPromo": 225000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4nw3bh3dki-mw4nxlx5t9n1.jpg"
+      ]
+    },
+    {
       "id": "pmw4ni1642kfj",
       "nom": "Lenovo yoga 11e core i5 7th SSD Tactile pliable 12 pouces",
       "marque": "Lenovo",
@@ -2273,26 +2293,6 @@
       ]
     },
     {
-      "id": "pmvupje7t1277",
-      "nom": "LENOVO YOGA 11E",
-      "marque": "Lenovo",
-      "rayon": "pc",
-      "categorie": "Portables",
-      "etat": "neuf",
-      "details": "256G/4G/noir",
-      "garantie": "6",
-      "prix": 120000,
-      "prixPromo": 100000,
-      "offre": "promo",
-      "fin": "",
-      "nouveau": false,
-      "stock": "ok",
-      "visible": true,
-      "photos": [
-        "photos/pmvupje7t1277-mvupk6t9hgdc.jpg"
-      ]
-    },
-    {
       "id": "pmvtss8i96tqc",
       "nom": "Iphone 16",
       "marque": "Apple",
@@ -3362,26 +3362,6 @@
       "visible": true,
       "photos": [
         "photos/pmvs6la8un8vi-mvs6mfyexrni.jpg"
-      ]
-    },
-    {
-      "id": "pmvrowr8scfrm",
-      "nom": "Ordinateur Dell",
-      "marque": "Dell",
-      "rayon": "pc",
-      "categorie": "Portables",
-      "etat": "neuf",
-      "details": "128G/8G",
-      "garantie": "2 mois",
-      "prix": 350000,
-      "prixPromo": 200000,
-      "offre": "promo",
-      "fin": "",
-      "nouveau": false,
-      "stock": "ok",
-      "visible": true,
-      "photos": [
-        "photos/pmvrowr8scfrm-mvroxs7aglxn.jpg"
       ]
     },
     {
