@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4pq2fhsukn",
+      "nom": "DELL LATITUDE 5490/5480 CORE i5 7TH SSD 255GB 14 POUCES",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "6",
+      "prix": 178000,
+      "prixPromo": 165000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4pq2fhsukn-mw4pq5cf0g4a.jpg"
+      ]
+    },
+    {
       "id": "pmw4pmor4odav",
       "nom": "DELL LATITUDE 3340 CORE i3 4TH SSD 128GB / 500GB 14 POUCES",
       "marque": "Dell",
