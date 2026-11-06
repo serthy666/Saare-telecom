@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmw4vof7165ie",
+      "nom": "DELL PRECISION 7750 CORE i7 10TH SSD 512GB 17.3 POUCES WORKSTATION",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "occasion",
+      "details": "500G/16G",
+      "garantie": "",
+      "prix": 700000,
+      "prixPromo": 600000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4vof7165ie-mw4vpyd0904h.jpg",
+        "photos/pmw4vof7165ie-mw4vpyetkuod.jpg",
+        "photos/pmw4vof7165ie-mw4vpyg0nlwx.jpg"
+      ]
+    },
+    {
       "id": "pmw4vn79748id",
       "nom": "LENOVO THINKPAD L13 YOGA CORE i5 10TH SSD 256GB 13.3 POUCES TACTILE PLIABLE ROTATIVE",
       "marque": "Lenovo",
