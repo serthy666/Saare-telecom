@@ -7,6 +7,24 @@
   },
   "produits": [
     {
+      "id": "pmw4gtbuawtk0",
+      "nom": "Samsung Galaxy A50",
+      "marque": "Samsung",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/6G",
+      "garantie": "1",
+      "prix": 120000,
+      "prixPromo": 90000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": []
+    },
+    {
       "id": "pmw4gpmfw6tlx",
       "nom": "Oppo Find X8",
       "marque": "Oppo",
