@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmw4p8rewch22",
+      "nom": "DELL PRECISION 3530 CORE i7 8TH SSD 512GB 15.6 POUCES",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "512G/16G",
+      "garantie": "6",
+      "prix": 360000,
+      "prixPromo": 320000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4p8rewch22-mw4p8zhxltg4.jpg",
+        "photos/pmw4p8rewch22-mw4p8zihalbz.jpg"
+      ]
+    },
+    {
       "id": "pmw4o1nlob12c",
       "nom": "Dell  5320 Core i7 11th 14 pouces scellé pliable",
       "marque": "Dell",
