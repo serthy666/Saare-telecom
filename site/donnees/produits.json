@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4mutwfnf8p",
+      "nom": "HP elitebook 640 G5",
+      "marque": "Hp",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G/gris",
+      "garantie": "6",
+      "prix": 200000,
+      "prixPromo": 165000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4mutwfnf8p-mw4mvvbnfaww.jpg"
+      ]
+    },
+    {
       "id": "pmw4gtbuawtk0",
       "nom": "Samsung Galaxy A50",
       "marque": "Samsung",
