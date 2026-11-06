@@ -7,6 +7,28 @@
   },
   "produits": [
     {
+      "id": "pmw4go1skru5z",
+      "nom": "Huawei p30 pro",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "1",
+      "prix": 160000,
+      "prixPromo": 120000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4go1skru5z-mw4go6f85rgn.jpg",
+        "photos/pmw4go1skru5z-mw4go6fxftoi.jpg",
+        "photos/pmw4go1skru5z-mw4go6gkst98.jpg"
+      ]
+    },
+    {
       "id": "pmw4g75jfjwp9",
       "nom": "Vivo X90 Pro +",
       "marque": "Vivo",
