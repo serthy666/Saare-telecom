@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4nd826p6gb",
+      "nom": "dell latitude 3410 core i5 10th SSD",
+      "marque": "Dell",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "6",
+      "prix": 200000,
+      "prixPromo": 165000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4nd826p6gb-mw4ndxl5h5gm.jpg"
+      ]
+    },
+    {
       "id": "pmw4mutwfnf8p",
       "nom": "HP elitebook 640 G5",
       "marque": "Hp",
