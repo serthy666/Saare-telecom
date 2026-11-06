@@ -7,6 +7,27 @@
   },
   "produits": [
     {
+      "id": "pmw4vuqlwj5wm",
+      "nom": "DELL LATITUDE 3190 QUADCORE 8TH SSD 128GB 11.6 POUCES",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "6",
+      "prix": 105000,
+      "prixPromo": 85000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4vuqlwj5wm-mw4vuzvfazfj.jpg",
+        "photos/pmw4vuqlwj5wm-mw4vuzxgqjo3.jpg"
+      ]
+    },
+    {
       "id": "pmw4vof7165ie",
       "nom": "DELL PRECISION 7750 CORE i7 10TH SSD 512GB 17.3 POUCES WORKSTATION",
       "marque": "Dell",
