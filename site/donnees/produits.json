@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4papkv1vgp",
+      "nom": "LENOVO 300E SSD 128GB 11.6 POUCES TACTILE PLIABLE ROTATIVE",
+      "marque": "Lenovo",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "128G/4G",
+      "garantie": "6",
+      "prix": 130000,
+      "prixPromo": 100000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4papkv1vgp-mw4pb2itnlau.jpg"
+      ]
+    },
+    {
       "id": "pmw4p8rewch22",
       "nom": "DELL PRECISION 3530 CORE i7 8TH SSD 512GB 15.6 POUCES",
       "marque": "Dell",
