@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmw4fvgt2k1qm",
+      "nom": "Honor 600",
+      "marque": "Huawei",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "256G/12G/gris",
+      "garantie": "12",
+      "prix": 400000,
+      "prixPromo": 360000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4fvgt2k1qm-mw4fz17oftbs.jpg"
+      ]
+    },
+    {
       "id": "pmw4fhd4cyn76",
       "nom": "Samsung Tab A11",
       "marque": "Samsung",
