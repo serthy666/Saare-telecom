@@ -7,6 +7,46 @@
   },
   "produits": [
     {
+      "id": "pmw4w4ut9vlwh",
+      "nom": "DELL LATITUDE 3300 CORE i5 8TH SSD 256GB 13.3 POUCES",
+      "marque": "Dell",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "6",
+      "prix": 180000,
+      "prixPromo": 150000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4w4ut9vlwh-mw4w61qccp12.jpg"
+      ]
+    },
+    {
+      "id": "pmw4w2173y3ys",
+      "nom": "HP ELITEBOOK 850 G3 CORE i5 6TH SSD 256GB / HDD 500GB 15.6 POUCES",
+      "marque": "",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8G",
+      "garantie": "6",
+      "prix": 240000,
+      "prixPromo": 170000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4w2173y3ys-mw4w2akb76au.jpg"
+      ]
+    },
+    {
       "id": "pmw4vxr7zpggo",
       "nom": "HP ELITEBOOK 850 G5 CORE i5 7TH SSD 256GB 15.6 POUCES",
       "marque": "Hp",
