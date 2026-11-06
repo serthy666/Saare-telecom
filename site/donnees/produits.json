@@ -28,21 +28,23 @@
     },
     {
       "id": "pmw4ffr07pbp3",
-      "nom": "Nouveau produit",
-      "marque": "",
-      "rayon": "tel",
-      "categorie": "Smartphones",
+      "nom": "Samsung Tab A9",
+      "marque": "Samsung",
+      "rayon": "tab",
+      "categorie": "Tablettes",
       "etat": "neuf",
-      "details": "",
-      "garantie": "",
-      "prix": 0,
-      "prixPromo": 0,
+      "details": "64G/4G/blanc",
+      "garantie": "1",
+      "prix": 150000,
+      "prixPromo": 120000,
       "offre": "promo",
       "fin": "",
       "nouveau": false,
       "stock": "ok",
       "visible": true,
-      "photos": []
+      "photos": [
+        "photos/pmw4ffr07pbp3-mw4fqtmzsrba.jpg"
+      ]
     },
     {
       "id": "pmw3xjstnkkid",
