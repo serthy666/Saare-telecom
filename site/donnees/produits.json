@@ -7,8 +7,29 @@
   },
   "produits": [
     {
+      "id": "pmw4ni1642kfj",
+      "nom": "Lenovo yoga 11e core i5 7th SSD Tactile pliable 12 pouces",
+      "marque": "Lenovo",
+      "rayon": "pc",
+      "categorie": "Portables",
+      "etat": "neuf",
+      "details": "256G/8th",
+      "garantie": "6",
+      "prix": 160000,
+      "prixPromo": 140000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmw4ni1642kfj-mw4nik2b2lis.jpg",
+        "photos/pmw4ni1642kfj-mw4nik33sx4s.jpg"
+      ]
+    },
+    {
       "id": "pmw4nd826p6gb",
-      "nom": "dell latitude 3410 core i5 10th SSD",
+      "nom": "dell latitude 3410 core i5 10th SSD 14 pouces",
       "marque": "Dell",
       "rayon": "pc",
       "categorie": "Portables",
