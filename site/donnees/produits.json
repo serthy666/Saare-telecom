@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmwi3mv2to05o",
+      "nom": "Oscar osc-150(100L) disponible",
+      "marque": "Oscar",
+      "rayon": "menager",
+      "categorie": "Réfrigérateurs & congélateurs",
+      "etat": "neuf",
+      "details": "100L",
+      "garantie": "2",
+      "prix": 150000,
+      "prixPromo": 120000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmwi3mv2to05o-mwi3n1812ijo.jpg"
+      ]
+    },
+    {
       "id": "pmw4w4ut9vlwh",
       "nom": "DELL LATITUDE 3300 CORE i5 8TH SSD 256GB 13.3 POUCES",
       "marque": "Dell",
