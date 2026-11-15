@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmwi4reuw3v5n",
+      "nom": "Oscar R215  1 frigo + 1 congélateur",
+      "marque": "Oscar",
+      "rayon": "menager",
+      "categorie": "Réfrigérateurs & congélateurs",
+      "etat": "neuf",
+      "details": "200L",
+      "garantie": "2",
+      "prix": 250000,
+      "prixPromo": 200000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmwi4reuw3v5n-mwi4rk9dodtv.jpg"
+      ]
+    },
+    {
       "id": "pmwi3ucb4f4hf",
       "nom": "Oscar osc 400",
       "marque": "Oscar",
