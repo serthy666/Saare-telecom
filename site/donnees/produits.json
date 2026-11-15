@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmwi3ucb4f4hf",
+      "nom": "Oscar osc 400",
+      "marque": "Oscar",
+      "rayon": "menager",
+      "categorie": "Réfrigérateurs & congélateurs",
+      "etat": "neuf",
+      "details": "300L",
+      "garantie": "2",
+      "prix": 250000,
+      "prixPromo": 225000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmwi3ucb4f4hf-mwi3vcnpxnx4.jpg"
+      ]
+    },
+    {
       "id": "pmwi3qauk4gwf",
       "nom": "Oscar osc-300",
       "marque": "Oscar",
