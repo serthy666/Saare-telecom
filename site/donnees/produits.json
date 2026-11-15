@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmwi3qauk4gwf",
+      "nom": "OSC-300;",
+      "marque": "Oscar",
+      "rayon": "menager",
+      "categorie": "Machines à laver",
+      "etat": "neuf",
+      "details": "200L",
+      "garantie": "2",
+      "prix": 190000,
+      "prixPromo": 165000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmwi3qauk4gwf-mwi3s3ufqu83.jpg"
+      ]
+    },
+    {
       "id": "pmwi3mv2to05o",
       "nom": "Oscar osc-150(100L) d",
       "marque": "Oscar",
