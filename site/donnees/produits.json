@@ -7,6 +7,26 @@
   },
   "produits": [
     {
+      "id": "pmwme2e9ygiug",
+      "nom": "Google pixel 10A",
+      "marque": "Google",
+      "rayon": "tel",
+      "categorie": "Smartphones",
+      "etat": "neuf",
+      "details": "128G/8G",
+      "garantie": "1",
+      "prix": 350000,
+      "prixPromo": 300000,
+      "offre": "promo",
+      "fin": "",
+      "nouveau": false,
+      "stock": "ok",
+      "visible": true,
+      "photos": [
+        "photos/pmwme2e9ygiug-mwme2pqecng7.jpg"
+      ]
+    },
+    {
       "id": "pmwi4reuw3v5n",
       "nom": "Oscar R215  1 frigo + 1 congélateur",
       "marque": "Oscar",
